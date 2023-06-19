@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 밀키트 쇼핑몰 :: Meal Bong </title>
+    <link rel="stylesheet" href="../user/css/login.css">
+    <link rel="stylesheet" href="../common/css/mainPage.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    <script defer src="../../js/main_topDiv.js"></script>
+
+</head>
+
+<body>
+<th:block th:replace="fragments/header :: headerFragement"></th:block>
+    <main>
+        <div class="loginFrame_account">
+            <div class="login_text">가입 완료</div>
+            <div class="loginForm_account">
+                <form action="/user1/login">
+                    <div class="login_div">
+                        <div class="login_id">
+                            <span th:text="${user_name.user_name}"></span>님&nbsp;
+                            <span>밀봉에 오신걸 환영합니다.</span>
+
+                        </div>
+
+                        <div class="login_id">
+                            <button class="submit_button33">
+                                로그인 하러 가기
+                            </button>
+                        </div>
+
+                </form>
+
+            </div>
+        </div>
+
+    </main>
+
+<!-- footer : 법적 필수 항목 -->
+<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+
+</body>
+
+</html>

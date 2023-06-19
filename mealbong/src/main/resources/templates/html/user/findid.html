@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 밀키트 쇼핑몰 :: Meal Bong </title>
+    <link rel="stylesheet" href="../../css/modal.css">
+    <link rel="stylesheet" href="../../css/find.css">
+    <link rel="stylesheet" href="../../css/mainPage.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    <script defer src ="../../js/findid.js"></script>
+    <script defer src="../../js/main_topDiv.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="space">
+    
+            <a href="account.html">
+                지금 가입하고 적립금 <b>10,000원</b> 받아가세요!
+            </a>
+            <a class="space-close">
+                <img src="../../image/closeBtn.png">
+            </a>
+    
+        </div>
+        <ul class="login">
+            <li><a href="account.html">회원가입</a></li>
+            <li><a href="login.html">로그인</a></li>
+        </ul>
+        <div class="flex-box">
+            <a href="#"><img src="../../image/logo4.png" alt="logo" class="logo"></a>
+            <form>
+                <div class="search">
+                    <input type="text" placeholder="검색어를 입력 하세요" id="search_input">
+                    <a href="../search/search.html" class="button"><img class="button-set" src="../../image/search.png"></a>
+                </div>
+            </form>
+            <div class="cart_heart">
+                <a href="../my_page/mypage.html" class="mpage" alt="마이페이지"></a>
+                <a href="./cart.html" class="cart" alt="장바구니"></a>
+                <a href="../my_page/wish.html" class="heart" alt="찜한 상품"></a>
+            </div>
+        </div>
+        <!-- nav / position : sticky -->
+    </header>
+    <nav>
+        <ul class="menu">
+            <li><a href="../menu_list/Korean_menulist.html">카테고리</a>
+                <ul class="submenu">
+                    <li><a href="../menu_list/Korean_menulist.html">한식</a></li>
+                    <li><a href="../menu_list/Chinese_menulist.html">중식</a></li>
+                    <li><a href="../menu_list/Japanese_menulist.html">일식</a></li>
+                    <li><a href="../menu_list/Western_menulist.html">양식</a></li>
+                    <li><a href="../menu_list/Bunsik_menulist.html">분식/야식</a></li>
+                    <li><a href="../menu_list/Asian_menulist.html">아시안</a></li>
+                </ul>
+            </li>
+            <li><a href="#pop">인기상품</a></li>
+            <li><a href="#recommend">오늘의 추천</a></li>
+            <li><a href="../service_page/notice.html">고객센터</a>
+                <ul class="submenu2">
+                    <li><a href="../service_page/notice.html">공지사항</a></li>
+                    <li><a href="../service_page/faq.html">자주하는 질문</a></li>
+                    <li><a href="../service_page/inquiry/inquiry_list.html">1:1 문의</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    
+        <main>
+            <div class="findframe">
+                <p class="p">아이디 찾기</p>
+
+                <div class="divspan"><span class="spanstyle">휴대폰 인증</span></div>
+                
+                    <form action="findid_submit.html">
+                        <div class="formdiv">
+                            <label for="uname" class="label">이름</label>
+                            <div class="inputdiv">
+
+                                <input type="text" id="uname" maxlength="6" class="findinput" placeholder="이름을 입력해 주세요">
+                            </div>
+                        </div>
+
+                        <div class="formdiv">
+                            <label for="phone" class="label">휴대폰 번호</label>
+                            <div>
+
+                                <input type="tel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" id="phone" class="findinput" placeholder="휴대폰 번호를 입력해 주세요" maxlength="11">
+                            </div>
+                        </div>
+
+                        <div class="formdiv3 formdiv_hidden">
+                            <label for="findNum" class="label">인증번호</label>
+                            <div class="div3">
+                                <div class="div3sub1">
+                                    <input type="tel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" id="findNum" class="findinput2" placeholder="인증번호 7자리" maxlength="7">
+                                </div>
+                        
+                                <div class="div3sub2">
+                                    <button type="button" class="div3_a retryBtn">재발송</button>
+                                </div>
+                        
+                            </div>
+                        </div>
+
+                        <div>
+                    
+                            <button type="button" class="buttonstyle formButton" disabled>
+                                <span class="spanbutton spanstyle">인증번호 받기</span>
+                            </button>
+                            
+                        </div>
+                        
+                    </form>
+            
+            </div>
+
+            <div class="modal_container hidden">
+                <div class="bg"></div>
+                <div class="modalBox">
+                    <p></p>
+                    <div class="closeBtn_div">
+                        <button class="closeBtn">확인</button>
+                    </div>
+                </div>
+            </div>
+    
+        </main>
+    
+        <!-- footer : 법적 필수 항목 -->
+     <footer>
+        <hr>
+        <div class="footer">
+            <div><a href="../footer/personal.html"><strong>개인정보처리방침</strong></a></div>
+            <div><a href="../footer/using.html">이용약관</a></div>
+            <div><a href="../service_page/notice.html">공지사항</a></div>
+            <div><a href="../service_page/inquiry/inquiry_list.html">1:1 문의</a></div>
+        </div>
+
+        <pre>
+    회사명 : MealBong
+    사업자 번호 : 123-45-678910
+    대표자 : 박규민
+    주소 : 경기도 성남시 분당구 돌마로 46
+    연락처 : 031 - 789 - 1234
+    E-mail : abcedfg@gmail.com
+    Copyright © 2022 MealBong. All rights reserved.
+        </pre>
+    </footer>
+</body>
+
+</html>

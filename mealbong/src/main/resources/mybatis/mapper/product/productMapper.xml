@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 위 코드가 mapper 설정을 하는 코드 -->
+
+<!-- Mapper를 사용하는 Repository의 전체 경로를 적어줘야함. -->
+<mapper namespace="com.project.mealbong.product.ProductMapper">
+
+    <!-- 상품 리스트 -->
+    <select id="productList" resultType="com.project.mealbong.product.ProductDTO">
+        select p.product_number, p.product_name, p.product_price, i.image_file
+        from product p left outer join image i
+                                       on p.product_number = i.product_number and i.image_main = "Y"
+    </select>
+
+    <select id="imageList" resultType="com.project.mealbong.product.ImageDTO">
+        select * from image
+        where product_number = #{product_number}
+    </select>
+
+    <sql id="orderList">
+        <choose>
+            <when test="orderKey == 1">
+                order by product_sale desc
+            </when>
+            <when test="orderKey == 2">
+                order by product_date desc
+            </when>
+            <when test="orderKey == 3">
+                order by product_price asc
+            </when>
+            <when test="orderKey == 4">
+                order by product_price desc
+            </when>
+        </choose>
+    </sql>
+
+    <!-- Criteria PageList -->
+    <select id="criList" resultType="com.project.mealbong.product.ProductDTO">
+        select p.product_number, p.product_name, p.product_price, i.image_file
+        from product p left outer join image i
+        on p.product_number = i.product_number and i.image_main = "Y"
+        where category_code = #{category_code}
+        <include refid="orderList"></include>
+        limit #{sno}, #{rowsPerPage}
+    </select>
+
+    <select id="categoryList" resultType="com.project.mealbong.product.ProductDTO">
+        select * from code
+        where code_number like "C%"
+    </select>
+
+    <select id="criTotalCount" resultType="int">
+        select count(*) from product
+        where category_code = #{category_code}
+    </select>
+
+    <!-- 상품 상세 -->
+    <select id="productDetail" resultType="com.project.mealbong.product.ProductDTO">
+        select product_number, product_name, product_price, product_serving,
+               (select code_desc from code c where p.package_code = c.code_number)package_code,
+               (select code_desc from code c where p.level_code = c.code_number)level_code
+        from product p
+        where product_number = #{product_number}
+    </select>
+
+
+    <!-- 상품 상세 -->
+    <insert id="insert">
+        insert into product (category_code, product_name, product_price, level_code
+                            , product_serving, package_code )
+        values (#{category_code}, #{product_name}, #{product_price}, #{level_code}
+               , #{product_serving}, #{package_code})
+    </insert>
+
+    <!-- 상품 수정 위한 detail -->
+    <select id="detail" resultType="com.project.mealbong.product.ProductDTO">
+        select *
+        from product
+        where product_number = #{product_number}
+    </select>
+
+    <!-- 상품 수정 -->
+    <update id="update">
+        update product set product_name=#{product_name}, product_price=#{product_price},
+                           category_code=#{category_code}, package_code=#{package_code}, product_serving=#{product_serving},
+                           level_code=#{level_code}
+        where product_number = #{product_number}
+    </update>
+
+    <!-- 상품 삭제 -->
+    <delete id="delete">
+        delete from product
+        where product_number = #{product_number}
+    </delete>
+
+    <!--    admin page -->
+    <select id="productAdmin" resultType="com.project.mealbong.product.ProductDTO">
+        select *,
+               (select code_desc from code c where p.package_code = c.code_number)package_code,
+               (select code_desc from code c where p.level_code = c.code_number) level_code
+        from product p
+        where product_number = #{product_number}
+    </select>
+
+
+    <!-- SearchCriteria PageList -->
+    <sql id="search">
+        <if test="keyword!=null">
+            <bind name="keyVal" value="'%'+keyword+'%'"/>
+        </if>
+        <choose>
+            <when test="searchType=='n'.toString()">
+                and product_name like #{keyVal}
+                or product_price like #{keyVal}
+                or category_code like #{keyVal}
+                or package_code like #{keyVal}
+                or product_serving like #{keyVal}
+                or level_code like #{keyVal} )
+            </when>
+            <when test="searchType=='p'.toString()">
+                and product_name like #{keyVal} )
+            </when>
+            <when test="searchType=='e'.toString()">
+                and product_price like #{keyVal} )
+            </when>
+            <when test="searchType=='o'.toString()">
+                and category_code like #{keyVal} )
+            </when>
+            <when test="searchType=='u'.toString()">
+                and package_code like #{keyVal} )
+            </when>
+            <when test="searchType=='s'.toString()">
+                and product_serving like #{keyVal} )
+            </when>
+            <when test="searchType=='etc'.toString()">
+                and level_code like #{keyVal} )
+            </when>
+            <otherwise> )</otherwise>
+        </choose>
+    </sql>
+
+    <select id="searchList" resultType="com.project.mealbong.product.ProductDTO">
+        select p.product_number, p.product_name, p.product_price , p.product_serving, i.image_file,
+        (select code_desc from code c where p.package_code = c.code_number)package_code,
+        (select code_desc from code c where p.level_code = c.code_number)level_code,
+        (select code_desc from code c where p.category_code = c.code_number)category_code
+        from product p, image i
+        where ( p.product_number>0
+        <include refid="search"></include> and i.product_number = p.product_number and i.image_main = "Y"
+        order by p.product_number desc
+        limit #{sno}, #{rowsPerPage}
+    </select>
+
+    <select id="searchTotalCount" resultType="int">
+        select count(*) from product
+        where ( product_number>0 <include refid="search"></include>
+    </select>
+
+    <!--    search page -->
+    <select id="searchPage" resultType="com.project.mealbong.product.ProductDTO">
+        select p.product_number, p.product_name, p.product_price, i.image_file
+        from product p left outer join image i
+                                       on p.product_number = i.product_number and i.image_main = "Y"
+        where p.product_name like '%' #{keyword} '%'
+        order by p.product_number desc
+            limit #{sno}, #{rowsPerPage}
+    </select>
+
+    <select id="searchPageTotalCount" resultType="int">
+        select count(*) from product
+        where product_name like '%' #{keyword} '%'
+    </select>
+
+    <!--    main page -->
+
+    <!--    인기상품 -->
+    <select id="popList" resultType="com.project.mealbong.product.ProductDTO">
+        select p.product_number, p.product_name, p.product_price, i.image_file
+        from product p left outer join image i
+                                       on p.product_number = i.product_number and i.image_main = "Y"
+        order by product_sale desc
+    </select>
+    <!--    오늘의 추천, 이런건 어때요?-->
+    <select id="randomList" resultType="com.project.mealbong.product.ProductDTO">
+        select p.product_number, p.product_name, p.product_price, i.image_file
+        from product p left outer join image i
+                                       on p.product_number = i.product_number and i.image_main = "Y"
+
+        Order by rand()
+            Limit 32
+    </select>
+    <!--    밀봉 신상 -->
+    <select id="newList" resultType="com.project.mealbong.product.ProductDTO">
+        select p.product_number, p.product_name, p.product_price, i.image_file
+        from product p left outer join image i
+                                       on p.product_number = i.product_number and i.image_main = "Y"
+        order by product_number desc
+    </select>
+
+</mapper>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="headerFragement">
+    <header>
+        <!--        <div class="space">-->
+
+        <!--            <a href="/user1/terms">-->
+        <!--                지금 가입하고 적립금 <b>10,000원</b> 받아가세요!-->
+        <!--            </a>-->
+        <!--            <a class="space-close">-->
+        <!--                <img src="../../image/closeBtn.png">-->
+        <!--            </a>-->
+
+        <!--        </div>-->
+        <ul class="login">
+            <th:block th:if="${session['user_id'] == null}">
+                <li><a href="/user1/terms">회원가입</a></li>
+                <li><a href="/user1/login">로그인</a></li>
+            </th:block>
+
+            <th:block th:if="${session['user_id'] != null}">
+                <li>
+                    <th:block th:if="${session['user_id']=='admin'}">
+                        <a th:href="@{/admin/useradmin}">
+                            <span th:text="${session['user_name']}"></span>&nbsp;님
+                        </a>
+                    </th:block>
+                    <th:block th:unless="${session['user_id']=='admin'}">
+                        <a href="/myPage?currPage=1&rowsPerPage=8">
+                            <span th:text="${session['user_name']}"></span>&nbsp;님
+                        </a>
+                    </th:block>
+
+                </li>
+                <li>
+                    <a href="/user1/logout">로그아웃</a>
+                </li>
+            </th:block>
+        </ul>
+        <div class="flex-box">
+            <a href="/"><img src="../../image/logo4.png" alt="logo" class="logo"></a>
+            <form action="/search/searchlist" method="GET">
+                <div class="search">
+                    <input name="keyword" type="text" placeholder="검색어를 입력 하세요" id="search_input" required>
+                    <input type="submit" class="button" id="searchBtn" value="" width="1" height="1">
+                    <label for="searchBtn"><img class="button-set" src="../../image/search.png"></label>
+                </div>
+            </form>
+
+            <div class="cart_heart">
+
+                <th:block th:if="${session['user_id'] == null}">
+                    <a href="/user1/login" class="mpage" alt="마이페이지"></a>
+                    <a href="/user1/login" class="cart" alt="장바구니"></a>
+                    <a href="/user1/login" class="heart" alt="찜한 상품"></a>
+                </th:block>
+                <th:block th:if="${session['user_id'] != null}">
+                    <a href="/myPage?currPage=1&rowsPerPage=8" class="mpage" alt="마이페이지"></a>
+                    <a href="/order/cart" class="cart" alt="장바구니"></a>
+                    <a href="/wish/list" class="heart" alt="찜한 상품"></a>
+                </th:block>
+            </div>
+        </div>
+    </header>
+    <!-- nav / position : sticky -->
+    <nav>
+        <ul class="menu">
+            <li><a th:href="@{/product/productList(currPage=1,rowsPerPage=8, category_code=C_01)}">카테고리</a>
+                <ul class="submenu">
+                    <li th:each="productList:${code_number}">
+                        <a th:text="${productList.code_desc}"
+                           th:href="@{/product/productList(currPage=1,rowsPerPage=8, category_code=${productList.code_number})}"></a>
+                    </li>
+                </ul>
+            </li>
+            <li><a href="/#pop">인기상품</a></li>
+            <li><a href="/#recommend">오늘의 추천</a></li>
+            <li><a href="/notice/list">고객센터</a>
+                <ul class="submenu2">
+                    <li><a href="/notice/list">공지사항</a></li>
+                    <li><a th:href="@{/faq/list(faq_code=ALL)}">자주하는 질문</a></li>
+                    <li><a href="/qna/qnalist">1:1 문의</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+</th:block>
+</html>

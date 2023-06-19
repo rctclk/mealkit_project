@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 밀키트 쇼핑몰 :: Meal Bong </title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/mypage.css">
+    <link rel="stylesheet" href="../../css/mainPage.css">
+    <script defer src="../../js/main_topDiv.js"></script>
+
+
+</head>
+
+<body>
+    <header>
+        <div class="space">
+            <a href="../../html/login/account.html">
+                지금 가입하고 적립금 <b>10,000원</b> 받아가세요!
+            </a>
+            <a class="space-close">
+                <img src="../../image/closeBtn.png">
+            </a>
+
+        </div>
+        <ul class="login">
+            <li><a href="../../html/login/Terms.html">회원가입</a></li>
+            <li><a href="../../html/login/login.html">로그인</a></li>
+        </ul>
+        <div class="flex-box">
+            <a href="#"><img src="../../image/logo4.png" alt="logo" class="logo"></a>
+            <form>
+                <div class="search">
+                    <input type="text" placeholder="검색어를 입력 하세요" required>
+                    <button class="button"><img class="button-set" src="../../image/search.png"></button>
+                </div>
+            </form>
+            <div class="cart_heart">
+                <a href="../../html/my_page/mypage.html" class="mpage" alt="마이페이지"></a>
+                <a href="../../html/login/cart.html" class="cart" alt="장바구니"></a>
+                <a href="../../html/my_page/wish.html" class="heart" alt="찜한 상품"></a>
+            </div>
+        </div>
+        <!-- nav / position : sticky -->
+    </header>
+    <nav>
+        <ul class="menu">
+            <li><a href="../../html/menu_list/Korean_menulist.html">카테고리</a>
+                <ul class="submenu">
+                    <li><a href="../../html/menu_list/Korean_menulist.html">한식</a></li>
+                    <li><a href="../../html/menu_list/Chinese_menulist.html">중식</a></li>
+                    <li><a href="../../html/menu_list/Japanese_menulist.html">일식</a></li>
+                    <li><a href="../../html/menu_list/Western_menulist.html">양식</a></li>
+                    <li><a href="../../html/menu_list/Bunsik_menulist.html">분식/야식</a></li>
+                    <li><a href="../../html/menu_list/Asian_menulist.html">아시안</a></li>
+                </ul>
+            </li>
+            <li><a href="#pop">인기상품</a></li>
+            <li><a href="#recommend">오늘의 추천</a></li>
+            <li><a href="../../html/service_page/notice.html">고객센터</a>
+                <ul class="submenu2">
+                    <li><a href="../../html/service_page/notice.html">공지사항</a></li>
+                    <li><a href="../../html/service_page/faq.html">자주하는 질문</a></li>
+                    <li><a href="../service_page/inquiry/inquiry_list.html">1:1 문의</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <main>
+        <div class="mypage">
+            <div class="aside">
+                <div class="name">
+                    <h2>마이페이지</h2>
+                </div>
+                <ul>
+                    <li>
+                        <a href="./mypage.html" class="order">주문 내역
+                            <span></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./review.html" class="review">상품 후기
+                            <span></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./wish.html" class="wish">찜한 상품
+                            <span></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./address.html" class="address">배송지 관리
+                            <span></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="info">개인정보 수정
+                            <span></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="content">
+                <div class="content_1">
+                    <h2>개인정보 수정</h2>
+                </div>
+                <div class="info_correction">
+                    <form action="#" name="info_correction">
+                        <fieldset>
+                            <div class="info_correction_1">
+                                <div class="box1">
+                                    <div class="inner">
+                                        <label>아이디</label>
+                                    </div>
+                                    <div class="box2">
+                                        <input type="text" class="inputstyle" value="GUEST" readonly>
+                                    </div>
+                                </div>
+                                <div class="box1">
+                                    <div class="inner">
+                                        <label>현재 비밀번호</label>
+                                    </div>
+                                    <div class="box2">
+                                        <input type="password" class="inputstyle" placeholder="비밀번호를 입력해주세요"
+                                            minlength="8" required>
+                                    </div>
+                                </div>
+
+                                <div class="box1">
+                                    <div class="inner">
+                                        <label>새 비밀번호</label>
+                                    </div>
+                                    <div class="box2">
+                                        <input type="password" class="inputstyle" placeholder="새 비밀번호를 입력해주세요"
+                                            minlength="8" required>
+                                    </div>
+                                </div>
+
+                                <div class="box1">
+                                    <div class="inner">
+                                        <label>새 비밀번호 확인</label>
+                                    </div>
+                                    <div class="box2">
+                                        <input type="password" class="inputstyle" placeholder="새 비밀번호를 한번 더 입력해주세요"
+                                            minlength="8" required>
+                                    </div>
+                                </div>
+
+                                <div class="box1">
+                                    <div class="inner">
+                                        <label>이름</label>
+                                    </div>
+                                    <div class="box2">
+                                        <input type="text" class="inputstyle" placeholder="이름을 입력해주세요" required>
+                                    </div>
+                                </div>
+
+                                <div class="box1">
+                                    <div class="inner">
+                                        <label>이메일</label>
+                                    </div>
+                                    <div class="box2">
+                                        <input type="email" class="inputstyle" placeholder="예: mealbong@meal.com"
+                                            required>
+                                    </div>
+
+                                    <div class="box3">
+                                        <button type="button" class="buttonstyle button_opacity">
+                                            중복확인
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="box1">
+                                    <div class="inner">
+                                        <label>휴대폰</label>
+                                    </div>
+                                    <div class="box2">
+                                        <input type="tel" class="inputstyle" value="010-1234-5678" readonly>
+                                    </div>
+
+                                    <div class="box3">
+                                        <button type="button" class="buttonstyle">
+                                            다른번호 인증
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="box1">
+                                    <div class="inner genderlabel">
+                                        <label>
+                                            <div>성별</div>
+                                        </label>
+                                    </div>
+                                    <div class="box2 gender">
+                                        <input type="radio" class="genderinput" name="gender" id="man">
+                                        <label for="man" name="gender" class="genderlabel2">남자</label>
+                                        <input type="radio" class="genderinput" name="gender" id="woman">
+                                        <label for="woman" name="gender" class="genderlabel2">여자</label>
+                                        <input type="radio" class="genderinput" name="gender" id="none">
+                                        <label for="none" name="gender">선택안함</label>
+                                    </div>
+                                </div>
+                                <div class="box1">
+                                    <div class="inner">
+                                        <label>
+                                            <div>생년월일</div>
+                                        </label>
+                                    </div>
+                                    <div class="birth">
+                                        <div class="birthchild birthchild1">
+                                            <input type="text" class="inputstyle2" placeholder="YYYY" maxlength="4">
+                                        </div>
+                                        <div class="birthchild birthchild2">
+                                            <select name="month" id="month" class="month">
+                                                <option value="1">1월</option>
+                                                <option value="2">2월</option>
+                                                <option value="3">3월</option>
+                                                <option value="4">4월</option>
+                                                <option value="5">5월</option>
+                                                <option value="6">6월</option>
+                                                <option value="7">7월</option>
+                                                <option value="8">8월</option>
+                                                <option value="9">9월</option>
+                                                <option value="10">10월</option>
+                                                <option value="11">11월</option>
+                                                <option value="12">12월</option>
+                                            </select>
+                                        </div>
+                                        <div class="birthchild">
+                                            <input type="text" class="inputstyle2" placeholder="DD" maxlength="2">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div class="info_correction_2">
+                            <button class="button_correction">
+                                정보수정
+                            </button>
+                            <button class="button_secession">
+                                탈퇴하기
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <hr>
+        <div class="footer">
+            <div><a href="../footer/personal.html"><strong>개인정보처리방침</strong></a></div>
+            <div><a href="../footer/using.html">이용약관</a></div>
+            <div><a href="../service_page/notice.html">공지사항</a></div>
+            <div><a href="/html/service_page/inquriy/inquiry_list.html">1:1 문의</a></div>
+        </div>
+
+        <pre>
+    회사명 : MealBong
+    사업자 번호 : 123-45-678910
+    대표자 : 박규민
+    주소 : 경기도 성남시 분당구 돌마로 46
+    연락처 : 031 - 789 - 1234
+    E-mail : abcedfg@gmail.com
+    Copyright © 2022 MealBong. All rights reserved.
+        </pre>
+    </footer>
+</body>
+
+</html>

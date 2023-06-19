@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/head :: headFragment(~{::link})">
+    <link rel="stylesheet" href="../common/css/modal.css">
+</head>
+
+<body>
+
+<!-- 헤더 : 로고 / 검색창 /  -->
+<th:block th:replace="fragments/header :: headerFragement"></th:block>
+
+<!-- 메인 :  배너 / 인기 상품 / 카테고리 / 오늘의 추천-->
+<main>
+    <div class="bannerContainer">
+        <div class="slide-container">
+            <a class="btn_left bannerNonVisible" href="#" data-move-value="-1">
+                <img src="../image/preHover.png" alt="back_img">
+            </a>
+            <ul class="main-banner">
+                <li><img src="../image/banner3.png"></li>
+                <li><img src="../image/banner5.jpg"></li>
+                <li><img src="../image/banner1.png"></li>
+                <li><img src="../image/banner4.png"></li>
+            </ul>
+            <a class="btn_right" href="#" data-move-value="1">
+                <img src="../image/nextHover.png" alt="forward_img">
+            </a>
+        </div>
+    </div>
+
+    <div class="pop main-width"><a href="#" name="pop">
+        <div style="height: 50px"></div>
+        <h2>인기상품</h2>
+    </a></div>
+    <div class="menuContainer">
+            <span class="btn_back nonVisible" data-move-value="-1">
+                <img src="../image/preHover.png" alt="back_img">
+            </span>
+        <span class="btn_forward" data-move-value="1">
+                <img src="../image/nextHover.png" alt="forward_img">
+            </span>
+        <div class="mainFrame">
+            <div class="main-top">
+                <div class="mainMenu pop_pro">
+                    <div class="product" th:each="productList, i: ${productList.subList(0, 4)}">
+                        <a th:href="@{|/product/${productList.product_number}|}" class="pro1">
+                            <div class="img_container">
+                                <img th:src="${productList.image_file}" alt="상품 이미지">
+                            </div>
+                        </a>
+                        <th:block th:each="productList:${productList}">
+                            <form action="/order/wishInsert">
+                                <input type="hidden" id="user_id" name="user_id" th:value="${session['user_id']}">
+                                <input type="hidden" id="product_number" name="product_number"
+                                       th:value="${productList.product_number}">
+                                <button class="basket" type="button" onclick="login_check2()"></button>
+                            </form>
+                        </th:block>
+                        <a th:href="@{|/product/${productList.product_number}|}" th:text="${productList.product_name}"
+                           class="menu_name"></a>
+                        <div class="post">샛별배송</div>
+                        <div class="menu_price"
+                             th:text="${#numbers.formatInteger(productList.product_price, 3, 'COMMA') + '원'}"></div>
+                        <div class="food_hint">취향대로 맛있게 완성하는</div>
+                        <div class="hint_under">
+                            <span class="only">Mealbong Only</span>
+                            <span class="limited">한정수량</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mainMenu pop_pro">
+                    <div class="product" th:each="productList, i: ${productList.subList(4, 8)}">
+                        <a th:href="@{|/product/${productList.product_number}|}" class="pro1">
+                            <div class="img_container">
+                                <img th:src="${productList.image_file}" alt="상품 이미지">
+                            </div>
+                        </a>
+                        <button class="basket"></button>
+                        <a th:href="@{|/product/${productList.product_number}|}" th:text="${productList.product_name}"
+                           class="menu_name"></a>
+                        <div class="post">샛별배송</div>
+                        <div class="menu_price"
+                             th:text="${#numbers.formatInteger(productList.product_price, 3, 'COMMA') + '원'}"></div>
+                        <div class="food_hint">취향대로 맛있게 완성하는</div>
+                        <div class="hint_under">
+                            <span class="only">Mealbong Only</span>
+                            <span class="limited">한정수량</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="pop_pro mainMenu">
+                    <div class="product" th:each="productList, i: ${productList.subList(8, 12)}">
+                        <a th:href="@{|/product/${productList.product_number}|}" class="pro1">
+                            <div class="img_container">
+                                <img th:src="${productList.image_file}" alt="상품 이미지">
+                            </div>
+                        </a>
+                        <button class="basket"></button>
+                        <a th:href="@{|/product/${productList.product_number}|}" th:text="${productList.product_name}"
+                           class="menu_name"></a>
+                        <div class="post">샛별배송</div>
+                        <div class="menu_price"
+                             th:text="${#numbers.formatInteger(productList.product_price, 3, 'COMMA') + '원'}"></div>
+                        <div class="food_hint">취향대로 맛있게 완성하는</div>
+                        <div class="hint_under">
+                            <span class="only">Mealbong Only</span>
+                            <span class="limited">한정수량</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="pop_pro mainMenu">
+                    <div class="product" th:each="productList, i: ${productList.subList(12, 16)}">
+                        <a th:href="@{|/product/${productList.product_number}|}" class="pro1">
+                            <div class="img_container">
+                                <img th:src="${productList.image_file}" alt="상품 이미지">
+                            </div>
+                        </a>
+                        <button class="basket"></button>
+                        <a th:href="@{|/product/${productList.product_number}|}" th:text="${productList.product_name}"
+                           class="menu_name"></a>
+                        <div class="post">샛별배송</div>
+                        <div class="menu_price"
+                             th:text="${#numbers.formatInteger(productList.product_price, 3, 'COMMA') + '원'}"></div>
+                        <div class="food_hint">취향대로 맛있게 완성하는</div>
+                        <div class="hint_under">
+                            <span class="only">Mealbong Only</span>
+                            <span class="limited">한정수량</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pop main-width"><a href="#" name="recommend">
+        <div style="height: 50px"></div>
+        <h2>오늘의 추천</h2>
+    </a></div>
+    <div class="menuContainer2">
+            <span class="btn_back2 nonVisible" href="#" data-move-value="-1">
+                <img src="./image/preHover.png" alt="back_img">
+            </span>
+        <span class="btn_forward2" href="#" data-move-value="1">
+                <img src="./image/nextHover.png" alt="foward_img">
+            </span>
+        <div class="mainFrame2">
+            <div class="main-top2 ">
+                <div class="pop_pro mainMenu2">
+                    <div class="product" th:each="productList, i: ${randomList.subList(0, 4)}">
+                        <a th:href="@{|/product/${productList.product_number}|}" class="pro1">
+                            <div class="img_container">
+                                <img th:src="${productList.image_file}" alt="상품 이미지">
+                            </div>
+                        </a>
+                        <button class="basket"></button>
+                        <a th:href="@{|/product/${productList.product_number}|}" th:text="${productList.product_name}"
+                           class="menu_name"></a>
+                        <div class="post">샛별배송</div>
+                        <div class="menu_price"
+                             th:text="${#numbers.formatInteger(productList.product_price, 3, 'COMMA') + '원'}"></div>
+                        <div class="food_hint">취향대로 맛있게 완성하는</div>
+                        <div class="hint_under">
+                            <span class="only">Mealbong Only</span>
+                            <span class="limited">한정수량</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="pop_pro mainMenu2">
+                    <div class="product" th:each="productList, i: ${randomList.subList(4, 8)}">
+                        <a th:href="@{|/product/${productList.product_number}|}" class="pro1">
+                            <div class="img_container">
+                                <img th:src="${productList.image_file}" alt="상품 이미지">
+                            </div>
+                        </a>
+                        <button class="basket"></button>
+                        <a th:href="@{|/product/${productList.product_number}|}" th:text="${productList.product_name}"
+                           class="menu_name"></a>
+                        <div class="post">샛별배송</div>
+                        <div class="menu_price"
+                             th:text="${#numbers.formatInteger(productList.product_price, 3, 'COMMA') + '원'}"></div>
+                        <div class="food_hint">취향대로 맛있게 완성하는</div>
+                        <div class="hint_under">
+                            <span class="only">Mealbong Only</span>
+                            <span class="limited">한정수량</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="pop_pro mainMenu2">
+                    <div class="product" th:each="productList, i: ${randomList.subList(8, 12)}">
+                        <a th:href="@{|/product/${productList.product_number}|}" class="pro1">
+                            <div class="img_container">
+                                <img th:src="${productList.image_file}" alt="상품 이미지">
+                            </div>
+                        </a>
+                        <button class="basket"></button>
+                        <a th:href="@{|/product/${productList.product_number}|}" th:text="${productList.product_name}"
+                           class="menu_name"></a>
+                        <div class="post">샛별배송</div>
+                        <div class="menu_price"
+                             th:text="${#numbers.formatInteger(productList.product_price, 3, 'COMMA') + '원'}"></div>
+                        <div class="food_hint">취향대로 맛있게 완성하는</div>
+                        <div class="hint_under">
+                            <span class="only">Mealbong Only</span>
+                            <span class="limited">한정수량</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="pop_pro mainMenu2">
+                    <div class="product" th:each="productList, i: ${randomList.subList(12, 16)}">
+                        <a th:href="@{|/product/${productList.product_number}|}" class="pro1">
+                            <div class="img_container">
+                                <img th:src="${productList.image_file}" alt="상품 이미지">
+                            </div>
+                        </a>
+                        <button class="basket"></button>
+                        <a th:href="@{|/product/${productList.product_number}|}" th:text="${productList.product_name}"
+                           class="menu_name"></a>
+                        <div class="post">샛별배송</div>
+                        <div class="menu_price"
+                             th:text="${#numbers.formatInteger(productList.product_price, 3, 'COMMA') + '원'}"></div>
+                        <div class="food_hint">취향대로 맛있게 완성하는</div>
+                        <div class="hint_under">
+                            <span class="only">Mealbong Only</span>
+                            <span class="limited">한정수량</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="pop main-width"><a href="#">
+        <div style="height: 50px"></div>
+        <h2>밀봉 신상</h2>
+    </a></div>
+    <div class="menuContainer3">
+            <span class="btn_back3 nonVisible" href="#" data-move-value="-1">
+                <img src="./image/preHover.png" alt="back_img">
+            </span>
+        <span class="btn_forward3" href="#" data-move-value="1">
+                <img src="./image/nextHover.png" alt="foward_img">
+            </span>
+        <div class="mainFrame3">
+            <div class="main-top3">
+                <div class="pop_pro mainMenu3">
+                    <div class="product" th:each="productList, i: ${newList.subList(0, 4)}">
+                        <a th:href="@{|/product/${productList.product_number}|}" class="pro1">
+                            <div class="img_container">
+                                <img th:src="${productList.image_file}" alt="상품 이미지">
+                            </div>
+                        </a>
+                        <button class="basket"></button>
+                        <a th:href="@{|/product/${productList.product_number}|}" th:text="${productList.product_name}"
+                           class="menu_name"></a>
+                        <div class="post">샛별배송</div>
+                        <div class="menu_price"
+                             th:text="${#numbers.formatInteger(productList.product_price, 3, 'COMMA') + '원'}"></div>
+                        <div class="food_hint">취향대로 맛있게 완성하는</div>
+                        <div class="hint_under">
+                            <span class="only">Mealbong Only</span>
+                            <span class="limited">한정수량</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="pop_pro mainMenu3">
+                    <div class="product" th:each="productList, i: ${newList.subList(4, 8)}">
+                        <a th:href="@{|/product/${productList.product_number}|}" class="pro1">
+                            <div class="img_container">
+                                <img th:src="${productList.image_file}" alt="상품 이미지">
+                            </div>
+                        </a>
+                        <button class="basket"></button>
+                        <a th:href="@{|/product/${productList.product_number}|}" th:text="${productList.product_name}"
+                           class="menu_name"></a>
+                        <div class="post">샛별배송</div>
+                        <div class="menu_price"
+                             th:text="${#numbers.formatInteger(productList.product_price, 3, 'COMMA') + '원'}"></div>
+                        <div class="food_hint">취향대로 맛있게 완성하는</div>
+                        <div class="hint_under">
+                            <span class="only">Mealbong Only</span>
+                            <span class="limited">한정수량</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="pop_pro mainMenu3">
+                    <div class="product" th:each="productList, i: ${newList.subList(8, 12)}">
+                        <a th:href="@{|/product/${productList.product_number}|}" class="pro1">
+                            <div class="img_container">
+                                <img th:src="${productList.image_file}" alt="상품 이미지">
+                            </div>
+                        </a>
+                        <button class="basket"></button>
+                        <a th:href="@{|/product/${productList.product_number}|}" th:text="${productList.product_name}"
+                           class="menu_name"></a>
+                        <div class="post">샛별배송</div>
+                        <div class="menu_price"
+                             th:text="${#numbers.formatInteger(productList.product_price, 3, 'COMMA') + '원'}"></div>
+                        <div class="food_hint">취향대로 맛있게 완성하는</div>
+                        <div class="hint_under">
+                            <span class="only">Mealbong Only</span>
+                            <span class="limited">한정수량</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="pop_pro mainMenu3">
+                    <div class="product" th:each="productList, i: ${newList.subList(12, 16)}">
+                        <a th:href="@{|/product/${productList.product_number}|}" class="pro1">
+                            <div class="img_container">
+                                <img th:src="${productList.image_file}" alt="상품 이미지">
+                            </div>
+                        </a>
+                        <button class="basket"></button>
+                        <a th:href="@{|/product/${productList.product_number}|}" th:text="${productList.product_name}"
+                           class="menu_name"></a>
+                        <div class="post">샛별배송</div>
+                        <div class="menu_price"
+                             th:text="${#numbers.formatInteger(productList.product_price, 3, 'COMMA') + '원'}"></div>
+                        <div class="food_hint">취향대로 맛있게 완성하는</div>
+                        <div class="hint_under">
+                            <span class="only">Mealbong Only</span>
+                            <span class="limited">한정수량</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="pop main-width">
+        <div style="height: 50px"></div>
+        <h2>이런건 어때요?</h2>
+    </div>
+    <div class="menuContainer4">
+            <span class="btn_back4 nonVisible" href="#" data-move-value="-1">
+                <img src="./image/preHover.png" alt="back_img">
+            </span>
+        <span class="btn_forward4" href="#" data-move-value="1">
+                <img src="./image/nextHover.png" alt="foward_img">
+            </span>
+        <div class="mainFrame4">
+            <div class="main-top4">
+                <div class="pop_pro mainMenu4">
+                    <div class="product" th:each="productList, i: ${randomList.subList(16, 20)}">
+                        <a th:href="@{|/product/${productList.product_number}|}" class="pro1">
+                            <div class="img_container">
+                                <img th:src="${productList.image_file}" alt="상품 이미지">
+                            </div>
+                        </a>
+                        <button class="basket"></button>
+                        <a th:href="@{|/product/${productList.product_number}|}" th:text="${productList.product_name}"
+                           class="menu_name"></a>
+                        <div class="post">샛별배송</div>
+                        <div class="menu_price"
+                             th:text="${#numbers.formatInteger(productList.product_price, 3, 'COMMA') + '원'}"></div>
+                        <div class="food_hint">취향대로 맛있게 완성하는</div>
+                        <div class="hint_under">
+                            <span class="only">Mealbong Only</span>
+                            <span class="limited">한정수량</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="pop_pro mainMenu4">
+                    <div class="product" th:each="productList, i: ${randomList.subList(20, 24)}">
+                        <a th:href="@{|/product/${productList.product_number}|}" class="pro1">
+                            <div class="img_container">
+                                <img th:src="${productList.image_file}" alt="상품 이미지">
+                            </div>
+                        </a>
+                        <button class="basket"></button>
+                        <a th:href="@{|/product/${productList.product_number}|}" th:text="${productList.product_name}"
+                           class="menu_name"></a>
+                        <div class="post">샛별배송</div>
+                        <div class="menu_price"
+                             th:text="${#numbers.formatInteger(productList.product_price, 3, 'COMMA') + '원'}"></div>
+                        <div class="food_hint">취향대로 맛있게 완성하는</div>
+                        <div class="hint_under">
+                            <span class="only">Mealbong Only</span>
+                            <span class="limited">한정수량</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="pop_pro mainMenu4">
+                    <div class="product" th:each="productList, i: ${randomList.subList(24, 28)}">
+                        <a th:href="@{|/product/${productList.product_number}|}" class="pro1">
+                            <div class="img_container">
+                                <img th:src="${productList.image_file}" alt="상품 이미지">
+                            </div>
+                        </a>
+                        <button class="basket"></button>
+                        <a th:href="@{|/product/${productList.product_number}|}" th:text="${productList.product_name}"
+                           class="menu_name"></a>
+                        <div class="post">샛별배송</div>
+                        <div class="menu_price"
+                             th:text="${#numbers.formatInteger(productList.product_price, 3, 'COMMA') + '원'}"></div>
+                        <div class="food_hint">취향대로 맛있게 완성하는</div>
+                        <div class="hint_under">
+                            <span class="only">Mealbong Only</span>
+                            <span class="limited">한정수량</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="pop_pro mainMenu4">
+                    <div class="product" th:each="productList, i: ${randomList.subList(28, 32)}">
+                        <a th:href="@{|/product/${productList.product_number}|}" class="pro1">
+                            <div class="img_container">
+                                <img th:src="${productList.image_file}" alt="상품 이미지">
+                            </div>
+                        </a>
+                        <button class="basket"></button>
+                        <a th:href="@{|/product/${productList.product_number}|}" th:text="${productList.product_name}"
+                           class="menu_name"></a>
+                        <div class="post">샛별배송</div>
+                        <div class="menu_price"
+                             th:text="${#numbers.formatInteger(productList.product_price, 3, 'COMMA') + '원'}"></div>
+                        <div class="food_hint">취향대로 맛있게 완성하는</div>
+                        <div class="hint_under">
+                            <span class="only">Mealbong Only</span>
+                            <span class="limited">한정수량</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="height: 80px"></div>
+    <div class="mainModal hidden">
+        <div class="bg"></div>
+        <div class="modalBox">
+            <p>검색어를 입력해주세요.</p>
+            <div class="closeBtn_div">
+                <button class="closeBtn">확인</button>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer th:replace="fragments/footer :: footerFragment"></footer>
+<div class="topButton">
+    <a href="#"><img src="image/topbutton.png" title="위로 가기"></a>
+</div>
+
+
+<!-- =========== 찜하기 모달창 (로그인 전 후) =========== -->
+<div class="modal_container hidden">
+    <div class="bg"></div>
+    <div class="modalBox">
+        <p></p>
+        <div class="closeBtn_div">
+            <button class="closeBtn">확인</button>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

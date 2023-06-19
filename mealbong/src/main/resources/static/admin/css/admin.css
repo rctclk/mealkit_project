@@ -1,0 +1,378 @@
+main {
+    width: 1200px;
+    margin: auto;
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.admin_name {
+    height: 60px;
+    text-align: center;
+}
+
+.admin_aside {
+    width: 180px;
+}
+
+.admin_aside ul {
+    list-style: none;
+    border-bottom: 0;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.admin_aside ul li {
+    line-height: 14px;
+    box-sizing: border-box;
+    border-top: 1px solid #AEAEAE;
+    border-right: 1px solid #AEAEAE;
+    border-left: 1px solid #AEAEAE;
+    font-weight: bold;
+}
+
+.admin_aside ul li:last-child {
+    border-bottom: 1px solid #AEAEAE;
+}
+
+.admin_aside ul a {
+    text-decoration: none;
+    box-sizing: border-box;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.admin_aside a {
+    color: black;
+}
+
+.admin_aside a span::after {
+    content: "▷";
+}
+
+/*.admin_aside a:hover {*/
+/*    background-color: lightsalmon;*/
+/*    transition-duration: 0.5s;*/
+/*}*/
+
+.resultArea {
+    width: 950px;
+}
+
+.content_inquiry td,
+.content_inquiry th {
+    border: 1px solid #AEAEAE;
+
+}
+.content_inquiry {
+    border-collapse: collapse;
+    line-height: 40px;
+    text-align: center;
+}
+
+
+.content {
+    width: 950px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+.content_1 {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    margin-bottom: 22px;
+}
+
+.content_1 div h2 {
+    display: inline-block;
+}
+
+.content_1 div span {
+    padding: 10px;
+}
+
+.ans_form {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.ans_form_div {
+    width: 100%;
+    display: flex;
+    margin: 15px 0;
+}
+
+.board_header {
+    display: flex;
+    width: 400px;
+    line-height: 45px;
+    text-align: center;
+    margin-left: 20px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.board_header li {
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #AEAEAE;
+    border-top: 1px solid #AEAEAE;
+    border-left: 1px solid #AEAEAE;
+}
+
+.board_header li:last-child {
+    border-right: 1px solid #AEAEAE;
+}
+
+.clickable {
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.clickable:hover {
+    transition-duration: 0.5s;
+    background-color: lightsalmon;
+}
+
+.content_admin {
+    display: flex;
+    margin-bottom: 24px;
+}
+
+.cri_div_admin {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.cri_div_admin div {
+    width: 25px;
+    height: 25px;
+}
+
+.cri_div_admin_font {
+    background-color: #AEAEAE;
+    color: white;
+    border-radius: 50%;
+}
+
+.cri_div_admin a {
+    color: gray;
+    text-decoration: none;
+}
+
+.prodAdminBtn_div {
+    position: relative;
+}
+
+.prodAdminBtn {
+    width: 130px;
+    height: 40px;
+    margin-top: 10px;
+    box-sizing: border-box;
+    background-color: lightsalmon;
+    border: none;
+    border-radius: 5px;
+    position: absolute;
+    right: 0;
+    color: white;
+}
+
+.prodAdminBtn a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: white;
+    text-decoration: none;
+}
+
+/* 1대1문의 상세 */
+.content_li ul li:first-child {
+    width: 20%;
+    font-size: 1.1em;
+    font-weight: bold;
+    padding-left: 10px;
+}
+
+.content_li ul li:last-child {
+    width: 80%;
+}
+
+.content_li ul {
+    display: flex;
+    line-height: 40px;
+    border-bottom: 1px solid;
+    /*align-items: center;*/
+    width: 80%;
+}
+
+.content_li ul:last-child {
+    border-bottom: none;
+}
+
+.ans_check_div {
+    display: flex;
+    flex-direction: column;
+}
+
+.ans_check_div a {
+    font-size: 0.8em;
+    text-decoration: none;
+    color: lightsalmon;
+    font-weight: bold;
+}
+
+.ans_check_div_btn {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.ans_check_div_btn a {
+    margin : 5px;
+}
+
+.ans_form_button {
+    background-color: lightsalmon;
+    border: none;
+    border-radius: 3px;
+    padding: 5px;
+    height: 35px;
+    margin: 5px;
+}
+
+.ans_form_button a {
+    color: white;
+    text-decoration: none;
+}
+
+.qna_detail_forward_button {
+    display: flex;
+    padding: 20px 0px;
+    justify-content: flex-end;
+}
+
+.qna_detail_forward_button button {
+    background-color: lightsalmon;
+    border: none;
+    border-radius: 5px;
+    width: 80px;
+    height: 30px;
+    color: white;
+    cursor: pointer;
+}
+
+
+/* admin common */
+
+#searchBar {
+    text-align: center;
+}
+
+thead tr {
+    line-height: 25px;
+}
+
+thead {
+    font-weight: 600;
+    background-color: #ffc5b0;
+    color: white;
+}
+
+table {
+    text-align: center;
+}
+
+table a {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+table a:hover {
+    color: lightsalmon;
+}
+
+.width_5 {
+    width: 5%;
+}
+
+.width_10 {
+    width: 10%;
+}
+
+.width_20 {
+    width: 20%;
+}
+
+.width_30 {
+    width: 30%;
+}
+
+.width_15 {
+    width: 15%;
+}
+
+.height_25 {
+    line-height: 25px;
+}
+
+/* board common */
+
+.click {
+    color: lightsalmon;
+    text-decoration: underline;
+}
+
+.click a {
+    color: lightsalmon;
+}
+
+/* notice admin */
+.notice_insert_button {
+    display: flex;
+    padding: 20px 0px;
+    justify-content: flex-end;
+}
+
+.notice_insert_button a {
+    text-decoration: none;
+    background-color: lightsalmon;
+    text-align: center;
+    width: 80px;
+    line-height: 30px;
+    color: white;
+    border-radius: 5px;
+}
+
+
+.notice_detail_main_button a {
+    background-color: lightsalmon;
+    border: none;
+    border-radius: 5px;
+    line-height: 40px;
+    width: 120px;
+    color: white;
+    margin: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    font-size: 13px;
+}
+
+.notice_detail_main_button button {
+    background-color: lightsalmon;
+    border: none;
+    border-radius: 5px;
+    height: 40px;
+    width: 120px;
+    color: white;
+    margin: 10px;
+    cursor: pointer;
+}

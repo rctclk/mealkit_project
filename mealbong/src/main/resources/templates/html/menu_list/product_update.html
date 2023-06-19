@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> 밀키트 쇼핑몰 :: Meal Bong </title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../product/css/menu_list.css">
+  <link rel="stylesheet" href="../../../common/css/mainPage.css">
+  <link rel="stylesheet" href="../../../common/css/modal.css">
+  <link rel="stylesheet" href="../../../../admin/css/admin.css">
+<!--  <script defer src="../../../common/js/main_topDiv.js"></script>-->
+<!--  <script defer src="../../../product/js/menu_list.js"></script>-->
+  <script defer src="../../../product/js/product_form.js"></script>
+</head>
+<body>
+<th:block th:replace="fragments/header :: headerFragement"></th:block>
+<main>
+
+  <div class="product_insert">
+    <div class="admin_aside">
+      <div class="admin_name">
+        <h2>관리자 페이지</h2>
+      </div>
+      <ul class="aTag">
+        <li><a href="/admin/useradmin">회원관리</a></li>
+        <li><a href="/admin/orderadmin">주문관리</a></li>
+        <li class="click"><a href="/admin/productadmin" class="click">상품관리</a></li>
+        <li><a th:href="@{/admin/qnaadmin(searchType='n')}">게시판관리</a></li>
+      </ul>
+    </div>
+    <div class="content">
+      <div class="content_1">
+        <h2>상품 수정</h2>
+      </div>
+      <div class="product_insert_form">
+        <form action="/product/productUpdate" method="post" id="pro_update_form">
+          <div>
+            <input name="product_number" th:value="${productList.product_number}" style="display: none">
+          </div>
+          <div>
+            <div class="product_insert_form_2">상품명<span></span></div>
+            <input th:value="${productList.product_name}" type="text" name="product_name" class="inputstyle" required>
+          </div>
+          <div>
+            <div class="product_insert_form_2">상품 가격<span></span></div>
+            <input th:value="${productList.product_price}" type="number" name="product_price" class="inputstyle" required>
+          </div>
+          <div>
+            <div class="product_insert_form_1">카테고리<span></span></div>
+            <select name="category_code" id="category_code" class="type">
+              <option value="C_01">한식</option>
+              <option value="C_02">중식</option>
+              <option value="C_03">일식</option>
+              <option value="C_04">양식</option>
+              <option value="C_05">분식/야식</option>
+              <option value="C_06">아시안</option>
+            </select>
+          </div>
+          <div>
+            <div class="product_insert_form_2">포장타입<span></span></div>
+            <select name="package_code" id="package_code" class="package">
+              <option value="P_01">냉동</option>
+              <option value="P_02">냉장</option>
+              <option value="P_03">상온</option>
+            </select>
+          </div>
+          <div>
+            <div class="product_insert_form_2">인분<span></span></div>
+            <select name="product_serving" id="product_serving" class="serving">
+              <option value=1>1인분</option>
+              <option value=2>2인분</option>
+              <option value=3>3인분</option>
+              <option value=4>4인분</option>
+            </select>
+          </div>
+          <div>
+            <div class="product_insert_form_2">난이도<span></span></div>
+            <select name="level_code" id="level_code" class="level">
+              <option value="L_01">하</option>
+              <option value="L_02">중</option>
+              <option value="L_03">상</option>
+            </select>
+          </div>
+          <div class="product_insert_form_3">
+            <input type="submit" class="product_insert_button" value="수정">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
+<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+<div class="mainModal hidden">
+  <div class="bg"></div>
+  <div class="modalBox">
+    <p>상품이 수정되었습니다.</p>
+    <div class="closeBtn_div">
+      <button class="clsBtn">확인</button>
+    </div>
+  </div>
+</div>
+</body>
+</html>

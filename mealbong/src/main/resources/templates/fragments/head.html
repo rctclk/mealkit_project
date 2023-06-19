@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="headFragment(links)">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../common/css/mainPage.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    <script src="../common/js/jquery-3.2.1.min.js"></script>
+    <script src="https://kit.fontawesome.com/219136e9eb.js" crossorigin="anonymous"></script>
+    <script defer src="../common/js/main_banner.js"></script>
+    <script defer src="../common/js/main_topbutton.js"></script>
+    <script defer src="../common/js/main_topDiv.js"></script>
+    <script defer src="../common/js/main_hover.js"></script>
+    <script defer src="../common/js/main_menu.js"></script>
+    <th:block th:replace="${links}"/>
+    <title> 밀키트 쇼핑몰 :: Meal Bong </title>
+</head>
+</html>

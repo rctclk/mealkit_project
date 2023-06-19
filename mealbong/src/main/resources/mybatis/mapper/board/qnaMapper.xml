@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 위 코드가 mapper 설정을 하는 코드 -->
+
+<!-- Mapper를 사용하는 Repository의 전체 경로를 적어줘야함. -->
+<mapper namespace="com.project.mealbong.board.QnaMapper">
+    <select id="qnaList" resultType="com.project.mealbong.board.QnaDTO">
+        select *
+        from qna
+        <if test="user_id != 'admin'">
+        where user_id = #{user_id}
+        </if>
+        order by qna_num desc;
+    </select>
+
+    <select id="detail" resultType="com.project.mealbong.board.QnaDTO">
+        select q.qna_num, q.user_id, q.qna_title, q.qna_content, q.qna_date, q.ans_date, q.ans_content, u.user_name,
+               (select code_desc from code c where q.qna_type = c.code_number)qna_type
+        from qna q INNER JOIN user u ON q.user_id = u.user_id
+        where q.qna_num = #{qna_num}
+    </select>
+
+    <insert id="insert">
+        insert into qna(user_id, qna_title, qna_content, qna_type)
+        values (#{user_id}, #{qna_title}, #{qna_content}, #{qna_type})
+    </insert>
+
+    <update id="update">
+        update qna
+        set qna_title=#{qna_title},
+            qna_content=#{qna_content},
+            qna_date=now(),
+            qna_type=#{qna_type}
+        where qna_num = #{qna_num}
+    </update>
+
+    <delete id="delete">
+        delete
+        from qna
+        where qna_num = #{qna_num}
+    </delete>
+
+    <update id="ainsert">
+        update qna
+        set ans_content=#{ans_content}
+        where qna_num = #{qna_num}
+    </update>
+
+    <update id="adelete">
+        update qna
+        set ans_content=null
+        where qna_num = #{qna_num}
+    </update>
+
+    <delete id="adminDelete">
+        delete
+        from qna
+        where qna_num = #{qna_num}
+    </delete>
+
+    <update id="adminUpdate">
+        update qna
+        set qna_title=#{qna_title},
+            qna_content=#{qna_content},
+            qna_date=now(),
+            qna_file=#{qna_file},
+            qna_type=#{qna_type}
+        where qna_num = #{qna_num}
+    </update>
+
+    <!-- ** Criteria PageList
+       => MySql : limit a , b ( a개 제외하고 a+1 부터 b개 )  적용 -->
+    <select id="criList" resultType="com.project.mealbong.board.QnaDTO">
+        select q.qna_num, q.user_id, q.qna_title, q.qna_content, q.qna_date, q.ans_date, q.ans_content,
+        (select code_desc from code c where q.qna_type = c.code_number)qna_type
+
+        from qna q
+        <if test="keyword!='admin'">
+            where
+            q.user_id=#{keyword}
+        </if>
+        <choose>
+            <when test="keyword=='admin'">
+                where q.user_id = null
+            </when>
+        </choose>
+        order by q.qna_num desc
+
+        limit #{sno}, #{rowsPerPage}
+    </select>
+
+    <select id="criTotalCount" resultType="int">
+            select count(*)
+            from qna
+            where user_id = #{keyword}
+    </select>
+
+    <select id="searchList" resultType="com.project.mealbong.board.QnaDTO">
+        select q.qna_num, q.user_id, q.qna_title, q.qna_content, q.qna_date, q.ans_date, q.ans_content, u.user_name,
+        (select code_desc from code c where q.qna_type = c.code_number)qna_type
+        from qna q INNER JOIN user u ON q.user_id = u.user_id
+
+        <if test="searchType != 'n'.toString()">
+            where q.qna_type = #{searchType} and u.user_id = q.user_id
+            <if test="keyword!=null">
+                <bind name="keyVal" value="'%'+keyword+'%'"/>
+                and (
+                q.qna_title like #{keyVal}
+                or q.qna_content like #{keyVal}
+                or q.user_id like #{keyVal})
+            </if>
+        </if>
+        <choose>
+            <when test="searchType == 'n'.toString()">
+                <if test="keyword!=null">
+                    <bind name="keyVal" value="'%'+keyword+'%'"/>
+                    where (
+                    q.qna_title like #{keyVal}
+                    or q.qna_content like #{keyVal}
+                    or q.user_id like #{keyVal} )
+                </if>
+            </when>
+        </choose>
+        order by q.qna_num desc
+        limit #{sno}, #{rowsPerPage}
+    </select>
+
+    <select id="searchTotalCount" resultType="int">
+        select count(*) from qna
+        <if test="searchType != 'n'.toString()">
+            where qna_type = #{searchType}
+            <if test="keyword!=null">
+                <bind name="keyVal" value="'%'+keyword+'%'"/>
+                and (
+                qna_title like #{keyVal}
+                or qna_content like #{keyVal}
+                or user_id like #{keyVal})
+            </if>
+        </if>
+        <choose>
+            <when test="searchType == 'n'.toString()">
+                <if test="keyword!=null">
+                    <bind name="keyVal" value="'%'+keyword+'%'"/>
+                    where (
+                    qna_title like #{keyVal}
+                    or qna_content like #{keyVal}
+                    or user_id like #{keyVal} )
+                </if>
+            </when>
+        </choose>
+    </select>
+</mapper>

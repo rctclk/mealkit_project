@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 밀키트 쇼핑몰 :: Meal Bong </title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../order/css/cart.css">
+    <link rel="stylesheet" href="../common/css/modal.css">
+    <link rel="stylesheet" href="../user/css/mypage.css">
+    <link rel="stylesheet" href="../common/css/mainPage.css">
+    <script src="../common/js/jquery-3.2.1.min.js"></script>
+<!--    <script defer src="../common/js/main_topDiv.js"></script>-->
+    <script defer src="../myPage/js/info.js"></script>
+
+
+</head>
+
+<body>
+<th:block th:replace="fragments/header :: headerFragement"></th:block>
+    <main>
+        <div class="mypage">
+            <div class="aside">
+                <div class="name">
+                    <h2>마이페이지</h2>
+                </div>
+                <ul>
+                    <li>
+                        <a href="/myPage?currPage=1&rowsPerPage=8"
+                           class="order">주문 내역
+                            <span></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/wish/list"
+                           class="wish">찜한 상품
+                            <span></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/address/list" class="address">배송지 관리
+                            <span></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/myPage/user_update"
+                           class="info">개인정보 수정
+                            <span></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="content">
+                <div class="content_info_1">
+                    <h2>개인정보 수정</h2>
+                </div>
+                <div class="content_info_2">
+                    <h4>비밀번호 재확인</h4>
+                    <div>회원님의 정보를 안전하게 보호하기 위해 비밀번호를 다시 한번 확인해주세요.</div>
+                </div>
+<!--                <a th:href="@{|/user1/${user_detail.user_id}?jCode=U|}">개인정보수정</a>-->
+                <form th:action="@{|/user1/${session['user_id']}|}" id="form_update">
+                    <div class="content_info_3">
+                        <div class="content_info_3_id">
+                            <div>아이디</div>
+                            <div>
+                                <input type="text" th:value="${session['user_id']}" readonly>
+                            </div>
+                        </div>
+                        <div class="content_info_3_pw">
+                            <div>비밀번호
+                                <span></span>
+                            </div>
+                            <div>
+                                <input id="user_password" type="password" required minlength="1">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content_info_4">
+                        <button type="button" class="info_button">확인
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+<!-- footer : 법적 필수 항목 -->
+<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+<div class="modal_container hidden">
+    <div class="bg"></div>
+    <div class="modalBox">
+        <p class="modal_p"></p>
+        <div class="closeBtn_div">
+            <button class="closeBtn">확인</button>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

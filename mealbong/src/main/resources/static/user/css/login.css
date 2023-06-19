@@ -1,0 +1,539 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-family: 'Gowun Dodum', sans-serif;
+}
+
+
+
+/* =================================header frame===================================== */
+
+/* .space {
+    min-width: 1200px;
+    height: 25px;
+    background-color: lightsalmon;
+    position: relative;
+} */
+
+/*header 로고 / 검색창 / 로그인 정렬---------*/
+/* .flex-box {
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 1200px;
+    height: 100px;
+} */
+
+/*header 상단고정---------*/
+
+/* header {
+    top: 0;
+    height: 160px;
+    min-width: 1200px;
+    position: sticky;
+    background-color: white;
+    box-shadow: 0 4px 4px -4px gray;
+    z-index: 2;
+} */
+
+/*header 로고---------*/
+
+/* .logo {
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.login {
+    width: 200px;
+    position: absolute;
+    display: flex;
+    justify-content: space-around;
+    right: 0;
+    margin-right: 10px;
+    text-align: center;
+}
+
+.login a {
+    text-decoration: none;
+    color: white;
+}
+
+.login>li {
+    width: 60px;
+}
+
+.l_hover {
+    position: relative;
+}
+
+.hoverbox {
+    width: 90px;
+    border: 1px solid gray;
+    display: none;
+    text-align: center;
+    position: absolute;
+    background-color: white;
+    right: 0;
+    top: 25px;
+}
+
+.login li:nth-of-type(3):hover .hoverbox {
+    display: block;
+}
+
+.hoverbox a {
+    color: black;
+    font-size: .9em;
+    display: block;
+} */
+
+/*header 검색창---------*/
+
+/* .search {
+    width: 350px;
+    height: 40px;
+    border: 2px solid lightsalmon;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search input {
+    width: 300px;
+    font-size: 16px;
+    border: 0;
+}
+
+.search input:focus {
+    outline: none;
+}
+
+.button {
+    border: none;
+    background: none;
+}
+
+.button-set {
+    width: 30px;
+    line-height: 30px;
+    margin-right: 8px;
+} */
+
+/* 장바구니 찜한 상품 ---------*/
+
+/* .cart_heart {
+    width: 150px;
+    display: flex;
+    justify-content: center;
+}
+
+.cart_heart a {
+    background-position: center;
+    background-size: 100%;
+    width: 30px;
+    height: 30px;
+    margin-right: 15px;
+}
+
+.cart {
+    background-image: url(../image/cart.png);
+}
+
+.cart:hover {
+    background-image: url(../image/cart_coral.png);
+}
+
+.heart {
+    background-image: url(../image/heart.png);
+}
+
+.heart:hover {
+    background-image: url(../image/heart_coral.png);
+}
+
+.mpage {
+    background-image: url(../image/mypage.png);
+}
+
+.mpage:hover {
+    background-image: url(../image/mypage_coral.png);
+} */
+
+/* 메뉴 ---------*/
+/* .menu {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+}
+
+nav {
+    min-width: 1200px;
+    height: 35px;
+    display: flex;
+    justify-content: space-around;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 160px;
+}
+
+.menu>li {
+    text-align: center;
+    width: 150px;
+    line-height: 35px;
+}
+
+.menu>li a {
+    text-decoration: none;
+    color: black;
+    display: block;
+}
+
+.submenu,
+.submenu2 {
+    display: none;
+    width: 100%;
+    position: absolute;
+}
+
+.submenu>li,
+.submenu2>li {
+    width: 150px;
+    box-sizing: border-box;
+    line-height: 35px;
+    background-color: white;
+    border: 0.5px solid lightgray;
+    border-top: none;
+} */
+
+/* 메뉴 hover ---------*/
+
+/* .menu li:hover {
+    background-color: rgb(255, 196, 172);
+    transition-duration: 0.5s;
+}
+
+nav ul li:nth-child(1):hover .submenu,
+nav ul li:nth-child(4):hover .submenu2 {
+    display: block;
+} */
+
+/* =============================main 아이디 비번 입력============================= */
+
+.login_text {
+    font-weight: 800;
+    font-size: 20px;
+    line-height: 20px;
+    text-align: center;
+}
+
+.login_frame {
+    min-width: 1050px;
+    height: 500px;
+    margin-top: 80px;
+    margin-bottom: 40px;
+}
+
+.login_frame2 {
+    min-width: 1050px;
+    height: 800px;
+    margin-top: 80px;
+    margin-bottom: 40px;
+}
+
+.loginForm {
+    width: 355px;
+    height: 350px;
+    margin: 0px auto;
+}
+
+.login_id {
+    display: flex;
+    justify-content: center;
+    height: 48px;
+    margin-bottom: 20px;
+}
+
+.login_pw {
+    justify-content: center;
+    height: 48px;
+    display: flex;
+}
+
+.login_input {
+    width: 330px;
+    height: 54px;
+    padding-left: 20px;
+}
+
+.login_div {
+    margin-top: 40px;
+}
+
+/* ====================================아이디비번 찾기======================================== */
+
+.a_tag:visited {
+    color: black;
+}
+
+.div_a {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    left: 190px;
+}
+
+
+.a_tag {
+    font-size: 13px;
+    text-decoration: none;
+    color: black;
+
+}
+
+.a_tag:hover {
+    text-decoration: underline;
+}
+
+.find_span {
+    margin: 0 5px;
+}
+
+
+/* ============================로그인 회원가입========================== */
+
+.login_button,
+.account_button {
+    width: 355px;
+    height: 52px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    border: 1px solid rgb(255, 160, 122);
+    box-sizing: border-box;
+}
+
+.login_button {
+    margin-top: 30px;
+    background-color: lightsalmon;
+    color: white;
+    font-size: 16px;
+    cursor : pointer;
+}
+
+.login_button:active {
+    opacity: .4;
+    transition: .2s;
+}
+
+.account_button {
+    background-color: white;
+}
+
+.button_a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 48px;
+    text-decoration: none;
+    color: lightsalmon;
+
+
+}
+
+.img {
+    width: 100%;
+    height: 48px;
+}
+
+.p {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.SocialLogin {
+    display: flex;
+    width: 355px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.SocialLogin a:nth-of-type(1) {
+    margin-right: 20px;
+
+}
+
+.input_border {
+    border: 1px solid lightsalmon;
+}
+
+
+.submit_button12 {
+    width: 280px;
+    height: 52px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    border: 1px solid rgb(255, 160, 122);
+    box-sizing: border-box;
+    margin-top: 30px;
+    background-color: lightsalmon;
+    color: white;
+    font-size: 16px;
+    cursor : pointer;
+}
+
+.submit_loginframe {
+    min-width: 1050px;
+    height: 350px;
+    margin-top: 80px;
+    margin-bottom: 170px;
+    display : flex;
+    flex-direction: column;
+    justify-content : flex-end;
+
+}
+
+.submit_button33 {
+    width: 250px;
+    height: 52px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    border: 1px solid rgb(255, 160, 122);
+    box-sizing: border-box;
+    margin-top: 30px;
+    background-color: lightsalmon;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor : pointer;
+
+}
+
+
+/* ===============order_submit============== */
+
+.order_div {
+    margin-top: 40px;
+    padding-bottom: 20px;
+}
+
+.login-id_order {
+    display: flex;
+    justify-content: center;
+    height: 48px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(192, 192, 192, 0.225);
+}
+
+.login-pw_order {
+    height: 48px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    
+}
+
+/* =================findid_submit================= */
+
+.loginform_submit {
+    margin: 0px auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.loginid_submit,
+.loginid_submit2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+    
+}
+
+.loginid_submit2 {
+    margin-top: 80px;
+}
+
+.accountbutton_submit {
+    width: 280px;
+    height: 52px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    border: 1px solid rgb(255, 160, 122);
+    box-sizing: border-box;
+}
+
+.submit_button12_submit {
+    width: 280px;
+    height: 52px;
+    font-weight: bold;
+    border: 1px solid rgb(255, 160, 122);
+    box-sizing: border-box;
+    background-color: lightsalmon;
+    color: white;
+    font-size: 16px;
+    cursor : pointer;
+}
+
+.main_find {
+    height : calc(100vh - 160px - 271px);
+    display : flex;
+}
+
+.submit_loginframe2 {
+    
+    width : 100vw;
+    display : flex;
+    flex-direction: column;
+    justify-content : center;
+    align-items : center;
+    
+}
+
+.loginform2 {
+    width: 355px;
+    margin: 0px auto;
+}
+
+/* ==========================================회원가입 submit================================ */
+
+.loginForm_account {
+    width: 355px;
+    margin: 0px auto;
+}
+
+.loginFrame_account {
+    min-width: 1050px;
+    height: 350px;
+    margin-top: 80px;
+    margin-bottom: 170px;
+    display : flex;
+    flex-direction: column;
+    justify-content : center;
+    
+}
+
+/*=============================*/
+
+.login_submit {
+    display: none;
+}
+
+body .modalBox {
+    position: absolute;
+    background-color: #fff;
+    top: 35%;
+    width: 300px;
+    height: 150px;
+    text-align: center;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between
+}

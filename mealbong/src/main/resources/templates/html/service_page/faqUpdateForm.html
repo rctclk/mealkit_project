@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 밀키트 쇼핑몰 :: Meal Bong </title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../user/css/mypage.css">
+    <link rel="stylesheet" href="../../../common/css/mainPage.css">
+    <script defer src="../../../board/js/faq.js"></script>
+    <script defer src="../../js/main_topDiv.js"></script>
+
+</head>
+
+<body>
+<th:block th:replace="fragments/header :: headerFragement"></th:block>
+
+<main>
+    <form action="faqUpdate" method="post">
+
+        <p>Faq number: <input name="faq_number" th:value="${faqDetail.faq_number}" readonly></p>
+        <p>Faq code: <input name="faq_code" th:value="${faqDetail.faq_code}" ></p>
+        <p>Faq question: <input name="faq_question" th:value="${faqDetail.faq_question}" ></p>
+        <p>Faq answer: <input name="faq_answer" th:value="${faqDetail.faq_answer}" ></p>
+        <input type="submit" value="수정"> &nbsp;&nbsp;&nbsp;
+        <input type="reset" value="취소">
+    </form>
+</main>
+<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+
+</body>
+
+</html>

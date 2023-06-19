@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 밀키트 쇼핑몰 :: Meal Bong </title>
+    <link rel="stylesheet" href="../user/css/login.css">
+    <link rel="stylesheet" href="../common/css/mainPage.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    <script defer src="../../js/main_topDiv.js"></script>
+
+</head>
+
+<body>
+<th:block th:replace="fragments/header :: headerFragement"></th:block>
+
+    <main>
+        <div class="login_frame2">
+            <div class="login_text">결제 완료</div>
+            <div class="loginForm">
+                <form action="/order/detail" method="get">
+
+                    <div class="order_div">
+                        <div class="login-id_order">
+                            <span th:text="${user_name}"></span>님의 주문이 완료 되었습니다.
+
+                        </div>
+                        <th:block th:each="order_submit : ${order_submit}">
+                            <p><span th:text="${order_submit.product_name}"></span> x <span th:text="${order_submit.product_count}"></span></p>
+
+                        </th:block>
+
+
+                        <div class="login-pw_order">
+                            <span>결제금액</span>
+                           <span><span th:text="${total}">52,000</span>원</span>
+                        </div>
+                    </div>
+                    <input type="hidden" name="order_number" th:value="${order_number}">
+                    <button class="login_button">
+                          주문 상세보기
+                    </button>
+                </form>
+
+                <div class="account_button">
+                    <a href="/" class="button_a">쇼핑 계속하기</a>
+                    </div>
+            </div>
+
+            </div>
+        </div>
+
+    </main>
+
+<!-- footer : 법적 필수 항목 -->
+<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+
+</body>
+
+</html>

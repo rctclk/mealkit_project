@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../common/css/mainPage.css">
+    <link rel="stylesheet" href="../../../../board/css/qna.css">
+
+    <script src="../common/js/jquery-3.2.1.min.js"></script>
+
+    <script defer src="../../../../board/js/qna.js"></script>
+    <title> 밀키트 쇼핑몰 :: Meal Bong </title>
+</head>
+
+<body>
+<th:block th:replace="fragments/header :: headerFragement"></th:block>
+<main>
+    <div class="mypage">
+        <div class="admin_aside">
+            <div class="admin_name">
+                <h2>관리자 페이지</h2>
+            </div>
+            <ul class="aTag">
+                <li><a href="/admin/useradmin">회원관리</a></li>
+                <li><a href="/admin/orderadmin">주문관리</a></li>
+                <li><a href="/admin/productadmin">상품관리</a></li>
+                <li class="click"><a href="/admin/noticeadmin">게시판관리</a></li>
+            </ul>
+        </div>
+        <div class="content">
+            <div class="content_admin">
+                <div>
+                    <h2>게시판 관리</h2>
+                </div>
+                <ul class="board_header">
+                    <li onclick="location.href='/admin/noticeadmin'">
+                        공지사항
+                    </li>
+                    <li onclick="location.href='/admin/useradmin'">
+                        FAQ
+                    </li>
+                    <li class="click" onclick="location.href='/admin/qnaadmin?searchType=n'">
+                        1:1 문의
+                    </li>
+                </ul>
+            </div>
+            <div class="content_1">
+                <div>
+                    <h2>1:1 문의</h2>
+                </div>
+            </div>
+            <div class="content_inquiry_form">
+                <form action="/admin/qupdate" method="post">
+                    <div>
+                        <input name="qna_num" th:value="${qnaList.getQna_num()}" style="display: none">
+                    </div>
+                    <div>
+                        <div class="content_inquiry_form_1">유형<span></span></div>
+                        <select th:value="${qnaList.qna_type}" name="qna_type" id="type" class="type">
+                            <option th:selected="${qnaList.qna_type}=='F_01'" value="F_01">상품</option>
+                            <option th:selected="${qnaList.qna_type}=='F_02'" value="F_02">교환/환불</option>
+                            <option th:selected="${qnaList.qna_type}=='F_03'" value="F_03">주문/결제</option>
+                            <option th:selected="${qnaList.qna_type}=='F_04'" value="F_04">회원정보</option>
+                            <option th:selected="${qnaList.qna_type}=='F_05'" value="F_05">사이트 이용</option>
+                            <option th:selected="${qnaList.qna_type}=='F_06'" value="F_06">이벤트</option>
+                            <option th:selected="${qnaList.qna_type}=='F_07'" value="F_07">기타</option>
+                        </select>
+                    </div>
+                    <div>
+                        <div class="content_inquiry_form_2">제목<span></span></div>
+                        <input th:value="${qnaList.qna_title}" name="qna_title" type="text" required>
+                    </div>
+                    <div>
+                        <div class="content_inquiry_form_3">내용<span></span></div>
+                        <textarea maxlength="500" name="qna_content" class="content_inquiry_form_textarea"
+                                  th:text="${qnaList.qna_content}" required></textarea>
+                    </div>
+                    <div class="up_btn">
+                        <input type="submit" class="inquiry_form_button" value="수정 완료">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+<footer th:replace="fragments/footer :: footerFragment"></footer>
+</body>
+
+</html>

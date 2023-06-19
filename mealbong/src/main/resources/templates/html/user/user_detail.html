@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<h2>유저 상세페이지</h2>
+<table>
+  <thead>
+  <tr>
+    <th>이름</th>
+    <th>이메일</th>
+    <th>주소</th>
+    <th>상세주소</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td th:text="${user_detail.user_id}"></td>
+    <td th:text="${user_detail.user_email}"></td>
+    <td th:text="${user_detail.user_address1}"></td>
+    <td th:text="${user_detail.user_address2}"></td>
+  </tr>
+  </tbody>
+</table>
+<a thv></a>
+<a th:href="@{|/user1/${user_detail.user_id}?jCode=U|}">개인정보수정</a>
+</body>
+</html>

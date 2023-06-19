@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 위 코드가 mapper 설정을 하는 코드 -->
+
+<!-- Mapper를 사용하는 Repository의 전체 경로를 적어줘야함. -->
+<mapper namespace="com.project.mealbong.order.CartMapper">
+    <select id="cart_list" resultType="com.project.mealbong.order.CartMapperDTO">
+        select c.cart_number,c.user_id,c.product_number,c.product_count,p.product_name,p.product_price,p.product_price * c.product_count as price_total,i.image_file
+        from cart c,product p,image i where c.product_number = p.product_number AND c.product_number = i.product_number AND i.image_main = "Y" AND
+            user_id = #{user_id}
+    </select>
+    <select id="cart_count" resultType="int">
+        select count(*) from cart where user_id = #{user_id}
+    </select>
+    <select id="cart_order" resultType="com.project.mealbong.order.CartMapperDTO">
+        select c.cart_number,c.user_id,c.product_number,c.product_count,p.product_name,p.product_price,p.product_price * c.product_count as price_total,i.image_file
+        from cart c,product p,image i where c.product_number = p.product_number AND c.product_number = i.product_number AND i.image_main = "Y" AND
+            cart_number = #{cart_number}
+    </select>
+
+    <update id="cart_update">
+        update cart set product_count=product_count <if test="dir == 1"> + 1</if>
+        <if test="dir == 0"> - 1</if>
+        where cart_number = #{cart_number}
+    </update>
+
+    <delete id="cart_delete">
+        delete from cart where cart_number = #{cart_number}
+    </delete>
+
+
+    <insert id="wish_insert">
+        insert into wishlist(user_id, product_number) values
+            (#{user_id},#{product_number});
+    </insert>
+
+    <insert id="cart_insert">
+        insert into cart(user_id,product_number,product_count) values
+            (#{user_id},#{product_number},#{product_count});
+    </insert>
+
+
+</mapper>

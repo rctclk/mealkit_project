@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 밀키트 쇼핑몰 :: Meal Bong </title>
+    <link rel="stylesheet" href="../order/css/order.css">
+    <link rel="stylesheet" href="../common/css/mainPage.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    <script defer src="../../js/main_topDiv.js"></script>
+    <script defer src="../order/js/order.js"></script>
+
+</head>
+
+<body>
+<th:block th:replace="fragments/header :: headerFragement"></th:block>
+
+    <div class="cart_container">
+        <span class="mainspan">주문서</span>
+        <div class="div_a">
+            <span class="spanstyle">주문 상품</span>
+        </div>
+
+        <div class="product_list" th:each="product : ${product.values()}">
+
+
+        <div class="div1_sub">
+            <div class="div1_sub_sub">
+
+                <a th:href="@{/product/{product_number}(product_number=${product.product_number})}" >
+                    <img th:src="${product.image_file}" class="div1_a_img4" alt="상품 이미지">
+                </a>
+                <a th:text="${product.product_name}" th:href="@{/product/{product_number}(product_number=${product.product_number})}" class="div1_a2"></a>
+
+            </div>
+
+            <div>
+                <span th:text="${product.product_count}">1</span><span class="div1_span2">개</span>
+                <span th:text="${product.price_total}" class="div1_span">10,000원</span>원
+
+            </div>
+
+        </div>
+<!--            <input type="hidden" th:value="${product.cart_number}" name="cart_number" class="cart_number">-->
+
+        </div>
+
+        <div class="div_a">
+            <span class="spanstyle">주문자 정보</span>
+        </div>
+
+        <div class="divBox">
+            <div class="divBox_sub">
+                <span class="font-size">보내는 분</span>
+
+            </div>
+
+            <div>
+                <span th:text="${user_info.user_name}" class="font-size">송강현</span>
+            </div>
+
+        </div>
+
+        <div class="divBox">
+            <div class="divBox_sub">
+                <span class="font-size">휴대폰</span>
+
+            </div>
+
+            <div>
+                <span th:text="${user_info.user_phone}" class="font-size">010-1234-5678</span>
+            </div>
+
+        </div>
+
+        <div class="divBox">
+            <div class="divBox_sub">
+                <span class="font-size">이메일</span>
+
+            </div>
+
+            <div>
+                <span th:text="${user_info.user_email}" class="font-size">mealbong@mealbong.com</span>
+            </div>
+
+        </div>
+
+
+        <div class="div_a2">
+            <span class="spanstyle">배송 정보</span>
+        </div>
+
+        <div class="divBox2 divBoxline">
+            <div class="divBox_sub">
+                <span class="font-size">배송지</span>
+
+            </div>
+
+
+
+            <div>
+                <span th:text="${dely.dely_address1}" class="font-size">경기 성남시 분당구</span>
+                <span th:text="${dely.dely_address2}" class="font-size">경기 성남시 분당구</span>
+            </div>
+
+        </div>
+
+<!--        <div class="divBox2">
+            <div class="divBox_sub">
+                <span class="font-size">상세정보</span>
+
+            </div>
+
+
+            <div>
+                <span class="font-size">송강현,010-1234-5678</span>
+            </div>
+
+        </div>-->
+
+        <form action="/order/order" class="orderdiv_Container" method="post">
+
+            <div class="diva3_Container">
+                <div class="div_a3">
+                    <span class="spanstyle">결제 수단</span>
+
+                </div>
+
+                <div class="diva3_sub divBoxline">
+                    <div class="diva3_sub_row">
+                        <div class="diva3_sub_sub">
+                            <span class="font-size">결제수단 선택</span>
+
+                        </div>
+
+
+
+                        <div class="diva3_sub_sub2">
+                            <button type="button" class="diva3_button">신용카드</button>
+                            <button type="button" class="diva3_button">계좌이체</button>
+                            <button type="button" class="diva3_button">휴대폰</button>
+                        </div>
+                        
+                        
+                    </div>
+                    
+                    <div class="card_box">
+                        <select name="payment" id="card" class="month">
+                            <option value="하나카드">하나</option>
+                            <option value="신한카드">신한</option>
+                            <option value="현대카드">현대</option>
+                            <option value="국민카드">국민</option>
+                            <option value="삼성카드">삼성</option>
+                            <option value="롯데카드">롯데</option>
+    
+                        </select>
+
+                        <select name="pay_month" id="pay_month" class="month">
+                            <option value="1">일시불</option>
+                            <option value="2">1개월</option>
+                            <option value="3">2개월</option>
+                            <option value="4">3개월</option>
+                            <option value="5">4개월</option>
+                            <option value="6">5개월</option>
+                            <option value="7">6개월</option>
+                        </select>
+                    </div>
+
+                    <div class="bank_box">
+                        <select name="bank" id="bank" class="month">
+                            <option value="국민은행">국민은행</option>
+                            <option value="신한은행">신한은행</option>
+                            <option value="하나은행">하나은행</option>
+                            <option value="농협">농협</option>
+                            <option value="SC제일은행">SC제일은행</option>
+                    
+    
+                        </select>
+                    </div>
+                    <input type="hidden" name="void" id="pay_phone" value="휴대폰">
+                </div>
+
+                <div class="order_checkBox">
+                    <input type="checkbox" id="agree1" class="order_input" required>
+                    <label for="agree1" class="checkBox_label">개인정보 수집&#183;이용 및 처리 동의 <span
+                            class="checkBox_span">(필수)</span></label>
+
+                </div>
+
+                <div class="order_checkBox">
+                    <input type="checkbox" id="agree2" class="order_input" required>
+                    <label for="agree2" class="checkBox_label">개인정보 제3자 제공 동의 <span
+                            class="checkBox_span">(필수)</span></label>
+
+                </div>
+
+                <div class="order_checkBox">
+                    <input type="checkbox" id="agree3" class="order_input" required>
+                    <label for="agree3" class="checkBox_label">전자지급 결제대행 서비스 이용약관 동의 <span
+                            class="checkBox_span">(필수)</span></label>
+
+                </div>
+
+            </div>
+
+            <div class="order_div">
+                <span class="spanstyle spanmargin">결제 금액</span>
+
+
+                <div class="cart_subdiv12">
+
+                    <div class="cart_subdiv2">
+
+                        <div class="subdiv2_box">
+                            <span>상품금액</span>
+                            <span><span th:text="${total}">49,000원</span>원</span>
+                        </div>
+
+                        <div class="subdiv2_box2">
+                            <span>배송비</span>
+                            <span>3000원</span>
+                        </div>
+
+                        <div class="subdiv2_line"></div>
+
+                        <div class="subdiv2_box3">
+                            <span>결제금액</span>
+                            <span><span th:text="${total + 3000}">49,000원</span>원</span>
+                        </div>
+
+
+                    </div>
+
+                </div>
+                <div class="cart_subdiv3">
+                    <div class="subdiv3_button"><button class="subdiv1_button">결제하기</button></div>
+
+                </div>
+
+            </div>
+            <th:block th:each="cart:${product.values()}">
+
+            <input type="hidden" th:value="${cart.cart_number}" name="cart_number" class="cart_number">
+                <input type="hidden" name="order_amount" th:value="${total+3000}">
+            </th:block>
+        </form>
+
+
+    </div>
+
+<!-- footer : 법적 필수 항목 -->
+<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+
+</body>
+
+</html>

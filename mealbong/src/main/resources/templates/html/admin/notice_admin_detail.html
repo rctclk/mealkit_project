@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../common/css/mainPage.css">
+    <link rel="stylesheet" href="../../../../admin/css/admin.css">
+    <link rel="stylesheet" href="../../../user/css/mypage.css">
+    <link rel="stylesheet" href="../../../common/css/modal.css">
+
+    <script src="../common/js/jquery-3.2.1.min.js"></script>
+
+    <script defer src="../../../board/js/notice.js"></script>
+    <script defer src="../../../admin/js/notice_delete.js"></script>
+    <title> 밀키트 쇼핑몰 :: Meal Bong </title>
+</head>
+
+<body>
+
+<th:block th:replace="fragments/header :: headerFragement"></th:block>
+<main>
+    <div class="admin_aside">
+        <div class="admin_name">
+            <h2>관리자 페이지</h2>
+        </div>
+        <ul class="aTag">
+            <li><a href="/admin/useradmin">회원관리</a></li>
+            <li><a href="/admin/orderadmin">주문관리</a></li>
+            <li><a href="/admin/productadmin">상품관리</a></li>
+            <li class="click"><a href="/admin/noticeadmin">게시판관리</a></li>
+        </ul>
+    </div>
+    <div class="content">
+
+        <div class="content_admin">
+            <div>
+                <h2>게시판 관리</h2>
+            </div>
+            <ul class="board_header">
+                <li class="click" onclick="location.href='/admin/noticeadmin'">
+                    공지사항
+                </li>
+                <li onclick="location.href='/admin/faqadmin'">
+                    FAQ
+                </li>
+                <li onclick="location.href='/admin/qnaadmin?searchType=n'">
+                    1:1 문의
+                </li>
+            </ul>
+        </div>
+        <div class="content_admin">
+            <div>
+                <h2>공지사항</h2>
+            </div>
+        </div>
+        <div class="notice_detail_main">
+            <div class="notice_detail_main_title">
+                <div>제&nbsp;&nbsp;목</div>
+                <div th:text="${noticeDetail.notice_title}"></div>
+            </div>
+            <div class="notice_detail_main_name">
+                <div>작성자</div>
+                <div th:text="${noticeDetail.notice_name}"></div>
+            </div>
+            <div class="notice_detail_main_date">
+                <div>작성일</div>
+                <div th:text="${noticeDetail.notice_date}"></div>
+            </div>
+            <div class="notice_detail_main_cnt">
+                <div>조회수</div>
+                <div th:text="${noticeDetail.notice_cnt}"></div>
+            </div>
+            <div class="notice_detail_main_content">
+                <p><img th:src="${noticeDetail.notice_file}"></p>
+                <p><span th:text="${noticeDetail.notice_content}"></span></p>
+            </div>
+            <div class="notice_detail_main_button">
+                <a th:href="@{/notice/noticeUpdate(notice_number=${noticeDetail.notice_number})}">글 수정</a>
+                <a th:onclick="'javascript:noticeDelete('+${noticeDetail.notice_number}+')'">글 삭제</a>
+                <button onclick="javascript:history.go(-1)">
+                    목록으로
+                </button>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer th:replace="fragments/footer :: footerFragment"></footer>
+<div class="mainModal hidden">
+    <div class="bg"></div>
+    <div class="modalBox">
+        <p>글을 삭제 하시겠습니까?</p>
+        <div class="closeBtn_div">
+            <button class="closeBtn">확인</button>
+            <button class="closeBtn">취소</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>

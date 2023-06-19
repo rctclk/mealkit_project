@@ -1,0 +1,408 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style : none;
+    font-family: 'Gowun Dodum', sans-serif;
+
+}
+
+body main {
+    font-size: 14px;
+}
+
+/* ============================메인상단================================= */
+
+.mainspan {
+    font-weight: 600;
+    font-size: 26px;
+
+}
+
+
+.spanstyle {
+    color: red;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.spanstyle2 {
+    font-size: 14px;
+
+}
+
+/* .spanstyle, */
+.spanstyle2 {
+    display: inline-block;
+    position: relative;
+    margin-bottom: 10px;
+
+
+}
+
+.maindiv {
+    text-align: center;
+    /* margin-top: 50px; */
+    margin : 0 auto;
+    width: 710px;
+}
+
+.maindiv2 {
+    margin-top : 50px;
+}
+
+.divline {
+    border-bottom: 2px solid black;
+    display: flex;
+    box-sizing: border-box;
+    justify-content: flex-end;
+
+}
+
+/* =============================메인본문================================ */
+
+fieldset {
+    width: 710px;
+    margin: 0 auto;
+    border: none;
+}
+
+.inputstyle,
+.inputstyle2,
+.genderinput {
+    
+    height: 40px;
+}
+
+.mainbox {
+    width: 100%;
+}
+
+.box1 {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 20px;
+}
+
+.box2 {
+    width: 50%;
+}
+
+.box3 {
+    width: 20%;
+    box-sizing: border-box;
+    padding-left: 15px;
+}
+.box4 {
+    width: 20%;
+    box-sizing: border-box;
+    padding-left: 15px;
+}
+
+.Btn4_box {
+    display : none;
+}
+
+.inner {
+    width: 30%;
+    text-align: left;
+    padding-left: 15px;
+    box-sizing: border-box;
+}
+
+.inner label {
+    display: block;
+    box-sizing: border-box;
+    padding-top: 8px;
+}
+
+.font,
+.font1 {
+    font-weight: 700;
+
+}
+
+.font1 {
+    font-size: 12px;
+}
+
+.imgdiv img {
+    width: 150px;
+    margin-top: calc((200px - 117px)/2);
+
+}
+
+.imgdiv {
+    /* margin: 0 auto; */
+    height: 125px;
+    line-height: 125px;
+}
+
+.account_container {
+    display : flex;
+    flex-direction: column;
+    align-items : center;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    flex-direction : column;
+}
+
+/* =====================input스타일============================ */
+
+.inputstyle {
+    width: 100%;
+    height: 36px;
+    box-sizing: border-box;
+    padding: 10px;
+    
+}
+
+.inputstyle2 {
+    height: 40px;
+    width: 50px;
+    box-sizing: border-box;
+    border: none;
+}
+
+.inputstyle2:focus {
+    outline: none;
+}
+
+.genderinput {
+    width: 20px;
+    box-sizing: border-box;
+    margin-right: 10px;
+}
+
+input[type="radio"] {
+    accent-color: rgba(228, 13, 13, 0.684);
+}
+/* ============================================================== */
+
+/* ===========================버튼스타일========================== */
+
+.buttonstyle {
+    box-sizing: border-box;
+    display: block;
+    text-align: center;
+    background-color: lightsalmon;
+    border: solid 1px lightsalmon;
+    color: white;
+    font-weight: bold;
+}
+
+.buttonstyle2 {
+    box-sizing: border-box;
+    display: block;
+    text-align: center;
+    background-color: lightsalmon;
+    border: solid 1px lightsalmon;
+    color: white;
+    width : 100%;
+    height : 34px;
+    border-radius: 5px;
+    font-weight:bold;
+    
+}
+
+.buttonstyle:active,
+.addressbutton:active {
+    opacity : .4;
+}
+
+.buttonstyle,
+.addressbutton {
+    width: 100%;
+    height: 34px;
+    border-radius: 5px;
+    
+}
+
+
+.button_submit,
+.buttonstyle,
+.addressbutton,
+.delete_btn,
+.button_submit2 {
+    box-sizing: border-box;
+    cursor : pointer;
+    display: block;
+    text-align: center;
+    background-color: lightsalmon;
+    border: solid 1px lightsalmon;
+    font-weight: bold;
+    color: white;
+
+}
+
+
+.button_submit,
+.delete_btn{
+    width: 150px;
+    height: 45px;
+    border-radius : 3px;
+
+}
+
+.button_submit2 {
+    width: 200px;
+    height: 45px;
+    border-radius : 3px;
+}
+
+.buttonBox {
+   
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    gap:20px;
+
+}
+
+.button_opacity {
+    opacity: .4;
+
+}
+
+/* ================================================================ */
+
+/* =================================성별======================= */
+.genderlabel {
+    box-sizing: border-box;
+    padding-top: 4px;
+}
+
+.gender {
+    display: flex;
+    align-items: center;
+
+}
+
+
+.genderlabel2 {
+    margin-right: 45px;
+}
+
+/* ============================================================ */
+
+/* ===============================생년월일======================== */
+
+.birth {
+    height: 44px;
+    width: 50%;
+    display: flex;
+    box-sizing: border-box;
+    justify-content: space-between;
+}
+
+.birthparentbox {
+    flex: 0 1 0%;
+    width: 50%;
+    display: inline-flex;
+
+}
+
+.birthchild {
+    box-sizing: border-box;
+    width: 33%;
+    border: 1px solid black;
+}
+
+.birthchild2 {
+    display: flex;
+    align-items: center;
+    width: 33%;
+    box-sizing: border-box;
+    margin: 0 20px;
+    border: none;
+
+}
+
+.birthchild3 {
+    width: 33%;
+}
+
+.month {
+    width: 100px;
+    height: 44px;
+    box-sizing: border-box;
+    padding-left: 10px;
+}
+
+
+
+
+.birthlabel {
+    flex-shrink: 1;
+}
+
+.birthmainbox {
+    display: flex;
+
+}
+
+/* ================나중에 추가한거 */
+
+.account_p,
+.account_p2 {
+    color : red;
+    font-size : 12px;
+    font-weight : bold;
+}
+
+.account_p {
+    transform: translateX(-2%);
+}
+.account_p2 {
+    transform: translateX(-10.5%);
+}
+
+.account_hidden {
+    display: none;
+}
+
+
+/* ======================================================== */
+
+/* ==============footer================ */
+
+/* footer ------------ */
+
+footer {
+    /* height: 160px; */
+    min-width: 1200px;
+    margin-top: 50px;
+}
+
+.footer {
+    display: flex;
+    justify-content: flex-start;
+    height: 50px;
+}
+
+.footer a {
+    text-decoration: none;
+    color: black;
+    font-size: .8em;
+}
+
+.footer div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+
+pre {
+    font-size: .8em;
+}
+
+/* ==================== 추가 =================== */
+
+.delete_submit,
+.update_submit {
+    display : none;
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../common/css/mainPage.css">
+    <link rel="stylesheet" href="../../../../admin/css/admin.css">
+
+    <script src="../common/js/jquery-3.2.1.min.js"></script>
+
+    <script defer src="../../../../admin/js/admin.js"></script>
+    <title> 밀키트 쇼핑몰 :: Meal Bong </title>
+</head>
+
+<body>
+<script th:inline="javascript">
+    $(function () {
+        $('#searchType').change(function () {
+            if ($(this).val() == 'n') $('#keyword').val('');
+        }); //change
+
+        $('#user_search').click(function () {
+            self.location = '/admin/useradmin'
+                + '?currPage=1&rowsPerPage=10'
+                + '&searchType=' + $('#searchType').val()
+                + '&keyword=' + $('#keyword').val();
+        });
+    });
+</script>
+<th:block th:replace="fragments/header :: headerFragement"></th:block>
+<main>
+    <div class="admin_aside">
+        <div class="admin_name">
+            <h2>관리자 페이지</h2>
+        </div>
+        <ul class="aTag">
+            <li><a href="/admin/useradmin">회원관리</a></li>
+            <li class="click"><a href="/admin/orderadmin">주문관리</a></li>
+            <li><a href="/admin/productadmin">상품관리</a></li>
+            <li><a a href="/admin/noticeadmin">게시판관리</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        <div class="content_admin">
+            <div>
+                <h2>주문 상세</h2>
+                <hr>
+            </div>
+        </div>
+        <h4 th:text="${'주문번호 : ' + orderListDetail[0].order_number}"></h4>
+        <table class="content_inquiry" style="width: 100%">
+            <thead>
+            <tr>
+                <th>주문상세번호</th>
+                <th>상품번호</th>
+                <th>상품가격</th>
+                <th>수량</th>
+                <th>후기작성여부</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="orderListDetail: ${orderListDetail}">
+                <td th:text="${orderListDetail.order_detail_number}">주문상세번호</td>
+                <td th:text="${orderListDetail.product_number}">상품번호</td>
+                <td th:text="${orderListDetail.product_price}">상품가격</td>
+                <td th:text="${orderListDetail.product_count}">수량</td>
+                <td th:text="${orderListDetail.review_check}">후기작성여부</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+
+<footer th:replace="fragments/footer :: footerFragment"></footer>
+
+</body>
+</html>

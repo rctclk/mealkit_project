@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../common/css/mainPage.css">
+    <link rel="stylesheet" href="../../../../board/css/qna.css">
+    <link rel="stylesheet" href="../../../../common/css/modal.css">
+
+    <script src="../common/js/jquery-3.2.1.min.js"></script>
+
+    <script defer src="../../../../board/js/qna.js"></script>
+    <script defer src="../../../../board/js/qna_delete.js"></script>
+    <title> 밀키트 쇼핑몰 :: Meal Bong </title>
+</head>
+
+<body>
+<th:block th:replace="fragments/header :: headerFragement"></th:block>
+<main>
+    <div class="mypage">
+        <div class="aside">
+            <div class="name">
+                <h2>고객센터</h2>
+            </div>
+            <ul>
+                <li>
+                    <a href="/notice/list" class="notice">공지사항
+                        <span></span>
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/faq/list(faq_code=ALL)}" class="faq">자주하는 질문
+                        <span></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/qna/qnalist" class="inquiry">1:1 문의
+                        <span></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="content">
+            <div class="content_1">
+                <div>
+                    <h2>1:1 문의</h2>
+                </div>
+            </div>
+            <ul class="content_inquiry">
+                <li>
+                    <ul style="padding: 20px 0;">
+                        <li>제목</li>
+                        <li>작성일</li>
+                        <li>답변상태</li>
+                    </ul>
+                </li>
+                <li th:if="${session['user_id']== 'admin'}" onclick="location.href='/admin/qnaadmin?searchType=n'">
+                    <h3 style="text-align: center; padding: 100px; border-top: 1px solid silver; cursor:pointer;"
+                        >관리자 페이지로 이동하기</h3>
+                </li>
+                <li th:if="${qnaList.isEmpty() && session['user_id']!= 'admin'}">
+                    <h3 style="text-align: center; padding: 100px; border-top: 1px solid silver">게시글이 없습니다.</h3>
+                </li>
+                <li th:unless="${qnaList.isEmpty()}">
+                    <ul th:each="qnaList:${qnaList}" class="qna_list">
+                        <div class="inq_div">
+                            <li th:text="${qnaList.getQna_title()}"></li>
+                            <li th:text="${#temporals.format(qnaList.getQna_date(), 'yyyy.MM.dd')}"></li>
+                            <li th:if="${qnaList.ans_content != null}" style="color: lightsalmon">답변완료</li>
+                            <li th:if="${qnaList.ans_content == null}">답변대기</li>
+                        </div>
+                        <li class="ans hidden" style="width: 100%">
+                            <div th:text="${qnaList.getQna_type()}" style="font-size: 0.9em; color:dimgray"></div>
+                            <div class="ans_div">
+                                <span>Q</span>
+                                <span th:text="${qnaList.getQna_content()}"
+                                      style="text-align:left; line-height: 25px;"></span>
+                            </div>
+                            <div class="updelete">
+                                <div th:text="${qnaList.getQna_num()}" style="display: none"></div>
+                                <a th:href="@{/qna/qnaupdate(qna_num=${qnaList.getQna_num()})}" th:if="${qnaList.ans_content == null}">수정</a>
+                                <a id="delete_form" th:onclick="'javascript:handleDeleteClick('+${qnaList.qna_num}+')'">삭제</a>
+                            </div>
+                            <div th:if="${qnaList.ans_content != null}" class="ans_div">
+                                <span>A</span>
+                                <span th:text="${qnaList.getAns_content()}"
+                                      style="text-align: left; line-height: 25px;"></span>
+                            </div>
+                        </li>
+
+                    </ul>
+                </li>
+            </ul>
+            <div th:if="${session['user_id'] != 'admin'}" class="form_btn">
+                <button onclick="location.href='/qna/qnaform'" value="문의하기">문의하기</button>
+            </div>
+
+            <div th:if="${session['user_id'] != 'admin'}" class="cri_div">
+                <!-- ** Cri_Paging **
+                   1) FirstPage, Prev -->
+                <th:block th:if="${pageMaker.prev && pageMaker.spageNo>1}">
+                    <!-- OLD_version -->
+                    <a th:href="@{/qna/qnalist(currPage=1,rowsPerPage=8)}"><<</a>&nbsp;&nbsp;
+                    <a th:href="@{/qna/qnalist(currPage=${pageMaker.spageNo-1}, rowsPerPage=8)}">&lt;</a>
+                </th:block>
+<!--                <th:block th:unless="${pageMaker.prev && pageMaker.spageNo>1}">-->
+<!--                    <span><<&nbsp;&nbsp;<</span>-->
+<!--                </th:block>-->
+
+                <!-- 2) Display PageNo  -->
+                <div th:each="i: ${#numbers.sequence(pageMaker.spageNo, pageMaker.epageNo)}">
+                    <div th:if="${i==pageMaker.cri.currPage}" th:text="${i}" class="cri_div_font"></div>
+                    <a th:unless="${i==pageMaker.cri.currPage}"
+                         th:href="@{/qna/qnalist(currPage=${i}, rowsPerPage=8)}" th:text="${i}">
+                    </a>
+                </div>
+
+                <!-- 3) Next, LastPage -->
+                <th:block th:if="${pageMaker.next && pageMaker.epageNo > 0}">
+                    <a th:href="@{/qna/qnalist(currPage=${pageMaker.epageNo+1}, rowsPerPage=8)}"> ></a>&nbsp;&nbsp;
+                    <a th:href="@{/qna/qnalist(currPage=${pageMaker.lastPageNo}, rowsPerPage=8)}"> >></a>
+                </th:block>
+<!--                <th:block th:unless="${pageMaker.next && pageMaker.epageNo > 0}">-->
+<!--                    <span> >&nbsp;&nbsp;>></span>-->
+<!--                </th:block>-->
+            </div>
+        </div>
+    </div>
+
+</main>
+<footer th:replace="fragments/footer :: footerFragment"></footer>
+
+<div class="mainModal hidden">
+    <div class="bg"></div>
+    <div class="modalBox">
+        <p>문의글을 삭제 하시겠습니까?</p>
+        <div class="closeBtn_div">
+            <button class="closeBtn">확인</button>
+            <button class="closeBtn">취소</button>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../common/css/mainPage.css">
+    <link rel="stylesheet" href="../../../../admin/css/admin.css">
+    <link rel="stylesheet" href="../../../common/css/modal.css">
+
+    <script src="../common/js/jquery-3.2.1.min.js"></script>
+    <script defer src="../../../admin/js/notice_delete.js"></script>
+
+    <title> 밀키트 쇼핑몰 :: Meal Bong </title>
+</head>
+
+<body>
+
+<script th:inline="javascript">
+    $(function () {
+        $('#searchType').change(function () {
+            if ($(this).val() == 'n') $('#keyword').val('');
+        }); //change
+
+        $('#notice_search').click(function () {
+            var keyword = $('#keyword').val();
+            var url = '/admin/noticeadmin?currPage=1&rowsPerPage=8&searchType=' + $('#searchType').val() + '&keyword=' + encodeURIComponent(keyword);
+            self.location = url;
+        }); //click
+    }); // ready
+</script>
+
+<th:block th:replace="fragments/header :: headerFragement"></th:block>
+<main>
+    <div class="admin_aside">
+        <div class="admin_name">
+            <h2>관리자 페이지</h2>
+        </div>
+        <ul class="aTag">
+            <li><a href="/admin/useradmin">회원관리</a></li>
+            <li><a href="/admin/orderadmin">주문관리</a></li>
+            <li><a href="/admin/productadmin">상품관리</a></li>
+            <li class="click"><a href="/admin/noticeadmin">게시판관리</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        <div class="content_admin">
+            <div>
+                <h2>게시판 관리</h2>
+            </div>
+            <ul class="board_header">
+                <li class="click" onclick="location.href='/admin/noticeadmin'">
+                    공지사항
+                </li>
+                <li onclick="location.href='/admin/faqadmin?searchType=n'">
+                    FAQ
+                </li>
+                <li onclick="location.href='/admin/qnaadmin?searchType=n'">
+                    1:1 문의
+                </li>
+            </ul>
+        </div>
+        <div>
+            <div>
+                <h2>공지사항</h2>
+            </div>
+        </div>
+        <div id="searchBar">
+            <select name="searchType" id="searchType">
+                <option value="n" th:selected="${pageMaker.cri.searchType == null}">전체</option>
+                <option value="p" th:selected="${pageMaker.cri.searchType == 'p'}">번호</option>
+                <option value="e" th:selected="${pageMaker.cri.searchType == 'e'}">제목</option>
+                <option value="e" th:selected="${pageMaker.cri.searchType == 'o'}">내용</option>
+                <option value="o" th:selected="${pageMaker.cri.searchType == 'u'}">등록일</option>
+            </select>
+            <input type="text" name="keyword" id="keyword" th:value="${pageMaker.cri.getKeyword()}">
+            <button id="notice_search">Search</button>
+        </div>
+        <br>
+        <table class="content_inquiry" style="width: 100%">
+            <thead>
+            <tr class="height_25">
+                <th>번호</th>
+                <th>제목</th>
+                <th>등록일</th>
+                <th>조회수</th>
+                <th>삭제</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="noticeList:${noticeList}">
+                <td th:text="${noticeList.notice_number}" class="width_20"></td>
+                <td class="width_30">
+                    <a th:href="@{/admin/noticedetail(notice_number=${noticeList.notice_number})}"
+                       th:text="${noticeList.notice_title}"></a>
+                </td>
+                <td class="width_15" th:text="${#temporals.format(noticeList.notice_date, 'yyyy.MM.dd')}"></td>
+                <td class="width_10" th:text="${noticeList.notice_cnt}"></td>
+                <td class="width_10">
+                    <a th:onclick="'javascript:noticeDelete('+${noticeList.notice_number}+')'">
+                        삭제</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="notice_insert_button">
+            <a href="/notice/noticeInsert">글쓰기</a>
+        </div>
+        <div class="cri_div">
+            <!-- ** Cri_Paging **
+               1) FirstPage, Prev -->
+            <th:block th:if="${pageMaker.prev && pageMaker.spageNo>1}">
+                <a th:href="@{/admin/noticeadmin(currPage=1,rowsPerPage=8, searchType=${pageMaker.cri.searchType}, keyword=${pageMaker.cri.keyword})}"><<</a>&nbsp;&nbsp;
+                <a th:href="@{/admin/noticeadmin(currPage=${pageMaker.spageNo-1}, rowsPerPage=8, searchType=${pageMaker.cri.searchType}, keyword=${pageMaker.cri.keyword})}">&lt;</a>
+            </th:block>
+
+            <!-- 2) Display PageNo  -->
+            <div th:each="i: ${#numbers.sequence(pageMaker.spageNo, pageMaker.epageNo)}">
+                <div th:if="${i==pageMaker.cri.currPage}" th:text="${i}" class="cri_div_font"></div>
+                <a th:unless="${i==pageMaker.cri.currPage}"
+                   th:href="@{/admin/noticeadmin(currPage=${i}, rowsPerPage=8, searchType=${pageMaker.cri.searchType}, keyword=${pageMaker.cri.keyword})}"
+                   th:text="${i}">
+                </a>
+            </div>
+            <!-- 3) Next, LastPage -->
+            <th:block th:if="${pageMaker.next && pageMaker.epageNo > 0}">
+                <a th:href="@{/admin/noticeadmin(currPage=${pageMaker.epageNo+1}, rowsPerPage=8, searchType=${pageMaker.cri.searchType}, keyword=${pageMaker.cri.keyword})}">
+                    ></a>&nbsp;&nbsp;
+                <a th:href="@{/admin/noticeadmin(currPage=${pageMaker.lastPageNo}, rowsPerPage=8, searchType=${pageMaker.cri.searchType}, keyword=${pageMaker.cri.keyword})}">
+                    >></a>
+            </th:block>
+
+        </div>
+    </div>
+</main>
+<footer th:replace="fragments/footer :: footerFragment"></footer>
+<div class="mainModal hidden">
+    <div class="bg"></div>
+    <div class="modalBox">
+        <p>글을 삭제 하시겠습니까?</p>
+        <div class="closeBtn_div">
+            <button class="closeBtn">확인</button>
+            <button class="closeBtn">취소</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>

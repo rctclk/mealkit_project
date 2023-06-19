@@ -1,0 +1,937 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-family: 'Gowun Dodum', sans-serif;
+    outline: none;
+}
+
+.post,
+.food_hint {
+    font-size: 0.8em;
+    color: gray;
+}
+
+.innerbox3 .food_box .post {
+    margin-bottom: 0;
+}
+
+.only,
+.limited {
+    background-color: rgb(244, 244, 244);
+    color: salmon;
+    font-size: 0.8em;
+    border-radius: 3px;
+    padding: 2px 10px;
+}
+
+.only {
+    box-sizing: border-box;
+    margin-right: 20px;
+}
+
+.limited {
+    width: 90px;
+}
+
+/* header 로고 / 검색창 / 로그인 정렬---------*/
+.flex-box {
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 1200px;
+    /* height: 100px; */
+}
+
+/* header 상단고정---------*/
+
+header {
+    top: 0;
+    min-width: 1200px;
+    background-color: white;
+}
+
+/* header 로고---------*/
+
+.logo {
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.space {
+    min-width: 1200px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color: rgba(255, 160, 122, 0.708);
+    /* transition: .4s ease-in-out; */
+}
+
+.space a {
+    color: white;
+    text-decoration: none;
+    /* transition: .4s; */
+}
+
+.space-close {
+    position: absolute;
+    border: none;
+    right: 20px;
+    margin-top: calc((30px - 20px)/2);
+}
+
+.space-close img {
+    width: 20px;
+    height: 20px;
+    opacity: .8;
+    cursor: pointer;
+}
+
+.login {
+    justify-content: flex-end;
+    display: flex;
+    right: 0;
+    text-align: center;
+}
+
+.login a {
+    text-decoration: none;
+    color: black;
+}
+
+.login li:hover a {
+    text-decoration: underline;
+}
+
+.login>li {
+    width: 80px;
+}
+
+.login>li:nth-of-type(3) {
+    margin-right: 18px;
+}
+
+.hoverbox {
+    width: 90px;
+    border: 1px solid gray;
+    display: none;
+    position: absolute;
+    background-color: white;
+    right: 0;
+    top: 100%;
+}
+
+.hoverbox a {
+    color: black;
+    font-size: .9em;
+    display: block;
+}
+
+/*header 검색창---------*/
+
+.search {
+    width: 350px;
+    height: 40px;
+    border: 2px solid lightsalmon;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 10px;
+}
+
+.search input {
+    font-size: 16px;
+    border: 0;
+    flex: 1;
+}
+
+.button {
+    border: none;
+    background: none;
+    width: 1px;
+    height: 1px;
+    cursor : pointer;
+    position: absolute;
+}
+
+.button-set {
+    width: 30px;
+    line-height: 30px;
+    margin-right: 8px;
+    margin-bottom: -5px;
+}
+
+
+/* 장바구니 찜한 상품 --------- */
+
+.cart_heart {
+    width: 150px;
+    display: flex;
+    justify-content: center;
+}
+
+.cart_heart a {
+    background-position: center;
+    background-size: 100%;
+    width: 30px;
+    height: 30px;
+    margin-left: 15px;
+}
+
+.cart {
+    background-image: url(../../image/cart.png);
+}
+
+.cart:hover {
+    background-image: url(../../image/cart_coral.png);
+}
+
+.heart {
+    background-image: url(../../image/heart.png);
+}
+
+.heart:hover {
+    background-image: url(../../image/heart_coral.png);
+}
+
+.mpage {
+    background-image: url(../../image/mypage.png);
+}
+
+.mpage:hover {
+    background-image: url(../../image/mypage_coral.png);
+}
+
+/* 메뉴 ---------*/
+.menu {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+}
+
+.menu_price {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+nav {
+    min-width: 1200px;
+    line-height: 50px;
+    display: flex;
+    justify-content: space-around;
+    position: sticky;
+    top: -2px;
+    box-shadow: 0 4px 4px -4px gray;
+    background-color: white;
+    z-index: 2;
+}
+
+.menu>li {
+    text-align: center;
+    width: 150px;
+    line-height: 40px;
+    margin: 0 40px;
+    box-sizing: border-box;
+}
+
+.menu>li>a {
+    text-decoration: none;
+    color: black;
+    display: block;
+    font-size: 19px;
+}
+
+.submenu,
+.submenu2 {
+    display: none;
+    position: absolute;
+}
+
+.submenu a,
+.submenu2 a {
+    text-decoration: none;
+    color: black;
+    display: block;
+}
+
+.submenu>li,
+.submenu2>li {
+    width: 150px;
+    box-sizing: border-box;
+    line-height: 35px;
+    background-color: white;
+    border: 0.5px solid lightgray;
+    border-top: none;
+}
+
+.submenu>li:first-of-type,
+.submenu2>li:first-of-type {
+    border-top: 0.5px solid lightgray;
+}
+
+/* 메뉴 hover ---------*/
+
+.menu li:hover {
+    text-decoration: underline;
+}
+
+.menu>li:hover>a {
+    color: lightsalmon;
+    text-decoration: underline;
+}
+
+nav ul li:nth-child(1):hover .submenu,
+nav ul li:nth-child(4):hover .submenu2 {
+    display: block;
+}
+
+/* banner ------------*/
+.bannerContainer {
+    position: relative;
+    width: 100%;
+}
+
+.btn_left,
+.btn_right {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: none;
+    border: none;
+    top: calc(500px / 2 - 50px);
+    transform: translateY(50%);
+    z-index: 1;
+    cursor: pointer;
+}
+
+.btn_left img,
+.btn_right img {
+    width: 50px;
+    height: 50px;
+    opacity: .5;
+}
+
+.btn_left {
+    left: 20px;
+}
+
+.btn_right {
+    right: 20px;
+}
+
+.btn_left:hover img,
+.btn_right:hover img {
+    opacity: 1;
+    transition: all .5s;
+}
+
+.main-banner {
+    object-fit: cover;
+    background-position: center;
+    white-space: nowrap;
+    height: 500px;
+    width: 400%;
+    /* min-width: 4800px; */
+    position: absolute;
+    transition: 0.5s ease-out;
+    left: 0;
+}
+
+.main-banner li {
+    transition: all .5s;
+    width: 25%;
+    float: left;
+}
+
+.main-banner img {
+    object-fit: cover;
+    background-size: 100%;
+    height: 500px;
+    width: 100%;
+    min-width: 1200px;
+}
+
+.slide-container {
+    position: relative;
+    overflow: hidden;
+    height: 500px;
+    min-width: 1200px;
+}
+
+.main-banner .animated {
+    transition: 0.5s ease-out;
+}
+
+/* main -------------*/
+
+/* .main-width {
+    width: 1000px;
+    margin: 0 auto;
+} */
+
+.menuContainer,
+.menuContainer2,
+.menuContainer3,
+.menuContainer4 {
+    position: relative;
+    width: 1000px;
+    height: 450px;
+    margin: 0 auto;
+}
+
+.mainFrame,
+.mainFrame2,
+.mainFrame3,
+.mainFrame4 {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.main-top,
+.main-top2,
+.main-top3,
+.main-top4 {
+    width: 400%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    display: flex;
+    transition: all .5s;
+}
+
+.mainMenu,
+.mainMenu2,
+.mainMenu3,
+.mainMenu4 {
+    height: 100%;
+}
+
+.pop_pro {
+    display: flex;
+    margin-bottom: 100px;
+    align-content: center;
+    /* text-align: center; */
+    width: 50%;
+    margin: 0 auto;
+}
+
+
+
+.btn_forward,
+.btn_back,
+.btn_forward2,
+.btn_back2,
+.btn_forward3,
+.btn_back3,
+.btn_forward4,
+.btn_back4 {
+    position: absolute;
+    background: none;
+    border: none;
+    opacity: .3;
+    width: 50px;
+    height: 50px;
+    top: 30%;
+    cursor: pointer;
+}
+
+.btn_back,
+.btn_back2,
+.btn_back3,
+.btn_back4 {
+    right: 100%;
+}
+
+.btn_forward,
+.btn_forward2,
+.btn_forward3,
+.btn_forward4 {
+    left: 100%
+}
+
+.btn_forward:hover,
+.btn_back:hover,
+.btn_forward2:hover,
+.btn_back2:hover,
+.btn_forward3:hover,
+.btn_back3:hover,
+.btn_forward4:hover,
+.btn_back4:hover {
+    opacity: 1;
+    transition: all .5s;
+}
+
+.btn_forward img,
+.btn_back img,
+.btn_forward2 img,
+.btn_back2 img,
+.btn_forward3 img,
+.btn_back3 img,
+.btn_forward4 img,
+.btn_back4 img {
+    width: 50px;
+    height: 50px;
+}
+
+.pop {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 30px auto;
+    text-align: center;
+    width : 250px;
+}
+
+.pop a {
+    text-decoration: none;
+    color: black;
+}
+.pop h2 {
+    margin-top : 30px;
+    text-align: center;
+}
+
+.game {
+    border: 1px solid;
+    width: 1200px;
+    line-height: 300px;
+    text-align: center;
+    margin: 50px auto;
+}
+
+.product {
+    margin: 10px;
+    /* overflow: hidden; */
+    position: relative;
+    width: 100%;
+    height: 300px;
+    transition: all .5s;
+}
+
+.product a {
+    color: black;
+    text-decoration: none;
+}
+
+.pro1 img {
+    width: 100%;
+    height: 296px;
+    display: block;
+    transition: all 0.2s linear;
+}
+
+
+header {
+    z-index: 3;
+}
+
+.product button {
+    position: absolute;
+    right: 10px;
+    bottom: 60px;
+    background: none;
+    border: none;
+}
+
+.product #wish_icon {
+    color: white;
+}
+
+.product button:hover #wish_icon,
+.product button:focus #wish_icon {
+    color: red;
+}
+
+/* main 카테고리 ----------- */
+
+.main-category {
+    margin: 20px auto;
+    margin-bottom: 120px;
+    display: flex;
+    justify-content: space-evenly;
+    width: 1200px;
+}
+
+.main-category a {
+    width: 110px;
+    height: 110px;
+    border-radius: 10px;
+    background-color: rgb(255, 178, 148);
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-wrap: wrap;
+}
+
+.main-category a:hover {
+    opacity: .8;
+}
+
+/* top button ------------ */
+
+.topButton {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    object-fit: cover;
+    visibility: hidden;
+    opacity: 0;
+    /* transition: all .5s; */
+}
+
+.topButton img {
+    width: 50px;
+    height: 50px;
+}
+
+.btnScroll {
+    opacity: .5;
+    visibility: visible;
+}
+
+.btnHover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.nonVisible {
+    visibility: hidden;
+}
+
+/* footer ------------ */
+
+footer {
+    min-width: 1200px;
+    margin-top: 50px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer {
+    display: flex;
+    justify-content: flex-start;
+    height: 50px;
+}
+
+.footer a {
+    text-decoration: none;
+    color: black;
+    font-size: .8em;
+}
+
+.footer div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+
+pre {
+    font-size: .8em;
+}
+
+
+body {
+    position: relative;
+    padding-bottom: 210px;
+    min-height: calc(100vh - 210px);
+}
+
+/* menu List */
+.img_container {
+    margin-bottom: 5px;
+}
+
+.food_box img {
+    width: 250px;
+    height: 320px;
+    z-index: 1;
+}
+
+.img_container {
+    overflow: hidden;
+}
+
+/* ======================================================================== */
+/* outerbox */
+
+.outerbox {
+    width: 1200px;
+    margin: auto;
+    /* border: 1px solid; */
+}
+
+.innerbox1,
+.innerbox2 {
+    color: black;
+}
+
+.innerbox1 a,
+.innerbox2 a {
+    text-decoration: none;
+}
+
+/* ========================================================================== */
+/* innerbox 3개 */
+
+.innerbox1 {
+    height: 80px;
+    width: 1100px;
+    margin: 10px auto;
+}
+
+.innerbox2 {
+    height: 50px;
+    width: 1100px;
+    margin: 10px auto;
+}
+
+
+.innerbox3 {
+    height: 1300px;
+    width: 1100px;
+    margin: 10px auto;
+
+    display: grid;
+    grid-template: repeat(2, 1fr) / repeat(4, 1fr);
+}
+
+/* ============================================================================ */
+/* innerbox1 innerbox2 안에 a태그들 정렬 */
+
+.innerbox1 {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.innerbox2 a:nth-child(1) {
+    padding-left: 55px;
+}
+
+.innerbox2 a {
+    padding: 10px;
+}
+
+.outerbox .innerbox2 .selected {
+    color: lightsalmon;
+    font-weight: bold;
+}
+
+/* =========================================================================== */
+/* innerbox 2, 3 사이에 테마 표시 */
+
+body .innerbox1 a[href="#"] {
+    color: lightsalmon;
+    font-weight: bold;
+}
+
+.innerbox23 h2 {
+    font-size: 2.5em;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.innerbox1 a:link,
+.innerbox2 a:link {
+    color: black;
+}
+
+.innerbox1 a:visited,
+.innerbox2 a:visited {
+    color: black;
+}
+
+/* ============================================================================ */
+/* innerbox3 안에 food box 나열 */
+
+.innerbox3 .food_box {
+    width: 250px;
+    height: 580px;
+    margin: auto;
+
+    position: relative;
+}
+
+.innerbox3 .food_box div {
+    margin-bottom: 5px;
+}
+
+
+header {
+    z-index: 3;
+}
+
+
+.food_box .menu {
+    display: inline-block;
+}
+
+.menu_price {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.innerbox3 a {
+    text-decoration: none;
+    color: black;
+    display: inline-flex;
+    text-decoration: none;
+    color: black;
+    align-items: center;
+    justify-content: center;
+}
+
+.post,
+.food_hint {
+    font-size: 0.8em;
+    color: gray;
+}
+
+.innerbox3 .food_box .post {
+    margin-bottom: 0;
+}
+
+.only,
+.limited {
+    background-color: rgb(244, 244, 244);
+    color: salmon;
+    font-size: 0.8em;
+    border-radius: 3px;
+    padding: 2px 10px;
+}
+
+.only {
+    box-sizing: border-box;
+    margin-right: 20px;
+}
+
+.limited {
+    width: 90px;
+}
+
+
+.product .basket {
+    background-image: url(../../image/heart_coral.png);
+    background-position: center;
+    background-size: 65%;
+    background-repeat: no-repeat;
+
+    display: block;
+    box-sizing: border-box;
+    width: 45px;
+    height: 45px;
+
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+
+    background-color: white;
+    opacity: 0.8;
+    border-radius: 50%;
+    border: none;
+
+    cursor: pointer;
+}
+
+
+/* =====================장바구니 modal box==================== */
+/* 로그인 하기 전 */
+
+
+.modal_container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bg {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.601);
+}
+
+.modalBox {
+    position: absolute;
+    background-color: #fff;
+    top : 35%;
+    width : 300px;
+    height : 180px;
+    text-align : center;
+    border-radius: 10px;
+    display : flex;
+    flex-direction: column;
+    justify-content : space-between
+}
+
+.modalBox p {
+    padding : 30px;
+    font-weight : 600;
+    color :rgba(0, 0, 0, 0.73)
+}
+
+
+.modalBox button {
+    box-sizing : border-box;
+    color: lightsalmon;
+    font-weight : bold;
+    display : flex;
+    justify-content : center;
+    align-items : center;
+    height : 50px;
+    width : 100%;
+    margin : 0 auto;
+    cursor : pointer;
+    border : none;
+    background-color: white;
+    border-top : 1px solid gainsboro;
+    border-radius : 0 0 10px 10px;
+}
+
+.hidden  {
+    display : none;
+}
+
+/* paging */
+
+.cri_div {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.cri_div div {
+    width: 25px;
+    height: 25px;
+}
+
+.cri_div_font {
+    background-color: lightsalmon;
+    color: white;
+    border-radius: 50%;
+}
+
+.cri_div a {
+    color: gray;
+    text-decoration: none;
+}

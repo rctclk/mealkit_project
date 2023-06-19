@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 밀키트 쇼핑몰 :: Meal Bong </title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../user/css/mypage.css">
+    <link rel="stylesheet" href="../../../common/css/mainPage.css">
+    <script defer src="../../../order/js/address.js"></script>
+    <script defer src="../../js/main_topDiv.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body>
+<th:block th:replace="fragments/header :: headerFragement"></th:block>
+
+<main>
+    <div class="mypage">
+        <div class="aside">
+            <div class="name">
+                <h2>마이페이지</h2>
+            </div>
+            <ul>
+                <li>
+                    <a href="/myPage?currPage=1&rowsPerPage=8"
+                       class="order">주문 내역
+                        <span></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/wish/list"
+                       class="wish">찜한 상품
+                        <span></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/address/list" class="address">배송지 관리
+                        <span></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/myPage/user_update"
+                       class="info">개인정보 수정
+                        <span></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="content">
+            <div class="content_address_1">
+                <h2>배송지 관리</h2>
+                <div class="new_address">
+                    <button class="new_address_button">
+                        <span>새 배송지 추가</span>
+                    </button>
+                </div>
+            </div>
+            <div class="content_address">
+                <div class="content_address_2">
+                    <div>선택</div>
+                    <div>주소</div>
+                    <div>받으실분</div>
+                    <div>연락처</div>
+                    <div>수정</div>
+                </div>
+                <form id="dely_default" method="POST" action="dely_default">
+                    <div class="content_address_box" th:each="deliveryList:${deliveryList}">
+                        <div>
+                            <input type="radio" name="dely_number" th:value="${deliveryList.dely_number}"
+                                   th:checked="${deliveryList.dely_check == 'Y'}">
+                        </div>
+                        <div>
+                            <span name="dely_address1" th:text="${deliveryList.dely_address1}"></span>
+                            <span name="dely_address2" th:text="${deliveryList.dely_address2}"></span>
+                        </div>
+                        <div name="dely_name" th:text="${deliveryList.dely_name}"></div>
+                        <div name="dely_phone" th:text="${deliveryList.dely_phone}"></div>
+                        <div>
+                            <button th:data-number="${deliveryList.dely_number}"
+                                    th:data-add1="${deliveryList.dely_address1}"
+                                    th:data-add2="${deliveryList.dely_address2}"
+                                    th:data-name="${deliveryList.dely_name}"
+                                    th:data-phone="${deliveryList.dely_phone}">
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="content_address_3">
+                <button onclick="submitForm()" class="address_button">
+                    기본 배송지 설정
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 새 배송지 추가 모달창 -->
+    <div class="address_add_content hidden">
+        <div class="address_add_box">
+            <form action="delyInsert" method="post">
+                <h2>새 배송지 추가</h2>
+                <input name="user_id" th:value="${deliveryList[0].user_id}" type="hidden">
+                <input name="dely_zip" class="add_zonecode" type="hidden">
+                <div>
+                    <input name="dely_address1" class="add_address1" type="text" readonly>
+                </div>
+                <div>
+                    <div class="add_address2">나머지 주소</div>
+                    <input name="dely_address2" type="text" placeholder="나머지 주소를입력해 주세요.">
+                </div>
+                <div>
+                    <div class="add_name">받으실 분</div>
+                    <input name="dely_name" type="text" placeholder="이름을 입력해 주세요.">
+                </div>
+                <div>
+                    <div class="add_call">연락처</div>
+                    <input name="dely_phone" type="text" placeholder="번호를 입력해 주세요.">
+                </div>
+                <div>
+                    <div class="address_add_button">
+                        <button type="submit" class="add_check">확인</button>
+                        <button type="reset" class="add_cancel">취소</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- 배송지 수정 모달창 -->
+    <div class="address_fix_content hidden">
+        <div class="address_fix_box">
+
+            <form id="delyDelete" action="delyDelete" method="post">
+                <input name="dely_number" class="fix_number1" type="hidden">
+            </form>
+
+            <form id="delyUpdate" action="delyUpdate" method="post">
+                <h2>배송지 수정</h2>
+                <input name="dely_number" class="fix_number2" type="hidden">
+                <div>
+                    <input name="dely_address1" class="fix_address1" readonly>
+                </div>
+                <div>
+                    <div>나머지 주소</div>
+                    <input name="dely_address2" class="fix_address2" placeholder>
+                </div>
+                <div>
+                    <div>받으실 분</div>
+                    <input name="dely_name" class="fix_name" placeholder>
+                </div>
+                <div>
+                    <div>연락처</div>
+                    <input name="dely_phone" class="fix_phone" placeholder>
+                </div>
+            </form>
+            <div>
+                <div class="address_fix_button">
+                    <button onclick="submitUpdate()" class="fix_check">수정</button>
+                    <button onclick="submitDelete()" class="fix_cancel">삭제</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+</body>
+</html>

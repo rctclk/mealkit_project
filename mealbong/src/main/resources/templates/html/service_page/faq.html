@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 밀키트 쇼핑몰 :: Meal Bong </title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../user/css/mypage.css">
+    <link rel="stylesheet" href="../../../common/css/mainPage.css">
+    <link rel="stylesheet" href="../../../../common/css/modal.css">
+    <script defer src="../../../board/js/faq.js"></script>
+    <script defer src="../../../admin/js/faq_delete.js"></script>
+
+</head>
+
+<body>
+<th:block th:replace="fragments/header :: headerFragement"></th:block>
+<main>
+    <div class="mypage">
+        <div class="aside">
+            <div class="name">
+                <h2>고객센터</h2>
+            </div>
+            <ul>
+                <li>
+                    <a href="/notice/list" class="notice">공지사항
+                        <span></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="faq">자주하는 질문
+                        <span></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/qna/qnalist" class="inquiry">1:1 문의
+                        <span></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="content">
+            <div class="content_1">
+                <h2>자주하는 질문</h2>
+            </div>
+            <div class="content_faq">
+                <div data-code="ALL">전체</div>
+                <div data-code="F_01">상품</div>
+                <div data-code="F_02">교환 / 환불</div>
+                <div data-code="F_03">주문 / 결제</div>
+                <div data-code="F_04">회원 정보</div>
+                <div data-code="F_05">사이트 이용</div>
+                <div data-code="F_06">이벤트</div>
+                <div data-code="F_07">기타</div>
+            </div>
+            <div class="content_faq_Box">
+                <div class="faq_Box">
+                    <div>분류</div>
+                    <div>질문</div>
+                </div>
+                <div>
+                    <div class="faq_list_Box" th:each="faq: ${faqList}">
+                        <div class="faq_list">
+                            <div th:text="${faq.faq_code}"></div>
+                            <div th:text="${faq.faq_question}"></div>
+                        </div>
+                        <div class="content_faq_answer hidden">
+                            <div>
+                                <p th:text="${faq.faq_answer}"></p>
+                            </div>
+                            <div th:if="${session['user_id']=='admin'}" class="faq_ans_a">
+                                <a th:href="@{/faq/faqUpdate(faq_number=${faq.faq_number})}">글 수정</a>
+                                <a th:onclick="'javascript:faqDelete(' + ${faq.faq_number} + ')'">
+                                    글 삭제
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="faqInsertDiv" th:if="${session['user_id']=='admin'}">
+                    <a href="faqInsert" style="color: white;">글 추가</a>
+                </div>
+                <div class="cri_div">
+                    <!-- ** Cri_Paging **
+                       1) FirstPage, Prev -->
+                    <th:block th:if="${pageMaker.prev && pageMaker.spageNo>1}">
+                        <a th:href="@{/faq/list(currPage=1,rowsPerPage=8)}"><<</a>&nbsp;&nbsp;
+                        <a th:href="@{/faq/list(currPage=${pageMaker.spageNo-1}, rowsPerPage=8, faq_code=${pageMaker.cri.faq_code})}">&lt;</a>
+                    </th:block>
+                    <!-- 2) Display PageNo  -->
+                    <div th:each="i: ${#numbers.sequence(pageMaker.spageNo, pageMaker.epageNo)}">
+                        <div th:if="${i==pageMaker.cri.currPage}" th:text="${i}" class="cri_div_font"></div>
+                        <a th:unless="${i==pageMaker.cri.currPage}"
+                           th:href="@{/faq/list(currPage=${i}, rowsPerPage=8, faq_code=${pageMaker.cri.faq_code})}" th:text="${i}">
+                        </a>
+                    </div>
+                    <!-- 3) Next, LastPage -->
+                    <th:block th:if="${pageMaker.next && pageMaker.epageNo > 0}">
+                        <a th:href="@{/faq/list(currPage=${pageMaker.epageNo+1}, rowsPerPage=8, faq_code=${pageMaker.cri.faq_code})}"> ></a>&nbsp;&nbsp;
+                        <a th:href="@{/faq/list(currPage=${pageMaker.lastPageNo}, rowsPerPage=8, faq_code=${pageMaker.cri.faq_code})}"> >></a>
+                    </th:block>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</main>
+<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+<div class="mainModal hidden">
+    <div class="bg"></div>
+    <div class="modalBox">
+        <p>글을 삭제 하시겠습니까?</p>
+        <div class="closeBtn_div">
+            <button class="closeBtn">확인</button>
+            <button class="closeBtn">취소</button>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

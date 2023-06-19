@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../common/css/mainPage.css">
+  <link rel="stylesheet" href="../../../../board/css/qna.css">
+  <link rel="stylesheet" href="../../../../admin/css/admin.css">
+  <link rel="stylesheet" href="../../../../common/css/modal.css">
+
+  <script src="../common/js/jquery-3.2.1.min.js"></script>
+
+  <script defer src="../../../../admin/js/ans_form.js"></script>
+  <title> 밀키트 쇼핑몰 :: Meal Bong </title>
+</head>
+
+<body>
+
+<th:block th:replace="fragments/header :: headerFragement"></th:block>
+<main>
+  <div class="mypage">
+    <div class="admin_aside">
+      <div class="admin_name">
+        <h2>관리자 페이지</h2>
+      </div>
+      <ul class="aTag">
+        <li><a href="/admin/useradmin">회원관리</a></li>
+        <li><a href="/admin/orderadmin">주문관리</a></li>
+        <li><a href="/admin/productadmin">상품관리</a></li>
+        <li class="click"><a th:href="@{/admin/qnaadmin(searchType='n')}">게시판관리</a></li>
+      </ul>
+    </div>
+    <div class="content">
+      <div class="content_admin">
+        <div>
+          <h2>게시판 관리</h2>
+        </div>
+        <ul class="board_header">
+          <li onclick="location.href='/admin/useradmin'">
+            공지사항
+          </li>
+          <li onclick="location.href='/admin/useradmin'">
+            FAQ
+          </li>
+          <li class="click" onclick="location.href='/admin/qnaadmin?searchType=n'">
+            1:1 문의
+          </li>
+        </ul>
+      </div>
+      <div class="content_1">
+        <h2>1:1 문의 답변</h2>
+      </div>
+      <div class="content_inquiry_form">
+        <form action="/admin/ansform" method="post" id="ans_form">
+          <div class="ans_form">
+            <div class="ans_form_div">
+              <input name="qna_num" th:value="${qnaList.getQna_num()}" style="display: none">
+              <div class="content_inquiry_form_3">문의 제목</div>
+              <div style="width: 100%; margin-left: 20px;" name="qna_title" th:text="${qnaList.qna_title}"></div>
+            </div>
+            <div class="ans_form_div">
+              <div class="content_inquiry_form_3">문의 내용</div>
+              <div style="width: 100%; margin-left: 20px;" name="qna_content" th:text="${qnaList.qna_content}"></div>
+            </div>
+            <div class="ans_form_div">
+              <div class="content_inquiry_form_3">답변 내용</div>
+              <textarea name="ans_content" class="content_inquiry_form_textarea"
+                        placeholder=" 답변 내용을 입력해 주세요."
+                        th:text="${qnaList.ans_content}" required>
+              </textarea>
+            </div>
+          </div>
+          <div class="submit_div">
+            <input type="submit" value="답변 등록">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
+<footer th:replace="fragments/footer :: footerFragment"></footer>
+<div class="mainModal hidden">
+  <div class="bg"></div>
+  <div class="modalBox">
+    <p>답변이 등록되었습니다.</p>
+    <div class="closeBtn_div">
+      <button class="closeBtn">확인</button>
+    </div>
+  </div>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 밀키트 쇼핑몰 :: Meal Bong </title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../user/css/mypage.css">
+    <link rel="stylesheet" href="../../../common/css/mainPage.css">
+    <script defer src="../../../board/js/faq.js"></script>
+    <script defer src="../../js/main_topDiv.js"></script>
+    <script src="/webjars/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body>
+<th:block th:replace="fragments/header :: headerFragement"></th:block>
+
+<main>
+    <form action="faqInsert" method="post">
+        <select name="faq_code">
+            <option value="F_01">상품</option>
+            <option value="F_02">교환 / 환불</option>
+            <option value="F_03">주문 / 결제</option>
+            <option value="F_04">회원 정보</option>
+            <option value="F_05">사이트 이용</option>
+            <option value="F_06">이벤트</option>
+            <option value="F_07">기타</option>
+        </select>
+        <p>Faq question: <input type="text" name="faq_question"></p>
+        <p>Faq answer: <input type="text" name="faq_answer"></p>
+        <input type="submit" value="등록"> &nbsp;&nbsp;&nbsp;
+        <input type="reset" value="취소">
+    </form>
+</main>
+<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+
+</body>
+</html>

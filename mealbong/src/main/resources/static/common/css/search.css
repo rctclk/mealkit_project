@@ -1,0 +1,75 @@
+
+
+.searchResult {
+    text-align: center;
+    margin: 50px 0;
+}
+
+.search_result_div {
+    /*display: flex;*/
+    /*margin-bottom: 50px;*/
+    /*height: 1300px;*/
+    width: 1100px;
+    margin: 10px auto;
+    display: grid;
+    grid-template: repeat(1, 1fr) / repeat(4, 1fr);
+}
+
+.food_box a {
+    color: black;
+    text-decoration: none;
+}
+
+/* 장바구니 */
+
+.food_box {
+    margin-left: 20px;
+    margin-bottom: 80px;
+    position: relative;
+}
+
+.food_box .basket {
+    background-image: url(../../image/heart_coral.png);
+    background-position: center;
+    background-size: 65%;
+    background-repeat: no-repeat;
+
+    display: block;
+    box-sizing: border-box;
+    width: 45px;
+    height: 45px;
+
+    position: absolute;
+    right: 15px;
+    top: 60%;
+
+    background-color: white;
+    opacity: 0.8;
+    border-radius: 50%;
+    border: none;
+
+    cursor: pointer;
+}
+
+.food_box button:hover {
+    cursor: pointer;
+}
+
+/* ============================================================================== */
+/* food_box 안에 img + menu name + menu price */
+/* 찜하기 + 장바구니 */
+
+.img_container {
+    width: 250px;
+    height: 320px;
+}
+
+.food_box img {
+    width: 250px;
+    height: 320px;
+    z-index: 1;
+}
+
+.img_container {
+    overflow: hidden;
+}

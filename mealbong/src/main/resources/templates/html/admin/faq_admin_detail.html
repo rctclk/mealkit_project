@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../common/css/mainPage.css">
+    <link rel="stylesheet" href="../../../../admin/css/admin.css">
+    <link rel="stylesheet" href="../../../../common/css/modal.css">
+
+    <script src="../common/js/jquery-3.2.1.min.js"></script>
+
+    <script defer src="../../../../admin/js/admin.js"></script>
+    <script defer src="../../../admin/js/faq_delete.js"></script>
+    <title> 밀키트 쇼핑몰 :: Meal Bong </title>
+</head>
+
+<body>
+<th:block th:replace="fragments/header :: headerFragement"></th:block>
+<main>
+    <div class="admin_aside">
+        <div class="admin_name">
+            <h2>관리자 페이지</h2>
+        </div>
+        <ul class="aTag">
+            <li><a href="/admin/useradmin">회원관리</a></li>
+            <li><a href="/admin/orderadmin">주문관리</a></li>
+            <li><a href="/admin/productadmin">상품관리</a></li>
+            <li class="click"><a href="/admin/noticeadmin">게시판관리</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        <div class="content_admin">
+            <div>
+                <h2>게시판 관리</h2>
+            </div>
+            <ul class="board_header">
+                <li onclick="location.href='/admin/noticeadmin'">
+                    공지사항
+                </li>
+                <li class="click" onclick="location.href='/admin/faqadmin?searchType=n'">
+                    FAQ
+                </li>
+                <li onclick="location.href='/admin/qnaadmin?searchType=n'">
+                    1:1 문의
+                </li>
+            </ul>
+        </div>
+        <div class="content_admin">
+            <div>
+                <h2>FAQ</h2>
+            </div>
+        </div>
+        <ul style="width: 100%">
+            <li th:each="faqDetail : ${faqDetail}" class="content_li">
+                <ul>
+                    <li>번호</li>
+                    <li th:text="${faqDetail.faq_number}"></li>
+                </ul>
+                <ul>
+                    <li>카테고리</li>
+                    <li th:text="${faqDetail.faq_code}"></li>
+                </ul>
+                <ul>
+                    <li>제목</li>
+                    <li th:text="${faqDetail.faq_question}"></li>
+                </ul>
+                <ul>
+                    <li>답변</li>
+                    <li th:text="${faqDetail.faq_answer}"></li>
+                </ul>
+
+                <ul class="notice_detail_main_button">
+                    <a th:href="@{/faq/faqUpdate(faq_number=${faqDetail.faq_number})}">글 수정</a>
+                    <a th:onclick="'javascript:faqDelete(' + ${faqDetail.faq_number} + ')'">글 삭제</a>
+                    <button onclick="javascript:history.go(-1)">
+                        목록으로
+                    </button>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</main>
+
+<footer th:replace="fragments/footer :: footerFragment"></footer>
+
+<div class="mainModal hidden">
+    <div class="bg"></div>
+    <div class="modalBox">
+        <p>글을 삭제하시겠습니까?</p>
+        <div class="closeBtn_div">
+            <button class="closeBtn">확인</button>
+            <button class="closeBtn">취소</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>

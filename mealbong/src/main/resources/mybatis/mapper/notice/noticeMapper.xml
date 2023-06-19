@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.mealbong.notice.NoticeMapper">
+    <select id="noticeList" resultType="com.project.mealbong.notice.NoticeDTO">
+        select *
+        from notice;
+    </select>
+
+    <select id="noticeDetail" resultType="com.project.mealbong.notice.NoticeDTO">
+        select *
+        from notice
+        where notice_number = #{notice_number};
+    </select>
+
+    <delete id="noticeDelete">
+        delete
+        from notice
+        where notice_number = #{notice_number};
+    </delete>
+
+    <update id="noticeCountUp">
+        update notice
+        set notice_cnt=notice_cnt + 1
+        where notice_number = #{notice_number};
+    </update>
+
+    <insert id="noticeInsert">
+        insert into notice(notice_title, notice_content, notice_name, notice_file)
+        values (#{notice_title}, #{notice_content}, #{notice_name}, #{notice_file})
+    </insert>
+
+    <update id="noticeUpdate">
+        update notice
+        set notice_title=#{notice_title},
+            notice_content=#{notice_content},
+            notice_name=#{notice_name},
+            notice_file=#{notice_file}
+        where notice_number = #{notice_number};
+    </update>
+
+    <select id="criList" resultType="com.project.mealbong.notice.NoticeDTO">
+        select *
+        from notice
+        order by notice_number desc
+            limit #{sno}, #{rowsPerPage};
+    </select>
+
+    <select id="criTotalCount" resultType="int">
+        select count(*)
+        from notice
+        where notice_number
+    </select>
+
+
+<!--    admin page -->
+    <!-- SearchCriteria PageList -->
+    <sql id="search">
+        <if test="keyword!=null">
+            <bind name="keyVal" value="'%'+keyword+'%'"/>
+        </if>
+        <choose>
+            <when test="searchType=='n'.toString()">
+                and notice_number like #{keyVal}
+                or notice_title like #{keyVal}
+                or notice_content like #{keyVal}
+                or notice_date like #{keyVal} )
+            </when>
+            <when test="searchType=='p'.toString()">
+                and notice_number like #{keyVal} )
+            </when>
+            <when test="searchType=='e'.toString()">
+                and notice_title like #{keyVal} )
+            </when>
+            <when test="searchType=='o'.toString()">
+                and notice_content like #{keyVal} )
+            </when>
+            <when test="searchType=='u'.toString()">
+                and notice_date like #{keyVal} )
+            </when>
+            <otherwise> )</otherwise>
+        </choose>
+    </sql>
+
+    <select id="searchList" resultType="com.project.mealbong.notice.NoticeDTO">
+        select *
+        from notice
+        where ( notice_number>0
+        <include refid="search"></include>
+        order by notice_number desc
+        limit #{sno}, #{rowsPerPage}
+    </select>
+
+    <select id="searchTotalCount" resultType="int">
+        select count(*) from notice
+        where ( notice_number>0 <include refid="search"></include>
+    </select>
+
+</mapper>

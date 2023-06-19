@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../common/css/mainPage.css">
+    <link rel="stylesheet" href="../../../../board/css/qna.css">
+    <link rel="stylesheet" href="../../../../common/css/modal.css">
+
+    <script src="../common/js/jquery-3.2.1.min.js"></script>
+
+    <script defer src="../../../../board/js/qna_form.js"></script>
+    <title> 밀키트 쇼핑몰 :: Meal Bong </title>
+</head>
+
+
+<body>
+
+<th:block th:replace="fragments/header :: headerFragement"></th:block>
+<main>
+    <div class="mypage">
+        <div class="aside">
+            <div class="name">
+                <h2>고객센터</h2>
+            </div>
+            <ul>
+                <li>
+                    <a href="/notice/list" class="notice">공지사항
+                        <span></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/faq/list?faq_code=ALL" class="faq">자주하는 질문
+                        <span></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/qna/qnalist" class="inquiry">1:1 문의
+                        <span></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="content">
+
+            <div class="content_1">
+                <div>
+                    <h2>1:1 문의</h2>
+                </div>
+            </div>
+            <div class="content_inquiry_form">
+                <form action="/qna/qnaupdate" method="post" id="update_form">
+                    <div>
+                        <input name="qna_num" th:value="${qnaList.getQna_num()}" style="display: none">
+                    </div>
+                    <div>
+                        <div class="content_inquiry_form_1">유형<span></span></div>
+                        <select th:value="${qnaList.qna_type}" name="qna_type" id="type" class="type">
+                            <option th:selected="${qnaList.qna_type}=='F_01'" value="F_01">상품</option>
+                            <option th:selected="${qnaList.qna_type}=='F_02'" value="F_02">교환/환불</option>
+                            <option th:selected="${qnaList.qna_type}=='F_03'" value="F_03">주문/결제</option>
+                            <option th:selected="${qnaList.qna_type}=='F_04'" value="F_04">회원정보</option>
+                            <option th:selected="${qnaList.qna_type}=='F_05'" value="F_05">사이트 이용</option>
+                            <option th:selected="${qnaList.qna_type}=='F_06'" value="F_06">이벤트</option>
+                            <option th:selected="${qnaList.qna_type}=='F_07'" value="F_07">기타</option>
+                        </select>
+                    </div>
+                    <div>
+                        <div class="content_inquiry_form_2">제목<span></span></div>
+                        <input th:value="${qnaList.qna_title}" name="qna_title" type="text" required>
+                    </div>
+                    <div>
+                        <div class="content_inquiry_form_3">내용<span></span></div>
+                        <textarea maxlength="500" name="qna_content" class="content_inquiry_form_textarea"
+                                  th:text="${qnaList.qna_content}" required></textarea>
+                    </div>
+                    <div class="up_btn">
+                        <input type="submit" class="inquiry_form_button" value="수정 완료">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+<footer th:replace="fragments/footer :: footerFragment"></footer>
+<div class="mainModal hidden">
+    <div class="bg"></div>
+    <div class="modalBox">
+        <p>문의글이 수정되었습니다.</p>
+        <div class="closeBtn_div">
+            <button class="closeBtn">확인</button>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

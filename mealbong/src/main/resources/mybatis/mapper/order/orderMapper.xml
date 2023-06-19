@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 위 코드가 mapper 설정을 하는 코드 -->
+
+<!-- Mapper를 사용하는 Repository의 전체 경로를 적어줘야함. -->
+<mapper namespace="com.project.mealbong.order.OrderMapper">
+    <insert id="order_insert">
+        insert into order1(user_id,order_amount,order_status,payment)
+        values(#{user_id},#{order_amount},"D_02",#{payment});
+    </insert>
+    <select id="order_number" resultType="int">
+        SELECT MAX(order_number) from order1;
+    </select>
+
+    <insert id="orderDetail_insert">
+        insert into order_detail(order_number,product_number,product_price,product_count)
+        values(#{order_number},#{product_number},#{product_price},#{product_count});
+    </insert>
+
+    <select id="order_submit" resultType="com.project.mealbong.order.OrderDetailMapperDTO">
+        select o.product_count,p.product_name from
+                                                  order_detail o,product p where order_number = #{order_number} AND p.product_number = o.product_number;
+    </select>
+
+    <select id="order_detail" resultType="com.project.mealbong.order.OrderDetailMapperDTO">
+        select o.product_count,o.product_count * o.product_price as price_total,
+               i.image_file,p.product_name,o.product_number from order_detail o,image i,product p
+        where o.order_number = #{order_number} AND o.product_number = i.product_number AND
+            i.image_main = "Y" AND p.product_number = o.product_number;
+    </select>
+
+    <select id="order_list" resultType="com.project.mealbong.order.OrderMapperDTO">
+        select o.order_number,i.image_file,p.product_name,oo.order_date,oo.order_amount,(code_desc)order_status,
+               oo.payment,(select count(*) from order_detail where order_number = #{order_number})
+            order_count,o.product_number from order_detail o,image i,product p,order1 oo INNER JOIN code
+         ON oo.order_status = code_number where o.order_number = #{order_number} AND o.product_number = i.product_number AND i.image_main = "Y"
+        AND p.product_number = o.product_number AND o.order_number = oo.order_number order by order_detail_number asc limit 1;
+    </select>
+
+    <select id="user_order" resultType="int">
+        select order_number from order1 where user_id = #{user_id} order by order_number desc
+            limit #{sno},#{rowsPerPage}
+    </select>
+
+    <select id="order_info" resultType="com.project.mealbong.order.OrderDetailMapperDTO">
+        SELECT user_id,(code_desc)order_status,order_date,payment,order_amount,order_number FROM order1 inner join code ON
+            order_status = code_number where order_number = #{order_number}
+    </select>
+
+    <select id="criTotalCount" resultType="int">
+        select COUNT(*) from order1 where user_id = #{user_id}
+    </select>
+
+    <!--    ******* 추가한거-->
+
+    <!--    admin page -->
+    <!-- SearchCriteria PageList -->
+    <sql id="search">
+        <if test="keyword!=null">
+            <bind name="keyVal" value="'%'+keyword+'%'"/>
+        </if>
+        <choose>
+            <when test="searchType=='n'.toString()">
+                and order_number like #{keyVal}
+                or user_id like #{keyVal}
+                or order_date like #{keyVal}
+                or order_amount like #{keyVal}
+                or order_status like #{keyVal}
+                or payment like #{keyVal} )
+            </when>
+            <when test="searchType=='p'.toString()">
+                and order_number like #{keyVal} )
+            </when>
+            <when test="searchType=='e'.toString()">
+                and user_id like #{keyVal} )
+            </when>
+            <when test="searchType=='o'.toString()">
+                and order_date like #{keyVal} )
+            </when>
+            <when test="searchType=='u'.toString()">
+                and order_amount like #{keyVal} )
+            </when>
+            <when test="searchType=='s'.toString()">
+                and order_status like #{keyVal} )
+            </when>
+            <when test="searchType=='etc'.toString()">
+                and payment like #{keyVal} )
+            </when>
+            <otherwise> )</otherwise>
+        </choose>
+    </sql>
+
+    <select id="searchList" resultType="com.project.mealbong.order.OrderMapperDTO">
+        select *
+        from order1
+        where ( order_number is not null <include refid="search"></include>
+        order by order_number desc
+        limit #{sno}, #{rowsPerPage}
+    </select>
+
+    <select id="searchTotalCount" resultType="int">
+        select count(*) from order1
+        where ( order_number is not null <include refid="search"></include>
+    </select>
+
+    <delete id="delete">
+        delete from order1
+        where order_number = #{order_number}
+    </delete>
+
+    <update id="product_sale">
+        update product set product_sale = product_sale + #{product_count} where product_number = #{product_number}
+    </update>
+
+</mapper>

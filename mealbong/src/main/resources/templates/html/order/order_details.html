@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 밀키트 쇼핑몰 :: Meal Bong </title>
+    <link rel="stylesheet" href="../order/css/order.css">
+    <link rel="stylesheet" href="../common/css/mainPage.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    <script defer src="../../js/main_topDiv.js"></script>
+</head>
+
+<body>
+<th:block th:replace="fragments/header :: headerFragement"></th:block>
+
+    <div class="cart_container">
+        <span class="mainspan">주문상세</span>
+        <div class="div_a">
+            <span class="spanstyle">주문 상품</span>
+        </div>
+
+
+        <th:block th:each="detail_list : ${detail_list}">
+
+        <div class="div1_sub">
+            <div class="div1_sub_sub">
+                <a th:href="@{/product/{product_number}(product_number=${detail_list.product_number})}"><img th:src="${detail_list.image_file}" class="div1_a_img1"></a>
+                <a th:href="@{/product/{product_number}(product_number=${detail_list.product_number})}" class="div1_a2" th:text="${detail_list.product_name}">(아시안) 불고기 분짜</a>
+
+            </div>
+
+            <div>
+                <span class="div1_span2"><span th:text="${detail_list.product_count}"></span>개</span>
+
+                <span class="div1_span"><span th:text="${detail_list.price_total}"></span>원</span>
+
+            </div>
+
+        </div>
+        </th:block>
+
+        <div class="div_a">
+            <span class="spanstyle">주문 정보</span>
+        </div>
+
+        <div class="divBox">
+            <div class="divBox_sub">
+                <span class="font-size">주문번호</span>
+
+            </div>
+
+            <div>
+                <span class="font-size" th:text="${info.order_number}">202209100001</span>
+            </div>
+
+        </div>
+
+        <div class="divBox">
+            <div class="divBox_sub">
+                <span class="font-size">보내는 분</span>
+
+            </div>
+
+            <div>
+                <span class="font-size" th:text="${user_info.user_name}">송강현</span>
+            </div>
+
+        </div>
+
+        <div class="divBox">
+            <div class="divBox_sub">
+                <span class="font-size">결제일시</span>
+
+            </div>
+
+            <div>
+                <span class="font-size" th:text="${info.order_date}">2022-09-21 15:41:04</span>
+            </div>
+
+        </div>
+
+
+        <div class="div_a2">
+            <span class="spanstyle">배송 정보</span>
+        </div>
+
+        <div class="divBox2">
+            <div class="divBox_sub">
+                <span class="font-size">배송지</span>
+
+            </div>
+
+            <div>
+                <span class="font-size"><span th:text="${dely.dely_address1}"></span>
+                <span th:text="${dely.dely_address2}"></span></span>
+            </div>
+        </div>
+
+        <div class="divBox2">
+            <div class="divBox_sub">
+                <span class="font-size">주문상태</span>
+
+            </div>
+
+            <div>
+                <span class="font-size"><span th:text="${info.order_status}"></span>
+            </div>
+        </div>
+
+        <div class="orderdiv_Container">
+
+            <div class="diva3_Container">
+                <div class="div_a3">
+                    <span class="spanstyle">결제 정보</span>
+        
+                </div>
+
+                <div class="diva3_sub_details divBoxline">
+                    <div class="diva3_sub_sub">
+                        <span class="font-size">결제수단</span>
+
+                    </div>
+
+                    <div>
+                      <span class="span_details" th:text="${info.payment}">하나카드 / 일시불</span>
+                    </div>
+
+                </div>
+
+            </div>
+    
+            <div class="order_div">
+                <span class="spanstyle spanmargin">결제 금액</span>
+    
+    
+                <div class="cart_subdiv12">
+    
+                    <div class="cart_subdiv2">
+    
+                        <div class="subdiv2_box">
+                            <span>상품금액</span>
+                            <span><span th:text="${info.order_amount}-3000"></span>원</span>
+                        </div>
+    
+                        <div class="subdiv2_box2">
+                            <span>배송비</span>
+                            <span>3000원</span>
+                        </div>
+    
+                        <div class="subdiv2_line"></div>
+    
+                        <div class="subdiv2_box3">
+                            <span>결제금액</span>
+                            <span><span th:text="${info.order_amount}"></span>원</span>
+                        </div>
+    
+    
+                    </div>
+    
+                </div>
+    
+            </div>
+        </div>
+    </div>
+
+
+    <div class="linkContainer">
+        <th:block th:if="${session['user_id']=='admin'}">
+        <a href="/admin/orderadmin" class="linkButton_details order_delete">돌아가기</a>
+        </th:block>
+        <th:block th:unless="${session['user_id']=='admin'}">
+        <a href="/" class="linkButton_details">돌아가기</a>
+        </th:block>
+
+    </div>
+
+<!-- footer : 법적 필수 항목 -->
+<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+
+</body>
+
+</html>

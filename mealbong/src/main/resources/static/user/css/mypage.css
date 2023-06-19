@@ -1,0 +1,1638 @@
+main {
+    width: 1200px;
+    margin: auto;
+    margin-top: 50px;
+}
+
+.mypage {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.name {
+    line-height: 80px;
+    text-align: center;
+}
+
+.aside {
+    width: 180px;
+}
+
+.aside ul {
+    list-style: none;
+    border-bottom: 0;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.aside ul li {
+    line-height: 14px;
+    box-sizing: border-box;
+    border-top: 1px solid gainsboro;
+    border-right: 1px solid gainsboro;
+    border-left: 1px solid gainsboro;
+    font-weight: bold;
+}
+
+.aside ul li:last-child {
+    border-bottom: 1px solid gainsboro;
+}
+
+.aside ul a {
+    text-decoration: none;
+    box-sizing: border-box;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.aside a {
+    color: black;
+}
+
+.aside a span::after {
+    content: "▷";
+}
+
+.aside a:hover {
+    background-color: lightsalmon;
+    transition-duration: 0.5s;
+}
+
+.aside a[href="#"] {
+    background-color: lightsalmon;
+}
+
+.content {
+    width: 950px;
+    box-sizing: border-box;
+}
+
+.content_1 {
+    height: 80px;
+    border-bottom: 1px solid;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+}
+
+.content_1 div h2 {
+    display: inline-block;
+}
+
+.content_1 div span {
+    padding: 10px;
+}
+
+/* 고객센터 - 공지사항 */
+
+.content_notice {
+    display: flex;
+    flex-direction: column;
+}
+
+.content_notice a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.content_notice a:hover {
+    color: lightsalmon;
+}
+
+.notice_list_Box {
+    cursor: pointer;
+}
+
+.notice_Box {
+    display: flex;
+    padding: 20px 0;
+    border-bottom: 2px solid;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+.notice_Box div,
+.notice_list div,
+.notice_list_content div:first-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notice_list {
+    display: flex;
+    padding: 10px 0;
+    border-bottom: 1px solid gainsboro;
+    box-sizing: border-box;
+}
+
+.notice_list_content {
+    display: flex;
+    border-bottom: 1px solid gainsboro;
+    box-sizing: border-box;
+}
+
+.notice_list_content div:nth-child(1) {
+    flex: 1;
+}
+
+.notice_list_content div:nth-child(2) {
+    flex: 9;
+    padding: 20px;
+}
+
+.notice_Box div:nth-child(1),
+.notice_list div:nth-child(1) {
+    flex: 1;
+}
+
+.notice_Box div:nth-child(2),
+.notice_list div:nth-child(2) {
+    flex: 5;
+}
+
+.notice_Box div:nth-child(3),
+.notice_list div:nth-child(3) {
+    flex: 2;
+}
+
+.notice_Box div:nth-child(4),
+.notice_list div:nth-child(4) {
+    flex: 2;
+}
+
+.notice_list_btn {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.notice_list_btn button {
+    width: 30px;
+    line-height: 30px;
+    background-color: gainsboro;
+    opacity: 0.5;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    border: none;
+    cursor: pointer;
+}
+
+.notice_list_btn button:first-child {
+    opacity: 1;
+}
+
+/* 고객센터 - 공지사항 디테일 */
+
+.notice_detail_head {
+    text-align: center;
+    height: 80px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notice_detail_main {
+    border-top: 2px solid;
+    box-sizing: border-box;
+}
+
+.notice_detail_main_title,
+.notice_detail_main_name,
+.notice_detail_main_date,
+.notice_detail_main_cnt {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid gainsboro;
+}
+
+.notice_detail_main_title div:first-child,
+.notice_detail_main_name div:first-child,
+.notice_detail_main_date div:first-child,
+.notice_detail_main_cnt div:first-child {
+    width: 130px;
+    padding: 13px 0px 13px 20px;
+    background-color: rgb(247, 245, 248);
+    text-align: left;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+.notice_detail_main_title div:nth-child(2),
+.notice_detail_main_name div:nth-child(2),
+.notice_detail_main_date div:nth-child(2),
+.notice_detail_main_cnt div:nth-child(2) {
+    padding-left: 25px;
+    align-self: center;
+    box-sizing: border-box;
+    font-weight: bold;
+}
+
+.notice_detail_main_content {
+    padding: 30px 10px 30px;
+    border-bottom: 1px solid gainsboro;
+}
+
+.notice_detail_main_content {
+    max-width: 100%;
+}
+
+.notice_detail_main_button {
+    display: flex;
+    padding: 20px 0px;
+    justify-content: flex-end;
+}
+
+.notice_detail_main_button a {
+    background-color: lightsalmon;
+    border: none;
+    border-radius: 5px;
+    line-height: 40px;
+    width: 120px;
+    color: white;
+    margin: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    font-size: 13px;
+}
+
+.notice_detail_main_button button {
+    background-color: lightsalmon;
+    border: none;
+    border-radius: 5px;
+    height: 40px;
+    width: 120px;
+    color: white;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.cri_div {
+    text-align: center;
+    /*line-height: 60px;*/
+}
+
+/* 고객센터 - 자주하는 질문 */
+
+.content_faq {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-right: 1px solid gainsboro;
+    margin-bottom: 50px;
+    box-sizing: border-box;
+}
+
+.content_faq_Box a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.content_faq_Box a:hover {
+    color: lightsalmon;
+}
+
+.content_faq div {
+    display: flex;
+    border-bottom: 1px solid gainsboro;
+    border-left: 1px solid gainsboro;
+    justify-content: center;
+    text-align: center;
+    line-height: 50px;
+    box-sizing: border-box;
+    /* color: black; */
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.content_faq div:hover {
+    color: white;
+    background-color: lightsalmon;
+    transition-duration: 0.2s;
+}
+
+.click_faq_list {
+    background-color: lightsalmon;
+    color: white;
+}
+
+.faq_Box {
+    display: flex;
+    padding: 20px 0;
+    border-top: 1px solid;
+    border-bottom: 2px solid;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+.content_faq_answer {
+    display: flex;
+    margin: 10px;
+    flex-direction: column;
+    background: #F6F6F6;
+    text-align: center;
+    padding: 10px;
+}
+
+.content_faq_answer p {
+    line-height: 100px;
+    text-align: center;
+}
+
+.faq_ans_a {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 0.8em;
+}
+
+.faq_ans_a a {
+    margin-left: 10px;
+}
+
+.faqInsertDiv {
+    display: flex;
+    padding: 20px 0px;
+    justify-content: flex-end;
+}
+
+.faqInsertDiv a {
+    text-decoration: none;
+    background-color: lightsalmon;
+    text-align: center;
+    width: 80px;
+    line-height: 30px;
+    color: white;
+    border-radius: 5px;
+}
+
+.faq_Box div,
+.faq_list div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content_faq_answer div {
+    display: flex;
+    align-items: center;
+}
+
+.content_faq_answer div:first-child {
+    justify-content: center;
+}
+
+.content_faq_answer div:last-child {
+    padding-left: 20px;
+}
+
+.faq_list {
+    display: flex;
+    padding: 10px 0;
+    border-bottom: 1px solid gainsboro;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+
+.faq_Box div:first-child,
+.faq_list div:first-child,
+.content_faq_answer div:first-child {
+    flex: 1.5;
+}
+
+.faq_Box div:last-child,
+.faq_list div:last-child,
+.content_faq_answer div:last-child {
+    flex: 8.5;
+}
+
+/* 고객센터 - 1:1 문의 */
+
+.inquiry_box {
+    display: flex;
+    flex-direction: column;
+}
+
+.content_inquiry {
+    width: 100%;
+    padding: 20px 0;
+    border-bottom: 2px solid;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+.content_inquiry div,
+.inquiry_list div,
+.inquiry_list_content div:first-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.inquiry_list_Box {
+    cursor: pointer;
+}
+
+.inquiry_list {
+    display: flex;
+    padding: 10px 0;
+    border-bottom: 1px solid gainsboro;
+    box-sizing: border-box;
+}
+
+.inquiry_list_content {
+    display: flex;
+    border-bottom: 1px solid gainsboro;
+    box-sizing: border-box;
+}
+
+.inquiry_list_content div:nth-child(1) {
+    flex: 1;
+
+}
+
+.inquiry_list_content div:nth-child(2) {
+    flex: 9;
+    padding: 20px;
+}
+
+.content_inquiry div:nth-child(1),
+.inquiry_list div:nth-child(1) {
+    flex: 1;
+}
+
+.content_inquiry div:nth-child(2),
+.inquiry_list div:nth-child(2) {
+    flex: 5;
+}
+
+.content_inquiry div:nth-child(3),
+.inquiry_list div:nth-child(3) {
+    flex: 2;
+}
+
+.content_inquiry div:nth-child(4),
+.inquiry_list div:nth-child(4) {
+    flex: 2;
+}
+
+.inquiry_list_btn {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.inquiry_list_btn button {
+    width: 30px;
+    line-height: 30px;
+    background-color: gainsboro;
+    opacity: 0.5;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    border: none;
+    cursor: pointer;
+}
+
+.inquiry_list_btn button:first-child {
+    opacity: 1;
+}
+
+.content_inquiry_list_2 {
+    display: flex;
+    justify-content: flex-end;
+
+}
+
+.inquriy_form_button {
+    width: 130px;
+    height: 40px;
+    margin-top: 20px;
+    box-sizing: border-box;
+    background-color: lightsalmon;
+    border: solid 1px lightsalmon;
+    border-radius: 5px;
+}
+
+.inquriy_form_button a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: white;
+    text-decoration: none;
+}
+
+.content_inquiry_form > form > div {
+    display: flex;
+    padding: 12px;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+.content_inquiry_form input {
+    width: calc(100% - 140px);
+    height: 40px;
+    box-sizing: border-box;
+    text-align: center;
+
+}
+
+.content_inquiry_form_1,
+.content_inquiry_form_2,
+.content_inquiry_form_3 {
+    width: 140px;
+}
+
+.content_inquiry_form span::before {
+    content: "*";
+    color: red;
+}
+
+.content_inquiry_form .type {
+    height: 40px;
+    width: calc(100% - 140px);
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.content_inquiry_form_3 {
+    align-self: flex-start;
+}
+
+.content_inquiry_form_textarea {
+    width: calc(100% - 140px);
+    height: 500px;
+    padding: 30px;
+    box-sizing: border-box;
+    resize: none;
+}
+
+.content_inquiry_form_textarea::placeholder {
+    text-align: center;
+    margin-top: 20px;
+
+}
+
+.content_inquiry_form_6 {
+    display: flex;
+    justify-content: center;
+    margin-left: 140px;
+}
+
+.inquriy_list_button {
+    width: 130px;
+    height: 40px;
+    box-sizing: border-box;
+    background-color: lightsalmon;
+    border: solid 1px lightsalmon;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+/* 마이페이지 - 배송지관리 */
+
+.content_address_1 {
+    height: 80px;
+    border-bottom: 1px solid;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.content_address_1 div h2 {
+    display: inline-block;
+}
+
+.new_address {
+    align-self: flex-end;
+    padding-bottom: 10px;
+    box-sizing: border-box;
+
+}
+
+.new_address button {
+    background-color: white;
+    border: 0;
+    cursor: pointer;
+
+}
+
+.new_address button span {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.new_address span::before {
+    content: "➕ ";
+}
+
+
+.content_address_2 {
+    display: flex;
+    padding: 20px 0;
+    font-weight: bold;
+    border-bottom: 2px solid;
+    box-sizing: border-box;
+}
+
+.content_address_2 div:nth-child(1),
+.content_address_box div:nth-child(1) {
+    flex: 1;
+}
+
+.content_address_2 div:nth-child(2),
+.content_address_box div:nth-child(2) {
+    flex: 5;
+}
+
+.content_address_2 div:nth-child(3),
+.content_address_box div:nth-child(3) {
+    flex: 1;
+}
+
+.content_address_2 div:nth-child(4),
+.content_address_box div:nth-child(4) {
+    flex: 2;
+}
+
+.content_address_2 div:nth-child(5),
+.content_address_box div:nth-child(5) {
+    flex: 1;
+}
+
+.content_address_2 div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.content_address_box div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.content_address_box {
+    display: flex;
+    padding: 10px 0;
+    border-bottom: 1px solid gainsboro;
+}
+
+.content_address_box div button {
+    background: url(../../image/fix.png) no-repeat center/100%;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    border: none;
+}
+
+.content_address_3 {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.address_button {
+    width: 130px;
+    height: 40px;
+    margin-top: 20px;
+    box-sizing: border-box;
+    background-color: lightsalmon;
+    border: solid 1px lightsalmon;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+/* 마이페이지 - 개인정보 수정 */
+
+.content_info_1 {
+    height: 80px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+}
+
+.content_info_2 {
+    box-sizing: border-box;
+    border-bottom: 1px solid;
+}
+
+.content_info_2 div {
+    font-size: 12px;
+    padding: 10px 0;
+    box-sizing: border-box;
+}
+
+.content_info_3 {
+    display: flex;
+    flex-direction: column;
+    padding: 50px 120px;
+    box-sizing: border-box;
+}
+
+.content_info_3_id,
+.content_info_3_pw,
+.content_info_3_pw div,
+.content_info_3_id div {
+    display: flex;
+    justify-content: center;
+}
+
+.content_info_3_pw span::before {
+    content: "*";
+    color: red;
+}
+
+.content_info_3_id div:nth-of-type(1),
+.content_info_3_pw div:nth-of-type(1) {
+    width: 140px;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.content_info_3_id input,
+.content_info_3_pw input {
+    width: 300px;
+    height: 40px;
+    padding-left: 20px;
+}
+
+.content_info_3_id {
+    padding-bottom: 20px;
+}
+
+.content_info_4 {
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid;
+}
+
+.info_button {
+    width: 130px;
+    height: 40px;
+    margin-top: 20px;
+    box-sizing: border-box;
+    background-color: lightsalmon;
+    border: solid 1px lightsalmon;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+/* 마이페이지 - 개인정보 수정 세부 항목 수정*/
+
+
+.info_correction label {
+    font-weight: bold;
+}
+
+.info_correction_1 .box1 {
+    display: flex;
+    align-items: center;
+}
+
+
+.info_correction {
+    text-align: center;
+}
+
+.info_correction label div span::before {
+    content: "*";
+    color: red;
+}
+
+.info_correction fieldset {
+
+    width: 710px;
+    margin: 20px auto;
+    border: none;
+}
+
+.info_correction_1 .box1 {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 20px;
+}
+
+.info_correction_1 .box2 {
+    width: 50%;
+}
+
+.info_correction_1 .box3 {
+    width: 20%;
+    box-sizing: border-box;
+    padding-left: 15px;
+}
+
+.info_correction_1 .inner {
+    width: 30%;
+    text-align: left;
+    padding-left: 15px;
+    box-sizing: border-box;
+}
+
+.info_correction_1 .inputstyle {
+    width: 100%;
+    height: 36px;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.info_correction_1 .inputstyle2 {
+    height: 40px;
+    width: 50px;
+    box-sizing: border-box;
+    border: none;
+}
+
+.info_correction_1 .genderinput {
+    width: 20px;
+    box-sizing: border-box;
+    margin-right: 10px;
+}
+
+.info_correction_1 input[type="radio"] {
+    accent-color: rgba(228, 13, 13, 0.684);
+}
+
+.info_correction_1 .buttonstyle {
+    width: 100%;
+    height: 34px;
+    border-radius: 5px;
+}
+
+.info_correction_1 .buttonstyle,
+.info_correction_2 .button_correction {
+    cursor: pointer;
+    box-sizing: border-box;
+    display: block;
+    text-align: center;
+    background-color: lightsalmon;
+    border: solid 1px lightsalmon;
+    color: white;
+}
+
+.info_correction_2 .button_secession {
+    cursor: pointer;
+    box-sizing: border-box;
+    display: block;
+    text-align: center;
+    border: solid 1px lightsalmon;
+    background-color: white;
+
+    color: lightsalmon;
+}
+
+.info_correction_1 .button_opacity {
+    opacity: .4;
+}
+
+.info_correction_2 {
+    display: flex;
+    justify-content: center;
+    padding-top: 40px;
+    gap: 30px;
+}
+
+.info_correction_2 .button_correction,
+.info_correction_2 .button_secession {
+    width: 100px;
+    height: 45px;
+    border-radius: 5px;
+}
+
+.info_correction_1 .genderlabel {
+    box-sizing: border-box;
+    padding-top: 4px;
+}
+
+.info_correction_1 .gender {
+    display: flex;
+    align-items: center;
+}
+
+.info_correction_1 .genderlabel2 {
+    margin-right: 45px;
+}
+
+.info_correction_1 .birth {
+    height: 44px;
+    width: 50%;
+    display: flex;
+    box-sizing: border-box;
+    justify-content: space-between;
+}
+
+.info_correction_1 .birthchild {
+    box-sizing: border-box;
+    width: 33%;
+    border: 1px solid rgba(0, 0, 0, 0.55);
+}
+
+.info_correction_1 .birthchild2 {
+    display: flex;
+    align-items: center;
+    width: 33%;
+    box-sizing: border-box;
+    margin: 0 20px;
+    border: none;
+}
+
+.info_correction_1 .month {
+    width: 100px;
+    height: 44px;
+    box-sizing: border-box;
+    padding-left: 10px;
+}
+
+/* 마이페이지 - 찜한 상품*/
+
+
+.content_wish_box {
+    display: flex;
+    height: 140px;
+    box-sizing: border-box;
+
+    border-bottom: 1px solid gainsboro;
+    align-items: center;
+}
+
+
+.content_wish_box .image {
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    box-sizing: border-box;
+}
+
+
+.content_wish_box div:nth-of-type(1) img {
+    width: 100%;
+    height: 100%;
+}
+
+.content_wish_box .name_price {
+
+    margin: 10px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.content_wish_box div:nth-of-type(3) {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 20px;
+    gap: 10px;
+    align-items: center;
+}
+
+
+.wish_delete {
+    width: 100px;
+    height: 36px;
+    box-sizing: border-box;
+    border: solid 1px lightsalmon;
+    border-radius: 5px;
+    background: white;
+    cursor: pointer;
+}
+
+.wish_put {
+    width: 100px;
+    height: 36px;
+    box-sizing: border-box;
+    background-color: lightsalmon;
+    border: solid 1px lightsalmon;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+
+.content_wish_box .name_price span {
+    color: black;
+    font-weight: bold;
+}
+
+.content_wish_box .name_price a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+.content_wish_box .name_price div {
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.wish_button {
+    border: none;
+    background: none;
+    width: 1px;
+    height: 1px;
+
+    cursor: pointer;
+}
+
+/* 마이페이지 - 상품 후기*/
+
+.content_reivew {
+    height: 80px;
+    border-bottom: solid 1px gainsboro;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+}
+
+
+.content_reivew_1 {
+    border: solid 1px gainsboro;
+    box-sizing: border-box;
+    border-top: 0px;
+    display: flex;
+    justify-self: center;
+    height: 50px;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.content_reivew_1 div {
+    width: 100%;
+    text-align: center;
+}
+
+.content_reivew_1 div:nth-child(1) {
+    border-right: 1px solid gainsboro;
+    box-sizing: border-box;
+}
+
+.content_reivew_1 div a {
+    display: inline-block;
+    width: 100%;
+    line-height: 50px;
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.content_reivew_1 div a:hover {
+    color: lightsalmon;
+}
+
+.content_reivew_1 a[href="#"] {
+    color: lightsalmon;
+}
+
+.content_reivew_box {
+    display: flex;
+    height: 120px;
+    border: 1px solid gainsboro;
+    margin-bottom: 10px;
+}
+
+.content_reivew_box .image {
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+}
+
+.content_reivew_box div:nth-of-type(1) img {
+    width: 100%;
+    height: 100%;
+}
+
+.content_reivew_box .item {
+    margin: 10px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.content_reivew_box .item div {
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.content_reivew_box .item a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+.content_reivew_box div:nth-of-type(3) {
+    display: flex;
+    margin-right: 50px;
+    align-items: center;
+}
+
+.content_reivew_box div:nth-of-type(4) {
+    display: flex;
+    align-items: center;
+    margin: 20px;
+    box-sizing: border-box;
+}
+
+.write {
+    width: 100px;
+    height: 36px;
+    box-sizing: border-box;
+    background-color: lightsalmon;
+    border: solid 1px lightsalmon;
+    border-radius: 5px;
+}
+
+.write a {
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+    width: 100%;
+    line-height: 36px;
+}
+
+
+/* 마이페이지 - 상품 후기 작성양식*/
+
+.aside .color {
+    background-color: lightsalmon;
+}
+
+.content_reivew_write .content_reivew_write_item {
+    display: flex;
+}
+
+.content_reivew_write .image {
+    width: 150px;
+    height: 150px;
+    margin: 10px;
+}
+
+.content_reivew_write div:nth-of-type(1) img {
+    width: 100%;
+    height: 100%;
+}
+
+.content_reivew_write_item div {
+    display: flex;
+    align-items: center;
+}
+
+.content_reivew_write_item span {
+    font-weight: bold;
+    margin: 10px;
+    box-sizing: border-box;
+}
+
+.reivew_write_box div div:nth-child(2) {
+    flex: 8;
+}
+
+.reivew_write_box_1 input {
+    width: 100%;
+    height: 30px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.reivew_write_box_2 div:nth-of-type(2) {
+    border: 1px solid;
+    box-sizing: border-box;
+}
+
+.reivew_write_box_2 textarea {
+    height: 500px;
+    width: 100%;
+    border: 0;
+    resize: none;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.reivew_write_box {
+    border-top: 1px solid;
+    box-sizing: border-box;
+}
+
+
+.reivew_write_box div div:nth-of-type(1) {
+    font-weight: bold;
+    box-sizing: border-box;
+    flex: 1.5;
+}
+
+.reivew_write_box_1,
+.reivew_write_box_2,
+.reivew_write_box_3 {
+    display: flex;
+    border-bottom: 1px solid;
+    padding: 10px;
+    margin: 10px;
+    align-items: center;
+    box-sizing: border-box;
+    justify-content: space-around;
+}
+
+.reivew_write_box_4 {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    box-sizing: border-box;
+}
+
+
+/* 마이페이지 - order*/
+
+.content_order_box {
+    display: flex;
+    flex-direction: column;
+}
+
+.content_order_box_1 {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid gainsboro;
+    box-sizing: border-box;
+
+}
+
+.content_order_box_2 {
+    display: flex;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid;
+    box-sizing: border-box;
+
+}
+
+.content_order_box_2 .image {
+    width: 150px;
+    height: 150px;
+
+}
+
+
+.content_order_box_2 div:nth-of-type(1) img {
+    width: 100%;
+    height: 100%;
+}
+
+.content_order_box_1 span {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+
+.content_order_box_1 a {
+    margin-right: 20px;
+    box-sizing: border-box;
+    color: black;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+
+.order_list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    flex: 8;
+    margin-left: 20px;
+    box-sizing: border-box;
+    font-weight: bold;
+}
+
+.order_list div > span:nth-of-type(1) {
+    display: inline-block;
+    width: 100px;
+}
+
+
+.order_inquiry_button {
+    width: 130px;
+    height: 40px;
+    margin-top: 20px;
+    box-sizing: border-box;
+    background-color: lightsalmon;
+    border: solid 1px lightsalmon;
+    border-radius: 5px;
+}
+
+.order_inquiry_button a {
+    display: block;
+    color: white;
+    width: 100%;
+    line-height: 40px;
+    text-decoration: none;
+}
+
+.order_inquiry {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    margin-right: 20px;
+}
+
+
+/* 공통 사항*/
+
+.hidden {
+    display: none !important;
+}
+
+/* ==========================modal box========================= */
+
+
+.delet_modal_content,
+.put_modal_content {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal_bg {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.601);
+}
+
+.delet_Btn_div {
+    display: flex;
+}
+
+.delet_modalBox {
+    position: absolute;
+    background-color: #fff;
+    width: 300px;
+    height: 130px;
+    text-align: center;
+    border-radius: 10px 10px 10px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between
+}
+
+.delet_modalBox p {
+    padding-top: 30px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.73)
+}
+
+
+.delet_modalBox button,
+.put_modalBox .put_btn_div button {
+    box-sizing: border-box;
+    color: lightsalmon;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 100%;
+    margin: 0 auto;
+    cursor: pointer;
+    border: none;
+    background-color: white;
+    border-top: 1px solid gainsboro;
+}
+
+.delet_Btn_div button:nth-child(1) {
+    border-right: 1px solid gainsboro;
+    border-radius: 0 0 0 10px;
+}
+
+.delet_Btn_div button:nth-child(2) {
+    border-radius: 0 0 10px 0;
+}
+
+.scroll_none {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+    overflow: hidden;
+}
+
+.put_modalBox {
+    position: absolute;
+    background-color: #fff;
+    height: auto;
+    width: 440px;
+    border-radius: 10px 10px 10px 10px;
+    display: flex;
+    flex-direction: column;
+    padding-top: 30px;
+    box-sizing: border-box;
+}
+
+.put_modalBox div:first-child(1) {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.goods_name + div {
+
+    justify-content: space-between;
+    display: flex;
+}
+
+.goods_button {
+    display: flex;
+    width: 80px;
+    height: 36px;
+    border: 1px solid gainsboro;
+    border-radius: 3px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+}
+
+.minus_goods {
+    background: url(../../image/minus.png) no-repeat center/100%;
+    border: none;
+    height: 30px;
+    width: 16px;
+    cursor: pointer;
+}
+
+.plus_goods {
+    background: url(../../image/plus.png) no-repeat center/100%;
+    border: none;
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+}
+
+.goods_button div {
+    width: 30px;
+}
+
+.goods_prize {
+    display: flex;
+    align-items: center;
+}
+
+.tot_goods_box {
+    display: flex;
+    justify-content: space-between;
+}
+
+.put_Btn_div {
+    display: flex;
+}
+
+.put_Btn_div button {
+    box-sizing: border-box;
+    color: lightsalmon;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 100%;
+    margin: 0 auto;
+    cursor: pointer;
+    border: none;
+    background-color: white;
+    border-top: 1px solid gainsboro;
+}
+
+
+.put_Btn_div button:nth-child(1) {
+    border-right: 1px solid gainsboro;
+    border-radius: 0 0 0 10px;
+}
+
+.put_Btn_div button:nth-child(2) {
+    border-radius: 0 0 10px 0;
+}
+
+.goods_name {
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 20px;
+}
+
+.goods_name + div {
+    padding-top: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.tot_goods_box {
+    padding: 30px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.minus_goods {
+    opacity: .5;
+}
+
+/* 배송지 관리 모달창 */
+
+.address_fix_content, .address_add_content {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.address_fix_box, .address_add_box {
+    position: absolute;
+    background-color: #fff;
+    height: auto;
+    width: 400px;
+    border-radius: 10px 10px 10px 10px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 1px 3px;
+}
+
+.address_fix_box h2,
+.address_add_box h2 {
+    padding: 20px;
+}
+
+.address_fix_box > div,
+.address_add_box > div {
+    padding: 0 20px 20px 20px;
+}
+
+.address_fix_box div:last-child,
+.address_add_box div:last-child {
+    padding: 0;
+}
+
+
+.address_fix_box input,
+.address_add_box input {
+    width: 100%;
+    height: 30px;
+}
+
+.address_fix_button,
+.address_add_button {
+    display: flex;
+}
+
+.address_fix_button button,
+.address_add_button button {
+    box-sizing: border-box;
+    color: lightsalmon;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 100%;
+    margin: 0 auto;
+    cursor: pointer;
+    border: none;
+    background-color: white;
+    border-top: 1px solid gainsboro;
+}
+
+.address_fix_button .fix_check,
+.address_add_button .add_check {
+    border-right: 1px solid gainsboro;
+    border-radius: 0 0 0 10px;
+}
+
+.fix_cancel,
+.add_cancel {
+    border-radius: 0 0 10px 0;
+}

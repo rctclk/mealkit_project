@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 위 코드가 mapper 설정을 하는 코드 -->
+
+<!-- Mapper를 사용하는 Repository의 전체 경로를 적어줘야함. -->
+<mapper namespace="com.project.mealbong.user.User1Mapper">
+    <!--    <select id="qnaList" resultType="com.project.mealbong.board.QnaDTO">-->
+    <!--        select qna_num, qna_title, qna_date from qna-->
+    <!--        order by qna_num desc;-->
+    <!--    </select>-->
+
+    <insert id="user_save">
+        insert into user(user_id,user_password,user_name,
+                         user_email,user_phone,user_zip,
+                         user_address1,user_address2,user_gender,user_birth,etc1)
+        values(#{user_id},#{user_password},#{user_name},
+               #{user_email},#{user_phone},#{user_zip},#{user_address1},#{user_address2},
+               #{user_gender},#{user_birth},#{etc1})
+
+    </insert>
+
+    <select id="user_list" resultType="com.project.mealbong.user.User1MapperDTO">
+        select * from user
+    </select>
+
+    <delete id="user_delete" >
+        delete from user where user_id = #{user_id}
+    </delete>
+
+    <select id="find_id" resultType="com.project.mealbong.user.User1MapperDTO">
+        select * from user where user_id = #{user_id}
+    </select>
+
+    <update id="user_update">
+        update user set user_password=#{user_password},user_name=#{user_name}, user_email=#{user_email},user_phone=#{user_phone},
+                        user_gender=#{user_gender} where user_id = #{user_id}
+    </update>
+
+    <select id="id_check" resultType="int">
+        select COUNT(*) from user where user_id = '${user_id}'
+    </select>
+
+    <select id="email_check" resultType="int">
+        select COUNT(*) from user where user_email = '${user_email}'
+    </select>
+
+    <select id="phone_check" resultType="int">
+        select COUNT(*) from user where user_phone = '${user_phone}'
+    </select>
+
+    <select id="product_check" resultType="int">
+        select COUNT(*) from cart where user_id = #{user_id} and product_number = #{product_number};
+    </select>
+
+    <!--    <select id="pw_check" resultType="com.project.mealbong.user.User1MapperDTO">-->
+    <!--        select user_password from user where user_id = '${user_id}'-->
+    <!--    </select>-->
+
+    <!--    ======== 추가한거-->
+    <!--    admin page -->
+    <!-- Criteria PageList -->
+    <select id="criList" resultType="com.project.mealbong.user.User1MapperDTO">
+        select *
+        from user
+        order by user_date desc
+            limit #{sno}, #{rowsPerPage}
+    </select>
+
+    <select id="criTotalCount" resultType="int" >
+        select count(*) from user
+    </select>
+
+    <!-- SearchCriteria PageList -->
+    <sql id="search">
+        <if test="keyword!=null">
+            <bind name="keyVal" value="'%'+keyword+'%'"/>
+        </if>
+        <choose>
+            <when test="searchType=='n'.toString()">
+                and user_id like #{keyVal}
+                or user_name like #{keyVal}
+                or user_email like #{keyVal}
+                or user_phone like #{keyVal}
+                or user_gender like #{keyVal}
+                or user_birth like #{keyVal} )
+            </when>
+            <when test="searchType=='p'.toString()">
+                and user_id like #{keyVal} )
+            </when>
+            <when test="searchType=='e'.toString()">
+                and user_name like #{keyVal} )
+            </when>
+            <when test="searchType=='o'.toString()">
+                and user_email like #{keyVal} )
+            </when>
+            <when test="searchType=='u'.toString()">
+                and user_phone like #{keyVal} )
+            </when>
+            <when test="searchType=='s'.toString()">
+                and user_gender like #{keyVal} )
+            </when>
+            <when test="searchType=='etc'.toString()">
+                and user_birth like #{keyVal} )
+            </when>
+            <otherwise> )</otherwise>
+        </choose>
+    </sql>
+
+    <select id="searchList" resultType="com.project.mealbong.user.User1MapperDTO">
+        select *
+        from user
+        where ( user_id is not null <include refid="search"></include>
+        order by user_date desc
+        limit #{sno}, #{rowsPerPage}
+    </select>
+
+    <select id="searchTotalCount" resultType="int">
+        select count(*) from user
+        where ( user_id is not null <include refid="search"></include>
+    </select>
+
+    <select id="dely_info" resultType="com.project.mealbong.delivery.DeliveryDTO">
+        select dely_address1,dely_address2 from dely where user_id =
+            #{user_id} AND dely_check = "Y";
+    </select>
+</mapper>

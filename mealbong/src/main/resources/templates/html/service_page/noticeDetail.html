@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 밀키트 쇼핑몰 :: Meal Bong </title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../user/css/mypage.css">
+    <link rel="stylesheet" href="../../../common/css/mainPage.css">
+    <link rel="stylesheet" href="../../../common/css/modal.css">
+    <script defer src="../../../board/js/notice.js"></script>
+    <script defer src="../../../admin/js/notice_delete.js"></script>
+
+</head>
+
+<body>
+<th:block th:replace="fragments/header :: headerFragement"></th:block>
+
+<main>
+
+    <div class="notice_detail_box">
+        <div class="notice_detail_head">
+            <h2> 공지사항</h2>
+        </div>
+        <div class="notice_detail_main">
+            <div class="notice_detail_main_title">
+                <div>제&nbsp;&nbsp;목</div>
+                <div th:text="${noticeDetail.notice_title}"></div>
+            </div>
+            <div class="notice_detail_main_name">
+                <div>작성자</div>
+                <div th:text="${noticeDetail.notice_name}"></div>
+            </div>
+            <div class="notice_detail_main_date">
+                <div>작성일</div>
+                <div th:text="${noticeDetail.notice_date}"></div>
+            </div>
+            <div class="notice_detail_main_cnt">
+                <div>조회수</div>
+                <div th:text="${noticeDetail.notice_cnt}"></div>
+            </div>
+            <div class="notice_detail_main_content">
+                <p><img th:src="${noticeDetail.notice_file}"></p>
+                <p><span th:text="${noticeDetail.notice_content}"></span></p>
+            </div>
+            <div class="notice_detail_main_button">
+                <a th:href="@{/notice/noticeUpdate(notice_number=${noticeDetail.notice_number})}"
+                th:if="${session['user_id']=='admin'}">글 수정</a>
+                <a th:onclick="'javascript:noticeDelete('+${noticeDetail.notice_number}+')'"
+                   th:if="${session['user_id']=='admin'}">글 삭제</a>
+                <button onclick="javascript:history.go(-1)">
+                    목록으로
+                </button>
+            </div>
+        </div>
+    </div>
+</main>
+<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+<div class="mainModal hidden">
+    <div class="bg"></div>
+    <div class="modalBox">
+        <p>글을 삭제 하시겠습니까?</p>
+        <div class="closeBtn_div">
+            <button class="closeBtn">확인</button>
+            <button class="closeBtn">취소</button>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

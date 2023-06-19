@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 밀키트 쇼핑몰 :: Meal Bong </title>
+
+    <script src="../../../product/js/jquery-3.2.1.min.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../product/css/menu_list.css">
+    <link rel="stylesheet" href="../../../common/css/mainPage.css">
+    <script defer src="../../../product/js/menulist.js"></script>
+<!--    <script defer src="../../../common/js/main_topDiv.js"></script>-->
+<!--    <script defer src="../../../product/js/resultArea.js"></script>-->
+
+</head>
+
+<body>
+<th:block th:replace="fragments/header :: headerFragement"></th:block>
+
+<div class="outerbox">
+    <div class="innerbox1">
+        <th:block th:each="productList:${code_number}">
+            <a th:href="@{/product/productList(currPage=1,rowsPerPage=8, category_code=${productList.code_number})}"
+               th:text="${productList.code_desc}" class="selected"></a>&nbsp;|
+        </th:block>
+    </div>
+    <hr>
+
+    <div class="innerbox2">
+        <a href="#" class="selected" data-direction=0><span onclick="productList_order(1)">인기순</span></a>
+        <a href="#" data-direction=1><span onclick="productList_order(2)">신상품순</span></a>
+        <a href="#" data-direction=2><span onclick="productList_order(3)">낮은 가격순</span></a>
+        <a href="#" data-direction=3><span onclick="productList_order(4)">높은 가격순</span></a>
+    </div>
+
+    <div class="innerbox23" id="innerbox23">
+        <h2 th:if="${pageMaker.cri.code_number == 'C_01'}">한식</h2>
+        <h2 th:if="${pageMaker.cri.code_number == 'C_02'}">중식</h2>
+        <h2 th:if="${pageMaker.cri.code_number == 'C_03'}">일식</h2>
+        <h2 th:if="${pageMaker.cri.code_number == 'C_04'}">양식</h2>
+        <h2 th:if="${pageMaker.cri.code_number == 'C_05'}">분식/야식</h2>
+        <h2 th:if="${pageMaker.cri.code_number == 'C_06'}">아시안</h2>
+    </div>
+    <div id="resultArea">
+
+    </div>
+
+    </div>
+
+
+<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+</body>
+
+</html>

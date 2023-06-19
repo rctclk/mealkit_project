@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 밀키트 쇼핑몰 :: Meal Bong </title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../user/css/mypage.css">
+    <link rel="stylesheet" href="../../../common/css/mainPage.css">
+    <script defer src="../../js/main_topDiv.js"></script>
+
+    <script defer src="../../../product/js/wish.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+</head>
+
+<body>
+<th:block th:replace="fragments/header :: headerFragement"></th:block>
+
+<main>
+    <div class="mypage">
+        <div class="aside">
+            <div class="name">
+                <h2>마이페이지</h2>
+            </div>
+            <ul>
+                <li>
+                    <a href="/myPage?currPage=1&rowsPerPage=8"
+                       class="order">주문 내역
+                        <span></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/wish/list"
+                       class="wish">찜한 상품
+                        <span></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/address/list" class="address">배송지 관리
+                        <span></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/myPage/user_update"
+                       class="info">개인정보 수정
+                        <span></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="content">
+            <div class="content_1">
+                <h2>찜한 상품</h2>
+            </div>
+            <div class="content_wish">
+
+                <div class="content_wish_box" th:each="wish: ${wishList}">
+                    <div class="image">
+                        <a th:href="@{/product/${wish.product_number}}">
+                            <img th:src="${wish.image_file}" alt="product image">
+                        </a>
+                    </div>
+                    <div class="name_price">
+                        <div>
+                            <a th:href="@{/product/${wish.product_number}}"
+                               th:text="${wish.product_name}"></a>
+                        </div>
+                        <div>
+                            <span th:text="${wish.product_price}"></span>
+                            <span>원</span>
+                        </div>
+                    </div>
+                    <div class="wish_button">
+                        <button class="wish_put">담기</button>
+                        <button class="wish_delete">삭제</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!--취소 모달창 -->
+
+    <div class="delet_modal_content hidden">
+        <div class="modal_bg"></div>
+        <div class="delet_modalBox">
+            <p></p>
+            <div class="delet_Btn_div">
+                <button class="delet_Btn">확인</button>
+                <button class="delet_Btn">취소</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="put_modal_content hidden">
+        <div class="modal_bg"></div>
+        <div class="put_modalBox">
+            <div>
+                <div class="goods_name">
+                    <!-- <span>상품이름 </span> -->
+                </div>
+                <div>
+                    <div class="goods_prize">
+                        <!-- <span>금액</span> -->
+                    </div>
+                    <div class="goods_button">
+                        <button class="minus_goods"></button>
+                        <div>
+                            <!-- <span>수량</span> -->
+                        </div>
+                        <button class="plus_goods">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tot_goods_box">
+                <div>
+                    <span>합계</span>
+                </div>
+                <div class="tot_goods_prize">
+                </div>
+            </div>
+
+            <div class="put_Btn_div">
+                <button class="put_Btn">담기</button>
+                <button class="put_Btn">취소</button>
+            </div>
+
+
+        </div>
+    </div>
+
+</main>
+<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+
+</body>
+
+</html>

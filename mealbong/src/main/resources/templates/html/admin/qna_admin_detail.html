@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../common/css/mainPage.css">
+    <link rel="stylesheet" href="../../../../admin/css/admin.css">
+    <link rel="stylesheet" href="../../../../common/css/modal.css">
+
+    <script src="../common/js/jquery-3.2.1.min.js"></script>
+
+    <script defer src="../../../../admin/js/admin.js"></script>
+    <script defer src="../../../../admin/js/ans_delete.js"></script>
+    <title> 밀키트 쇼핑몰 :: Meal Bong </title>
+</head>
+
+<body>
+<th:block th:replace="fragments/header :: headerFragement"></th:block>
+<main>
+    <div class="admin_aside">
+        <div class="admin_name">
+            <h2>관리자 페이지</h2>
+        </div>
+        <ul class="aTag">
+            <li><a href="/admin/useradmin">회원관리</a></li>
+            <li><a href="/admin/orderadmin">주문관리</a></li>
+            <li><a href="/admin/productadmin">상품관리</a></li>
+            <li class="click"><a href="/admin/noticeadmin">게시판관리</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        <div class="content_admin">
+            <div>
+                <h2>게시판 관리</h2>
+            </div>
+            <ul class="board_header">
+                <li onclick="location.href='/admin/noticeadmin'">
+                    공지사항
+                </li>
+                <li onclick="location.href='/admin/faqadmin?searchType=n'">
+                    FAQ
+                </li>
+                <li class="click" onclick="location.href='/admin/qnaadmin?searchType=n'">
+                    1:1 문의
+                </li>
+            </ul>
+        </div>
+        <div class="content_admin">
+            <div>
+                <h2>1:1 문의</h2>
+            </div>
+        </div>
+        <ul style="width: 100%">
+            <li th:each="qnaDetail : ${qnaDetail}" class="content_li">
+                <div th:value="${qnaDetail.getQna_num()}" style="display: none"></div>
+                <ul>
+                    <li>작성자(아이디)</li>
+                    <li th:text="${qnaDetail.user_name +'(' + qnaDetail.user_id + ')'}"></li>
+                </ul>
+                <ul>
+                    <li>카테고리</li>
+                    <li th:text="${qnaDetail.qna_type}"></li>
+                </ul>
+                <ul>
+                    <li>작성일</li>
+                    <li th:text="${qnaDetail.qna_date}"></li>
+                </ul>
+                <ul>
+                    <li>제목</li>
+                    <li th:text="${qnaDetail.qna_title}"></li>
+                </ul>
+                <ul>
+                    <li>문의 내용</li>
+                    <li th:text="${qnaDetail.qna_content}"></li>
+                </ul>
+                <ul>
+                    <li>답변 내용</li>
+                    <li th:if="${qnaDetail.ans_content != null}" class="ans_check_div">
+                        <div th:text="${qnaDetail.ans_content}"></div>
+                        <div th:if="${qnaDetail.ans_content != null}" class="ans_check_div_btn">
+                            <a th:href="@{/admin/ansform(qna_num=${qnaDetail.qna_num})}">답변수정</a>
+                            <a id="ans_delete_form"
+                               th:onclick="'javascript:ansDelete('+${qnaDetail.qna_num}+')'"
+                               style="cursor: pointer;"
+                            >답변삭제</a>
+                        </div>
+                    </li>
+
+                    <button th:unless="${qnaDetail.ans_content != null}" class="ans_form_button">
+                        <a th:href="@{/admin/ansform(qna_num=${qnaDetail.qna_num})}"
+                           style="font-size: 1em; color:white;">답변 등록</a>
+                    </button>
+
+                </ul>
+                <ul class="qna_detail_forward_button">
+                    <button onclick="javascript:history.go(-1)">
+                        목록으로
+                    </button>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</main>
+
+<footer th:replace="fragments/footer :: footerFragment"></footer>
+
+<div class="mainModal hidden">
+    <div class="bg"></div>
+    <div class="modalBox">
+        <p>답변을 삭제하시겠습니까?</p>
+        <div class="closeBtn_div">
+            <button class="closeBtn">확인</button>
+            <button class="closeBtn">취소</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>

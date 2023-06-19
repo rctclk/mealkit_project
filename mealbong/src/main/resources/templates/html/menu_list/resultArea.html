@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> 밀키트 쇼핑몰 :: Meal Bong </title>
+
+  <script src="../../../product/js/jquery-3.2.1.min.js"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../product/css/menu_list.css">
+  <link rel="stylesheet" href="../../../common/css/mainPage.css">
+<!--  <script defer src="../../../common/js/main_topDiv.js"></script>-->
+  <script defer src="../../../product/js/resultArea.js"></script>
+
+</head>
+
+<div class="innerbox3">
+  <div th:each="imageList:${imageList}">
+    <span th:text="${imageList.image_main}"></span>
+  </div>
+  <div class="food_box" th:each="productList:${productList}">
+      <a th:href="@{|${productList.product_number}|}">
+        <div class="img_container">
+          <img th:src="${productList.image_file}" alt="상품 이미지">
+        </div>
+      </a>
+      <th:block th:each="productList:${productList}">
+      <form action="@{/order/wishInsert}">
+        <input type="hidden" id="user_id" name="user_id" th:value="${session['user_id']}">
+        <input type="hidden" id="product_number" name="product_number" th:value="${productList.product_number}">
+        <button class="basket" type="button" onclick="login_check2()"></button>
+      </form>
+      </th:block>
+      <a th:href="@{|${productList.product_number}|}">
+        <div class="menu_name" th:text="${productList.product_name}"></div>
+      </a>
+      <div class="post">샛별배송</div>
+      <div class="menu_price" th:text="|${#numbers.formatInteger(productList.product_price,3,'COMMA')}원|"></div>
+      <div class="food_hint">취향대로 맛있게 완성하는</div>
+      <div class="hint_under"><span class="only">Mealbong Only</span><span class="limited">한정수량</span>
+      </div>
+  </div>
+</div>
+
+<div class="cri_div">
+  <!-- ** Cri_Paging **
+     1) FirstPage, Prev -->
+  <th:block th:if="${pageMaker.prev && pageMaker.spageNo>1}">
+    <a th:onclick="productList_order2(1)"><<</a>&nbsp;
+    <a th:attr="onclick=|productList_order2('${pageMaker.spageNo-1}')|">&nbsp;&nbsp;<&nbsp;</a>
+  </th:block>
+  <div th:each="i: ${#numbers.sequence(pageMaker.spageNo, pageMaker.epageNo)}">
+    <div th:if="${i==pageMaker.cri.currPage}" class="cri_div_font" th:text="${i}"></div>
+    <a th:unless="${i==pageMaker.cri.currPage}"
+       th:onclick="productList_order2([[${i}]])"
+       th:text="${i}">
+    </a>
+  </div>
+  <!-- 3) Next, LastPage -->
+  <th:block th:if="${pageMaker.next && pageMaker.epageNo > 0}">
+    <a th:attr="onclick=|productList_order2('${pageMaker.epageNo+1}')|">
+      &nbsp;>&nbsp;&nbsp;</a>
+      <a th:attr="onclick=|productList_order2('${pageMaker.lastPageNo}')|">
+      >></a>
+  </th:block>
+</div> <!--    paging -->
+
+<!-- =========== 찜하기 모달창 (로그인 전 후) =========== -->
+<div class="modal_container hidden">
+  <div class="bg"></div>
+  <div class="modalBox">
+    <p></p>
+    <div class="closeBtn_div">
+      <button class="closeBtn">확인</button>
+    </div>
+  </div>
+</div>

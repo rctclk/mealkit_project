@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 밀키트 쇼핑몰 :: Meal Bong </title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    <script src="../../../product/js/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" href="../../../common/css/mainPage.css">
+    <link rel="stylesheet" href="../../../product/css/food_info.css">
+    <script defer src="../../../product/js/food_info.js"></script>
+    <script defer src="../common/js/main_topbutton.js"/>
+    <script src="https://kit.fontawesome.com/219136e9eb.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<th:block th:replace="fragments/header :: headerFragement"></th:block>
+<div class="outerbox1">
+    <div class="innerbox1" th:each="imageList:${imageList}">
+        <th:block th:if="${imageList.image_main} == 'Y'">
+            <img th:src="${imageList.image_file}" alt="Food main img">
+        </th:block>
+    </div>
+    <div class="innerbox2">
+        <div>샛별배송</div>
+        <div>
+            <h2 th:text="${productDetail.product_name}  "></h2>
+            <button id="share"></button>
+        </div>
+        <div>취향대로 맛있게 완성하는</div>
+        <div>
+            <h1 th:text="|${#numbers.formatInteger(productDetail.product_price,3,'COMMA')}원|"></h1>
+        </div>
+        <div>
+            <dl>배송</dl>
+            <dt>샛별배송 (23시 전 주문시 내일 아침 7시 전 도착)</dt>
+        </div>
+        <div>
+            <dl>판매자</dl>
+            <dt>밀봉</dt>
+        </div>
+        <div>
+            <dl>포장타입</dl>
+            <dt th:text="${productDetail.package_code}"></dt>
+        </div>
+        <div>
+            <dl>인분</dl>
+            <dt th:text="${productDetail.product_serving}"></dt>
+        </div>
+        <div>
+            <dl>난이도</dl>
+            <dt th:text="${productDetail.level_code}"></dt>
+        </div>
+        <div>
+            <dl>유통기한(또는 수비기한)정보</dl>
+            <dt>수령일 포함 최소 3일 이상 남은 제품을 보내드립니다.</dt>
+        </div>
+        <div>
+            <dl>상품선택</dl>
+            <dt>
+                <div>
+                    <div th:text="${productDetail.product_name}"></div>
+                    <div>
+                        <form th:action="@{/order/cartInsert}" id="cartInsert">
+                        <div id="inputs">
+                            <input type="hidden" id="user_id" name="user_id" th:value="${session['user_id']}">
+                            <input type="hidden" id="product_number" name="product_number" th:value="${productDetail.product_number}">
+                            <input type="number" id="product_count" name="product_count" min="1" max="100"  value="0"
+                                    class="div1_inputNumber"></div>
+                        </form>
+                        <div class="product_price">
+                            <h3 th:text="${productDetail.product_price}" style="visibility:hidden"></h3>
+                            <h3 th:text="|${#numbers.formatInteger(productDetail.product_price,3,'COMMA')}원|"></h3>
+                        </div>
+                    </div>
+                </div>
+            </dt>
+        </div>
+        <div>
+            <div id="total_amount">
+                <span>총 상품금액 : </span>
+                <span></span>
+                <span>원</span>
+            </div>
+            <div id=btn_box>
+                <button class="basket" type="button" onclick="login_check()">장바구니 담기</button>
+                <form th:action="@{/order/wishInsert}">
+                    <input type="hidden" name="product_number" th:value="${productDetail.product_number}">
+                    <button class="wish" type="button" onclick="login_check2()"></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================================================ -->
+<!-- middle box -->
+
+<div class="tab_box">
+    <div class="tab_middlebox">
+        <a href="#food_info">상세정보</a>
+        <a href="#food_delivery">배송안내</a>
+        <a href="#food_refund">교환 및 반품안내</a>
+        <a href="#food_inquiry">상품문의(0)</a>
+    </div>
+</div>
+
+<div class="outerbox2">
+    <div id="food_info" th:each="imageList:${imageList}">
+        <th:block th:if="${imageList.image_main} == 'N'">
+            <img th:src="${imageList.image_file}" alt="food_detail1">
+    </div>
+        </th:block>
+    <div id="food_delivery">
+        <img src="https://www.mychef.kr/data/editor/policy/220609/about_mychef_01_120136.jpg" name="food_delivery"
+             alt="food_detail2">
+    </div>
+    <div id="food_refund">
+        <img src="   https://www.mychef.kr/data/editor/policy/220609/about_mychef_02_120033.jpg" name="food_refund"
+             alt="food_detail3">
+    </div>
+    <div id="food_inquiry">
+        <div class="last review1">
+            <div>
+                <h2>상품문의</h2>
+            </div>
+            <div>
+                <button class="product_inquiry">
+                    <a th:href="@{/qna/qnalist}">상품문의 글쓰기</a>
+                </button>
+            </div>
+        </div>
+        <hr>
+        <div class="last review2">
+            상품에 대한 문의를 남기는 공간입니다.<br>
+            해당 상품 관련 문의 및 배송관련, 주문(취소/교환/환불)관련
+            문의 및 요청사항은 마이페이지 내 1:1 문의에 남겨주세요.
+        </div>
+    </div>
+</div>
+
+
+<!-- ===========장바구니 및 좋아요 모달창 (로그인 전 후)=========== -->
+<div class="modal_container hidden">
+    <div class="bg"></div>
+        <div class="modalBox">
+            <p></p>
+            <div class="closeBtn_div">
+                <button class="closeBtn">확인</button>
+            </div>
+        </div>
+    </div>
+
+<!-- =========== SNS Share =========== -->
+
+<div class="SNS_container hidden">
+    <div class="bg"></div>
+    <div class="SNS_Box">
+        <a class="facebook" href="https://m.facebook.com/login/?locale=ko_KR/"><img
+                src="../../../image/Facebook.png" alt="facebook"></a>
+        <a class="kakaotalk"
+           href="https://accounts.kakao.com/login/?continue=https%3A%2F%2Fcs.kakao.com%2Fhelps%3Fservice%3D8%26locale%3Dko%26category%3D25"><img
+                src="../../../image/KakaoTalk.png" alt="kakaotalk"></a>
+        <a class="instagram" href="https://www.instagram.com/"><img src="../../../image/Instagram.png"
+                                                                    alt="instagram"></a>
+        <button class="SNS_closeBtn">확인</button>
+    </div>
+</div>
+<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+<div class="topButton">
+    <a href="#"><img src="../../../image/topbutton.png" title="위로 가기"></a>
+</div>
+</body>
+</html>

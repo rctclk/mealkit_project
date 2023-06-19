@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 밀키트 쇼핑몰 :: Meal Bong </title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../user/css/mypage.css">
+    <link rel="stylesheet" href="../common/css/mainPage.css">
+    <script defer src="../../js/main_topDiv.js"></script>
+
+</head>
+
+<body>
+<th:block th:replace="fragments/header :: headerFragement"></th:block>
+<main>
+    <div class="mypage">
+        <div class="aside">
+            <div class="name">
+                <h2>마이페이지</h2>
+            </div>
+            <ul>
+                <li>
+                    <a href="/myPage?currPage=1&rowsPerPage=8"
+                       class="order">주문 내역
+                        <span></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/wish/list"
+                       class="wish">찜한 상품
+                        <span></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/address/list" class="address">배송지 관리
+                        <span></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/myPage/user_update"
+                       class="info">개인정보 수정
+                        <span></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="content">
+            <div class="content_1">
+                <div>
+                    <h2>주문 내역</h2>
+                    <span>주문 내역을 확인할 수 있습니다.</span>
+                </div>
+            </div>
+            <div class="content_order">
+
+
+                <th:block th:each="order_list:${order_list}">
+
+
+                    <div class="content_order_box">
+                        <div class="content_order_box_1">
+                            <span th:text="${order_list.order_date}">2022.09.10</span>
+                            <a th:href="@{/order/detail(order_number=${order_list.order_number})}">주문내역 상세보기&#62;</a>
+                        </div>
+                        <div class="content_order_box_2">
+                            <div class="image">
+                                <a th:href="@{/product/{product_number}(product_number=${order_list.product_number})}">
+                                    <img th:src="${order_list.image_file}" alt="불고기 분짜">
+                                </a>
+                            </div>
+                            <div class="order_list">
+                                <div>
+                                    <span>상품명</span>
+                                    <span><span th:text="${order_list.product_name}">(아시안) 불고기 분짜</span>
+                                        <th:block th:if="${order_list.order_count > 1}">
+                                            외&nbsp;<span th:text="${order_list.order_count} -1"></span>건
+                                        </th:block>
+                                    </span>
+                                </div>
+                                <div>
+                                    <span>주문번호</span>
+                                    <span th:text="${order_list.order_number}">202209100001</span>
+                                </div>
+                                <div>
+                                    <span>결제방법</span>
+                                    <span th:text="${order_list.payment}">신용카드</span>
+                                </div>
+                                <div>
+                                    <span>결제금액</span>
+                                    <span> <span th:text="${order_list.order_amount}">52,000</span>원</span>
+                                </div>
+                            </div>
+                            <div class="order_inquiry">
+                                <span th:text="${order_list.order_status}" style="margin-top:16px; margin-right: 30px; font-weight:bold;">배송완료</span>
+                                <button class="order_inquiry_button">
+                                    <a href="/qna/qnalist">1:1 문의</a>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </th:block>
+                <div class="cri_div">
+                    <!-- ** Cri_Paging **
+                       1) FirstPage, Prev -->
+                    <th:block th:if="${pageMaker.prev && pageMaker.spageNo>1}">
+                        <!-- OLD_version -->
+                        <a th:href="@{/order/order_list(currPage=1,rowsPerPage=8)}">FP</a>&nbsp;
+                        <a th:href="@{/order/order_list(currPage=${pageMaker.spageNo-1}, rowsPerPage=8)}">&lt;</a>
+                    </th:block>
+                    <th:block th:unless="${pageMaker.prev && pageMaker.spageNo>1}">
+                        <font color="Gray">FP&nbsp;&lt;&nbsp;&nbsp;</font>
+                    </th:block>
+                    <!-- 2) Display PageNo  -->
+                    <th:block th:each="i: ${#numbers.sequence(pageMaker.spageNo, pageMaker.epageNo)}">
+                        <th:block th:if="${i==pageMaker.cri.currPage}">
+                            <font size="5" color="#ffa07a" th:text="${i}"></font>
+                        </th:block>
+                        <th:block th:unless="${i==pageMaker.cri.currPage}">
+                            <a th:href="@{/order/order_list(currPage=${i}, rowsPerPage=8)}" th:text="${i}"></a>
+                        </th:block>
+                    </th:block>
+
+                    <!-- 3) Next, LastPage -->
+                    <th:block th:if="${pageMaker.next && pageMaker.epageNo > 0}">
+                        <a th:href="@{/order/order_list(currPage=${pageMaker.epageNo+1}, rowsPerPage=8) }"> ></a>
+                        <a th:href="@{/order/order_list(currPage=${pageMaker.lastPageNo}, rowsPerPage=8)}"> LP</a>
+                    </th:block>
+                    <th:block th:unless="${pageMaker.next && pageMaker.epageNo > 0}">
+                        <font color="Gray"> > LP</font>
+                    </th:block>
+                </div> <!--    paging -->
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- footer : 법적 필수 항목 -->
+<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+</body>
+
+</html>

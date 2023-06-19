@@ -1,0 +1,351 @@
+* {
+    margin : 0;
+    padding : 0;
+    list-style: none;
+    font-family: 'Gowun Dodum', sans-serif;
+}
+
+
+
+/* ============================메인상단========================= */
+
+.cart_container {
+    width : 1000px;
+    margin : 0 auto;
+    text-align: center;
+    display : flex;
+    flex-direction: column;
+}
+
+.mainspan {
+    font-weight: 600;
+    font-size: 26px;
+    margin : 55px 0 50px;
+    display : block;
+}
+
+.div_a {
+    margin-top : 20px;
+    padding-bottom : 15px;
+    border-bottom : 1px solid;
+    align-self : flex-start;
+    width : 70%;
+    display : flex;
+ }
+
+ .a_tag {
+    text-decoration: none;
+    color : black;
+}
+
+.a_tag,
+.label_style {
+    font-size : 18px;
+    font-weight : bold;
+}
+
+.a_tag:visited {
+    color : black;
+}
+
+.spanmargin {
+    margin : 0 10px;
+}
+
+.cartinput {
+    width : 20px;
+    margin-right : 15px;
+    margin-left : 10px;
+}
+
+.cart_divbox {
+    width : 100%;
+    display : flex;
+}
+
+/* ============================메인 본문========================== */
+
+.cart_div1 {
+    width : 70%;
+    padding : 10px;
+    box-sizing : border-box;
+}
+
+.div1_sub {
+    display : flex;
+    align-items : center;
+    justify-content : space-between;
+    height : 90px;
+    margin : 15px 0;
+    border-bottom: 1px solid rgba(192, 192, 192, 0.588);
+}
+
+.div1_sub_sub {
+    display : flex;
+    align-items : center;
+    height : 90px;
+    width : 430px;
+}
+
+
+.div1_input {
+    width : 20px;
+    height : 20px;
+
+}
+
+.div1_a_img1 {
+    width : 70px;
+    height : 70px;
+    margin-left : 15px;
+}
+
+.div1_a2 {
+    font-weight : bold;
+    margin-left : 20px;
+    text-decoration: none;
+    font-size : 20px;
+    color : black;
+}
+
+.div1_a2:visited {
+    color : black;
+}
+
+.div1_span {
+    font-weight : bold;
+    font-size : 18px;
+}
+.div1_span2 {
+    font-weight : bold;
+    font-size : 18px;
+}
+
+/* .div1_inputNumber {
+    margin-right : 40px;
+} */
+
+.cart_div2 {
+    width : 30%;
+    height : 700px;
+    display : flex;
+    text-align : left;
+    flex-direction : column;
+}
+
+.cart_subdiv3 {
+    height : 52px;
+}
+
+.cart_subdiv12 {
+    height : 420px;
+    border : 1px solid;
+    display : flex;
+    flex-direction : column;
+}
+
+.cart_subdiv12,
+.cart_subdiv3 {
+    margin-left : 20px;
+}
+
+
+
+.align_p {
+    margin : 10px 0;
+    font-weight : bold;
+}
+
+.cart_subdiv1,
+.cart_subdiv2 {
+    padding : 20px;
+    box-sizing : border-box;
+}
+
+.cart_subdiv2 {
+    background-color: gainsboro;
+    display : flex;
+    flex-direction: column;
+    flex-grow : 1;
+}
+
+.subdiv2_box,
+.subdiv2_box2,
+.subdiv2_box3 {
+    display : flex;
+    justify-content : space-between;
+    margin-bottom : 15px;
+}
+
+
+
+.subdiv2_box3 {
+    margin-top : 30px;
+}
+
+.subdiv2_line {
+    border-bottom : 1px solid rgba(192, 192, 192, 0.303)
+    
+
+}
+
+
+.subdiv1_button {
+    width : 100%;
+    height : 40px;
+    background-color: lightsalmon;
+    border-radius : 5px;
+    margin-top : 60px;
+}
+
+.subdiv3_button {
+    width : 100%;
+    height : 52px;
+    background-color: lightsalmon;
+    border-radius : 5px;
+    margin-top : 30px;
+}
+
+.subdiv1_a {
+    width : 100%;
+    height : 100%;
+    color : white;
+    text-decoration: none;
+    display : flex;
+    justify-content: center;
+    align-items : center;
+    border : none;
+    cursor : pointer;
+}
+
+/* .subdiv1_a:visited {
+    color : white;
+} */
+
+
+/* ====================================== */
+/* 나중에추가한거 */
+
+.btn_add {
+    display : inline-flex;
+    width: 15px;
+    height : 15px;
+    cursor : pointer;
+}
+
+.close_btn {
+    display : inline-flex;
+    width: 30px;
+    height : 30px;
+    cursor : pointer;
+    background: url(../../image/close.png) no-repeat center/50%;
+    transform : translateX(20%) translateY(-9%);
+}
+
+.btn_addBox {
+    width : 80px;
+    display : flex;
+    border : 1px solid rgb(158, 158, 158);
+    border-radius : 3px;
+    align-items: center;
+    justify-content : space-evenly;
+}
+
+.btn_addSpan {
+    width : 28px;
+    height : 28px;
+    font-weight : bold;
+    line-height: 28px;
+    cursor : default;
+    border : 0;
+    background-color: transparent;
+}
+
+.btn_plus,
+.btn_minus {
+    border : none;
+}
+
+.btn_minus {
+    background : url(../../image/minus.png) center/cover;
+    /*opacity : .5;*/
+    /*cursor : default;*/
+}
+.btn_plus {
+    background : url(../../image/plus2.png) center/cover;
+}
+
+.div1_priceBox{
+    display : flex;
+    justify-content: flex-end;
+    width : 128px;
+}
+
+.cart_hidden {
+    display : none;
+}
+
+.selectAll_box {
+    display: inline-flex;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    background: url(../../image/check.png) no-repeat center/75%;
+    transform: translateX(20%) translateY(-6%);
+    border : none;
+}
+.select_box {
+    display: inline-flex;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    background: url(../../image/check.png) no-repeat center/75%;
+    transform: translateX(-10%) translateY(8%);
+}
+
+.label_style {
+    transform : translateX(20%);
+    cursor : default;
+}
+
+.All_div {
+    display : flex;
+}
+
+/* =====모달 */
+
+body .modalBox {
+    position: absolute;
+    background-color: #fff;
+    top : 35%;
+    width : 300px;
+    height : 150px;
+    text-align : center;
+    border-radius: 10px;
+    display : flex;
+    flex-direction: column;
+    justify-content : space-between
+}
+
+
+.modal_zz {
+    display : flex;
+}
+.closeBtn_div {
+    display : flex;
+}
+
+main .modalBox button:nth-of-type(1) {
+    border-radius: 0 0 0 10px;
+    /* border-left : 1px solid gray; */
+}
+main .modalBox button:nth-of-type(2) {
+    border-radius: 0 0 10px 0;
+}
+
+
+/*====================== 추거ㅏ*/
+
+.c_number {
+    display: none;
+}

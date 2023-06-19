@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 밀키트 쇼핑몰 :: Meal Bong </title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../user/css/mypage.css">
+    <link rel="stylesheet" href="../../../common/css/mainPage.css">
+    <script defer src="../../../board/js/notice.js"></script>
+    <script defer src="../../js/main_topDiv.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#notice_file').change(function(){
+                if(this.files && this.files[0]) {
+                    let reader = new FileReader;
+                    reader.readAsDataURL(this.files[0]);
+                    reader.onload = function(e) {
+                        $("#notice_img").attr("src", e.target.result)
+                            .css({width: 80, height: 100});
+                    }
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+<th:block th:replace="fragments/header :: headerFragement"></th:block>
+
+<main>
+    <form action="noticeUpdate" method="post">
+
+        <p>Notice number: <input name="notice_number" th:value="${noticeDetail.notice_number}" readonly></p>
+        <p>Notice title: <input name="notice_title" th:value="${noticeDetail.notice_title}" ></p>
+
+        <p>Notice content: <input name="notice_content" th:value="${noticeDetail.notice_content}" ></p>
+
+        <p>Notice name: <input name="notice_name" th:value="${noticeDetail.notice_name}" ></p>
+        <p>Notice cnt: <input name="notice_cnt" th:value="${noticeDetail.notice_cnt}" readonly></p>
+        <p>Notice file: <input type="file" name="notice_file" id="notice_file"></p>
+        <img th:src="${noticeDetail.notice_file}" id="notice_img" class="notice_img" width="80" height="100">
+
+        <input type="submit" value="수정"> &nbsp;&nbsp;&nbsp;
+        <input type="reset" value="취소">
+    </form>
+</main>
+<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+
+</body>
+
+</html>

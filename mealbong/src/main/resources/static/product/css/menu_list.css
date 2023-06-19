@@ -1,0 +1,380 @@
+/* ======================================================================== */
+/* outerbox */
+
+.outerbox {
+    width: 1200px;
+    margin: auto;
+    /* border: 1px solid; */
+}
+
+.innerbox1,
+.innerbox2 {
+    color: black;
+}
+
+.innerbox1 a,
+.innerbox2 a {
+    text-decoration: none;
+}
+
+/* ========================================================================== */
+/* innerbox 3개 */
+
+.innerbox1 {
+    height: 80px;
+    width: 1100px;
+    margin: 10px auto;
+}
+
+.innerbox2 {
+    height: 50px;
+    width: 1100px;
+    margin: 10px auto;
+}
+
+
+.innerbox3 {
+    height: 1300px;
+    width: 1100px;
+    margin: 10px auto;
+
+    display: grid;
+    grid-template: repeat(2, 1fr) / repeat(4, 1fr);
+}
+
+/* ============================================================================ */
+/* innerbox1 innerbox2 안에 a태그들 정렬 */
+
+.innerbox1 {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.innerbox2 a:nth-child(1) {
+    padding-left: 55px;
+}
+
+.innerbox2 a {
+    padding: 10px;
+}
+
+.outerbox .innerbox2 .selected {
+    color: lightsalmon;
+    font-weight: bold;
+}
+
+/* =========================================================================== */
+/* innerbox 2, 3 사이에 테마 표시 */
+
+body .innerbox1 a[href="#"] {
+    color: lightsalmon;
+    font-weight: bold;
+}
+
+.innerbox23 h2 {
+    font-size: 2.5em;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.innerbox1 a:link,
+.innerbox2 a:link {
+    color: black;
+}
+
+.innerbox1 a:visited,
+.innerbox2 a:visited {
+    color: black;
+}
+
+/* ============================================================================ */
+/* innerbox3 안에 food box 나열 */
+
+.innerbox3 .food_box {
+    width: 250px;
+    height: 580px;
+    margin: auto;
+
+    position: relative;
+}
+
+.innerbox3 .food_box div {
+    margin-bottom: 5px;
+}
+
+
+header {
+    z-index: 3;
+}
+
+
+.food_box .menu {
+    display: inline-block;
+}
+
+.menu_price {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.innerbox3 a {
+    text-decoration: none;
+    color: black;
+    display: inline-flex;
+    text-decoration: none;
+    color: black;
+    align-items: center;
+    justify-content: center;
+}
+
+.post,
+.food_hint {
+    font-size: 0.8em;
+    color: gray;
+}
+
+.innerbox3 .food_box .post {
+    margin-bottom: 0;
+}
+
+.only,
+.limited {
+    background-color: rgb(244, 244, 244);
+    color: salmon;
+    font-size: 0.8em;
+    border-radius: 3px;
+    padding: 2px 10px;
+}
+
+.only {
+    box-sizing: border-box;
+    margin-right: 20px;
+}
+
+.limited {
+    width: 90px;
+}
+
+
+
+/* ============================================================================== */
+/* food_box 안에 img + menu name + menu price */
+/* 찜하기 + 장바구니 */
+
+.img_container {
+    width: 250px;
+    height: 320px;
+}
+
+.food_box img {
+    width: 250;
+    height: 320px;
+    z-index: 1;
+}
+
+.img_container {
+    overflow: hidden;
+}
+
+
+/* ============================================================================== */
+/* 장바구니 */
+
+.innerbox3 .food_box .basket {
+    background-image: url(../../image/heart_coral.png);
+    background-position: center;
+    background-size: 65%;
+    background-repeat: no-repeat;
+
+    box-sizing: border-box;
+    width: 45px;
+    height: 45px;
+
+    position: absolute;
+    right: 15px;
+    bottom: 275px;
+
+    background-color: white;
+    opacity: 0.8;
+    border-radius: 50%;
+    border: none;
+}
+
+.innerbox3 .food_box button:hover {
+    cursor: pointer;
+}
+
+
+/* =====================장바구니 modal box==================== */
+/* 로그인 하기 전 */
+
+
+.modal_container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bg {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.601);
+}
+
+.modalBox {
+    position: absolute;
+    background-color: #fff;
+    top : 35%;
+    width : 300px;
+    height : 180px;
+    text-align : center;
+    border-radius: 10px;
+    display : flex;
+    flex-direction: column;
+    justify-content : space-between
+}
+
+.modalBox p {
+    padding : 30px;
+    font-weight : 600;
+    color :rgba(0, 0, 0, 0.73)
+}
+
+
+.modalBox button {
+    box-sizing : border-box;
+    color: lightsalmon;
+    font-weight : bold;
+    display : flex;
+    justify-content : center;
+    align-items : center;
+    height : 50px;
+    width : 100%;
+    margin : 0 auto;
+    cursor : pointer;
+    border : none;
+    background-color: white;
+    border-top : 1px solid gainsboro;
+    border-radius : 0 0 10px 10px;
+}
+
+.hidden  {
+    display : none;
+}
+
+/* =====================장바구니 modal box==================== */
+/* 로그인 하고 나서 */
+
+
+
+/* ===================== 상품 등록 (관리자) ==================== */
+main {
+    width: 1200px;
+    margin: auto;
+    margin-top: 50px;
+}
+
+.product_insert {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.content {
+    width: 950px;
+    box-sizing: border-box;
+}
+
+.content_1 {
+    height: 80px;
+    border-bottom: 2px solid;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+}
+
+.content_1 div h2 {
+    display: inline-block;
+}
+
+.content_1 div span {
+    padding: 10px;
+}
+
+.product_insert_form>form>div{
+        display: flex;
+        padding: 12px;
+        box-sizing: border-box;
+        align-items: center;
+}
+
+.product_insert_form_1,
+.product_insert_form_2 {
+        width: 140px;
+}
+
+.product_insert_form_3 {
+    display: flex;
+    justify-content: center;
+    margin-left: 140px;
+}
+
+.product_insert_button,
+.product_update_button,
+.product_delete_button{
+        width: 105px;
+        height: 30px;
+        margin-top : 10px;
+        box-sizing: border-box;
+        background-color: lightsalmon;
+        border: solid 1px lightsalmon;
+        border-radius: 5px;
+        color: white;
+        cursor: pointer;
+}
+
+.product_update_button a,
+.product_delete_button a {
+    width : 100%;
+    height : 100%;
+}
+
+.foodDetail_click {
+    width:100%;
+    height:100%;
+    position: absolute;
+}
+
+/* paging */
+
+.cri_div {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.cri_div div {
+    width: 25px;
+    height: 25px;
+}
+
+.cri_div_font {
+    background-color: lightsalmon;
+    color: white;
+    border-radius: 50%;
+}
+
+.cri_div a {
+    color: gray;
+    text-decoration: none;
+    cursor:pointer;
+}
+

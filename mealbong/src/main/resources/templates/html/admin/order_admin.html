@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../common/css/mainPage.css">
+    <link rel="stylesheet" href="../../../order/css/cart.css">
+    <link rel="stylesheet" href="../../../../admin/css/admin.css">
+    <link rel="stylesheet" href="../../../../common/css/modal.css">
+
+    <script src="../common/js/jquery-3.2.1.min.js"></script>
+    <script defer src="../../../../admin/js/order_delete.js"></script>
+    <title> 밀키트 쇼핑몰 :: Meal Bong </title>
+</head>
+
+<body>
+
+<script th:inline="javascript">
+    $(function(){
+        $('#searchType').change(function(){
+            if ( $(this).val()=='n' ) $('#keyword').val('');
+        }); //change
+
+        $('#user_search').click(function(){
+            self.location='/admin/orderadmin'
+                + '?currPage=1&rowsPerPage=8'
+                + '&searchType='+$('#searchType').val()
+                + '&keyword='+$('#keyword').val();
+        });
+    });
+</script>
+<th:block th:replace="fragments/header :: headerFragement"></th:block>
+<main>
+    <div class="admin_aside">
+        <div class="admin_name">
+            <h2>관리자 페이지</h2>
+        </div>
+        <ul class="aTag">
+            <li><a href="/admin/useradmin">회원관리</a></li>
+            <li class="click"><a href="/admin/orderadmin">주문관리</a></li>
+            <li><a href="/admin/productadmin">상품관리</a></li>
+            <li><a href="/admin/noticeadmin">게시판관리</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        <div class="content_admin">
+            <div>
+                <h2>주문 관리</h2>
+            </div>
+        </div>
+        <div id="searchBar">
+            <select name="searchType" id="searchType">
+                <option value="n" th:selected="${pageMaker.cri.searchType == null}">전체</option>
+                <option value="p" th:selected="${pageMaker.cri.searchType == 'p'}">주문번호</option>
+                <option value="e" th:selected="${pageMaker.cri.searchType == 'e'}">아이디</option>
+                <option value="o" th:selected="${pageMaker.cri.searchType == 'o'}">주문일자</option>
+                <option value="u" th:selected="${pageMaker.cri.searchType == 'u'}">주문금액</option>
+                <option value="s" th:selected="${pageMaker.cri.searchType == 's'}">주문상태</option>
+                <option value="etc" th:selected="${pageMaker.cri.searchType == 'etc'}">결제수단</option>
+            </select>
+            <input type="text" name="keyword" id="keyword" th:value="${pageMaker.cri.getKeyword()}">
+            <button id="user_search">Search</button>
+        </div>
+        <br>
+        <table class="content_inquiry" style="width: 100%">
+            <thead>
+            <tr>
+                <th>주문번호</th>
+                <th>아이디</th>
+                <th>주문일자</th>
+                <th>주문금액</th>
+                <th>주문상태</th>
+                <th>결제수단</th>
+                <th>주문취소</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="orderList: ${orderList}">
+                <td class="width_20">
+                    <a th:href="@{/order/detail(order_number=${orderList.order_number})}" th:text="${orderList.order_number}"></a>
+                </td>
+                <td th:text="${orderList.user_id}" class="width_20">아이디</td>
+                <td th:text="${orderList.order_date}" class="width_15">주문일자</td>
+                <td th:text="${orderList.order_amount + '원'}" class="width_15">주문금액</td>
+                <td th:text="${orderList.order_status}" class="width_10">주문상태</td>
+                <td th:text="${orderList.payment}" class="width_10">
+                    결제수단</td>
+                <td th:onclick="user_deleteClick([[${orderList.order_number}]])"
+                    style="cursor: pointer;" class="width_10">삭제
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="cri_div">
+            <!-- ** Cri_Paging **
+               1) FirstPage, Prev -->
+            <th:block th:if="${pageMaker.prev && pageMaker.spageNo>1}">
+                <a th:href="@{/admin/orderadmin(currPage=1,rowsPerPage=8, searchType=${pageMaker.cri.searchType}, keyword=${pageMaker.cri.keyword})}"><<</a>&nbsp;&nbsp;
+                <a th:href="@{/admin/orderadmin(currPage=${pageMaker.spageNo-1}, rowsPerPage=8, searchType=${pageMaker.cri.searchType}, keyword=${pageMaker.cri.keyword})}">&lt;</a>
+            </th:block>
+<!--            <th:block th:unless="${pageMaker.prev && pageMaker.spageNo>1}">-->
+<!--                <font color="Gray">FP&nbsp;&lt;&nbsp;&nbsp;</font>-->
+<!--            </th:block>-->
+            <!-- 2) Display PageNo  -->
+            <div th:each="i: ${#numbers.sequence(pageMaker.spageNo, pageMaker.epageNo)}">
+                <div th:if="${i==pageMaker.cri.currPage}" th:text="${i}" class="cri_div_font"></div>
+                <a th:unless="${i==pageMaker.cri.currPage}"
+                   th:href="@{/admin/orderadmin(currPage=${i}, rowsPerPage=8, searchType=${pageMaker.cri.searchType}, keyword=${pageMaker.cri.keyword})}" th:text="${i}">
+                </a>
+            </div>
+            <!-- 3) Next, LastPage -->
+            <th:block th:if="${pageMaker.next && pageMaker.epageNo > 0}">
+                <a th:href="@{/admin/orderadmin(currPage=${pageMaker.epageNo+1}, rowsPerPage=8, searchType=${pageMaker.cri.searchType}, keyword=${pageMaker.cri.keyword})}"> ></a>&nbsp;&nbsp;
+                <a th:href="@{/admin/orderadmin(currPage=${pageMaker.lastPageNo}, rowsPerPage=8, searchType=${pageMaker.cri.searchType}, keyword=${pageMaker.cri.keyword})}"> >></a>
+            </th:block>
+<!--            <th:block th:unless="${pageMaker.next && pageMaker.epageNo > 0}">-->
+<!--                <font color="Gray"> > LP</font>-->
+<!--            </th:block>-->
+        </div>
+    </div>
+</main>
+
+<footer th:replace="fragments/footer :: footerFragment"></footer>
+<div class="mainModal hidden">
+    <div class="bg"></div>
+    <div class="modalBox">
+        <p>주문을 삭제 하시겠습니까?</p>
+        <div class="closeBtn_div">
+            <button class="closeBtn">확인</button>
+            <button class="closeBtn">취소</button>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

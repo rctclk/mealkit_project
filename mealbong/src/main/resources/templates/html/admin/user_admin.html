@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../common/css/mainPage.css">
+    <link rel="stylesheet" href="../../../order/css/cart.css">
+    <link rel="stylesheet" href="../../../../admin/css/admin.css">
+    <link rel="stylesheet" href="../../../common/css/modal.css">
+
+    <script src="../common/js/jquery-3.2.1.min.js"></script>
+
+    <script defer src="../../../../admin/js/admin.js"></script>
+    <script defer src="../../../../admin/js/user_delete.js"></script>
+    <title> 밀키트 쇼핑몰 :: Meal Bong </title>
+</head>
+
+<body>
+
+<script th:inline="javascript">
+    $(function(){
+        $('#searchType').change(function(){
+            if ( $(this).val()=='n' ) $('#keyword').val('');
+        }); //change
+
+        $('#user_search').click(function(){
+            self.location='/admin/useradmin'
+                + '?currPage=1&rowsPerPage=10'
+                + '&searchType='+$('#searchType').val()
+                + '&keyword='+$('#keyword').val();
+        });
+    });
+</script>
+<th:block th:replace="fragments/header :: headerFragement"></th:block>
+<!--<script defer src="../admin/js/admin.js"></script>-->
+<main>
+    <div class="admin_aside">
+        <div class="admin_name">
+            <h2>관리자 페이지</h2>
+        </div>
+        <ul class="aTag">
+            <li class="click"><a href="/admin/useradmin">회원관리</a></li>
+            <li><a href="/admin/orderadmin">주문관리</a></li>
+            <li><a href="/admin/productadmin">상품관리</a></li>
+            <li><a href="/admin/noticeadmin">게시판관리</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        <div class="content_admin">
+            <div>
+                <h2>회원 관리</h2>
+            </div>
+        </div>
+        <div id="searchBar">
+            <select name="searchType" id="searchType">
+                <option value="n" th:selected="${pageMaker.cri.searchType == null}">전체</option>
+                <option value="p" th:selected="${pageMaker.cri.searchType == 'p'}">아이디</option>
+                <option value="e" th:selected="${pageMaker.cri.searchType == 'e'}">이름</option>
+                <option value="o" th:selected="${pageMaker.cri.searchType == 'o'}">이메일</option>
+                <option value="u" th:selected="${pageMaker.cri.searchType == 'u'}">핸드폰번호</option>
+                <option value="s" th:selected="${pageMaker.cri.searchType == 's'}">성별</option>
+                <option value="etc" th:selected="${pageMaker.cri.searchType == 'etc'}">생년월일</option>
+            </select>
+            <input type="text" name="keyword" id="keyword" th:value="${pageMaker.cri.getKeyword()}">
+            <button id="user_search">Search</button>
+        </div>
+        <br>
+        <table class="content_inquiry" style="width: 100%">
+            <thead>
+            <tr>
+                <th>아이디</th>
+                <th>이름</th>
+                <th>이메일</th>
+                <th>핸드폰번호</th>
+                <th>성별</th>
+                <th>생년월일</th>
+                <th>삭제</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="userList: ${userList}">
+                <td class="width_15">
+                    <a th:href="@{|/admin/${userList.user_id}|}" th:text="${userList.user_id}"></a>
+                </td>
+                <td th:text="${userList.user_name}" class="width_10">이름</td>
+                <td th:text="${userList.user_email}" class="width_30">이메일</td>
+                <td th:text="${userList.user_phone}" class="width_15">핸드폰번호</td>
+                <td th:text="${userList.user_gender}" class="width_10">성별</td>
+                <td th:text="${userList.user_birth}" class="width_15">생년월일</td>
+<!--                <td><a th:href="@{|/user1/delete/${userList.user_id}|}" style="color: black; text-decoration: none;">삭제</a></td>-->
+                <td th:onclick="user_deleteClick([[${userList.user_id}]])" style="cursor: pointer;">삭제</td>
+
+            </tr>
+            </tbody>
+        </table>
+        <div class="cri_div">
+            <!-- ** Cri_Paging **
+               1) FirstPage, Prev -->
+            <th:block th:if="${pageMaker.prev && pageMaker.spageNo>1}">
+                <a th:href="@{/admin/useradmin(currPage=1,rowsPerPage=8, searchType=${pageMaker.cri.searchType}, keyword=${pageMaker.cri.keyword})}"><<</a>&nbsp;&nbsp;
+                <a th:href="@{/admin/useradmin(currPage=${pageMaker.spageNo-1}, rowsPerPage=8, searchType=${pageMaker.cri.searchType}, keyword=${pageMaker.cri.keyword})}">&lt;</a>
+            </th:block>
+<!--            <th:block th:unless="${pageMaker.prev && pageMaker.spageNo>1}">-->
+<!--                <span><<&nbsp;&nbsp;<</span>-->
+<!--            </th:block>-->
+            <!-- 2) Display PageNo  -->
+            <div th:each="i: ${#numbers.sequence(pageMaker.spageNo, pageMaker.epageNo)}">
+                <div th:if="${i==pageMaker.cri.currPage}" th:text="${i}" class="cri_div_font"></div>
+                <a th:unless="${i==pageMaker.cri.currPage}"
+                   th:href="@{/admin/useradmin(currPage=${i}, rowsPerPage=8, searchType=${pageMaker.cri.searchType}, keyword=${pageMaker.cri.keyword})}" th:text="${i}">
+                </a>
+            </div>
+            <!-- 3) Next, LastPage -->
+            <th:block th:if="${pageMaker.next && pageMaker.epageNo > 0}">
+                <a th:href="@{/admin/useradmin(currPage=${pageMaker.epageNo+1}, rowsPerPage=8, searchType=${pageMaker.cri.searchType}, keyword=${pageMaker.cri.keyword})}"> ></a>&nbsp;&nbsp;
+                <a th:href="@{/admin/useradmin(currPage=${pageMaker.lastPageNo}, rowsPerPage=8, searchType=${pageMaker.cri.searchType}, keyword=${pageMaker.cri.keyword})}"> >></a>
+            </th:block>
+<!--            <th:block th:unless="${pageMaker.next && pageMaker.epageNo > 0}">-->
+<!--                <span> >&nbsp;&nbsp;>></span>-->
+<!--            </th:block>-->
+        </div>
+    </div>
+</main>
+
+<footer th:replace="fragments/footer :: footerFragment"></footer>
+<div class="mainModal hidden">
+    <div class="bg"></div>
+    <div class="modalBox">
+        <p>아이디를 삭제 하시겠습니까?</p>
+        <div class="closeBtn_div">
+            <button class="closeBtn">확인</button>
+            <button class="closeBtn">취소</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.mealbong.faq.FaqMapper">
+    <select id="faqList" resultType="com.project.mealbong.faq.FaqDTO">
+        select faq_number, (code_desc) faq_code, faq_question, faq_answer
+        from faq
+                 INNER JOIN code ON faq_code = code_number;
+    </select>
+
+    <select id="faqDetail" resultType="com.project.mealbong.faq.FaqDTO">
+        select *
+        from faq
+        where faq_number = #{faq_number};
+    </select>
+
+    <delete id="faqDelete">
+        delete
+        from faq
+        where faq_number = #{faq_number};
+    </delete>
+
+    <insert id="faqInsert">
+        insert into faq(faq_code, faq_question, faq_answer)
+        values (#{faq_code}, #{faq_question}, #{faq_answer})
+    </insert>
+
+    <update id="faqUpdate">
+        update faq
+        set faq_code=#{faq_code},
+            faq_question=#{faq_question},
+            faq_answer=#{faq_answer}
+        where faq_number = #{faq_number};
+    </update>
+
+    <select id="criList" resultType="com.project.mealbong.faq.FaqDTO">
+        select faq_number, (code_desc) faq_code, faq_question, faq_answer
+        from faq
+        INNER JOIN code ON faq_code = code_number
+        <if test="code_number != 'ALL'">
+            where faq_code = #{code_number}
+        </if>
+        order by faq_number desc
+        limit #{sno}, #{rowsPerPage};
+    </select>
+
+    <select id="criTotalCount" resultType="int">
+        select count(*)
+        from faq
+        <if test="code_number != 'ALL'">
+            where faq_code = #{code_number}
+        </if>
+    </select>
+
+<!--    admin page -->
+    <select id="searchList" resultType="com.project.mealbong.faq.FaqDTO">
+        select faq_number, (code_desc) faq_code, faq_question, faq_answer
+        from faq
+        INNER JOIN code ON faq_code = code_number
+
+        <if test="searchType != 'n'.toString()">
+            where faq_code = #{searchType}
+            <if test="keyword!=null">
+                <bind name="keyVal" value="'%'+keyword+'%'"/>
+                and (
+                faq_question like #{keyVal} )
+            </if>
+        </if>
+        <choose>
+            <when test="searchType == 'n'.toString()">
+                <if test="keyword!=null">
+                    <bind name="keyVal" value="'%'+keyword+'%'"/>
+                    where (
+                    faq_question like #{keyVal} )
+                </if>
+            </when>
+        </choose>
+        order by faq_number desc
+        limit #{sno}, #{rowsPerPage}
+    </select>
+
+    <select id="searchTotalCount" resultType="int">
+        select count(*) from faq
+        <if test="searchType != 'n'.toString()">
+            where faq_code = #{searchType}
+            <if test="keyword!=null">
+                <bind name="keyVal" value="'%'+keyword+'%'"/>
+                and (
+                faq_question like #{keyVal} )
+            </if>
+        </if>
+        <choose>
+            <when test="searchType == 'n'.toString()">
+                <if test="keyword!=null">
+                    <bind name="keyVal" value="'%'+keyword+'%'"/>
+                    where (
+                    faq_question like #{keyVal} )
+                </if>
+            </when>
+        </choose>
+    </select>
+</mapper>

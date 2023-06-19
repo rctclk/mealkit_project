@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../common/css/mainPage.css">
+    <link rel="stylesheet" href="../common/css/search.css">
+    <link rel="stylesheet" href="../../../../common/css/modal.css">
+<!--    <link rel="stylesheet" href="../../../product/css/menu_list.css">-->
+
+    <script src="../../common/js/search.js"></script>
+    <title> 밀키트 쇼핑몰 :: Meal Bong </title>
+</head>
+
+<body>
+<th:block th:replace="fragments/header :: headerFragement"></th:block>
+<main>
+    <div>
+        <div class="searchResult">
+            <h1 th:text="${pageMaker.cri.keyword + '에 대한 검색결과'}"></h1>
+        </div>
+        <div class="search_result_div">
+            <div class="food_box" th:each="productList:${productList}">
+                <a th:href="@{|/product/${productList.product_number}|}">
+                    <div class="img_container">
+                        <img th:src="${productList.image_file}" alt="상품 이미지">
+                    </div>
+                </a>
+                <button class="basket"></button>
+                <a th:href="@{|/product/${productList.product_number}|}">
+                    <div class="menu_name" th:text="${productList.product_name}"></div>
+                </a>
+                <div class="post">샛별배송</div>
+                <div class="menu_price" th:text="${#numbers.formatInteger(productList.product_price, 3, 'COMMA') + '원'}"></div>
+                <div class="food_hint">취향대로 맛있게 완성하는</div>
+                <div class="hint_under"><span class="only">Mealbong Only</span><span class="limited">한정수량</span>
+                </div>
+            </div>
+        </div>
+
+        <!--    paging-->
+        <div class="cri_div">
+            <!-- ** Cri_Paging **
+                   1) FirstPage, Prev -->
+            <th:block th:if="${pageMaker.prev && pageMaker.spageNo>1}">
+                <!-- OLD_version -->
+                <a th:href="@{/search/searchlist(currPage=1,rowsPerPage=8, keyword=${pageMaker.cri.keyword})}"><<</a>&nbsp;&nbsp;
+                <a th:href="@{/search/searchlist(currPage=${pageMaker.spageNo-1}, rowsPerPage=8, keyword=${pageMaker.cri.keyword})}">&lt;</a>
+            </th:block>
+<!--            <th:block th:unless="${pageMaker.prev && pageMaker.spageNo>1}">-->
+<!--                <span><<&nbsp;&nbsp;<</span>-->
+<!--            </th:block>-->
+
+            <!-- 2) Display PageNo  -->
+            <div th:each="i: ${#numbers.sequence(pageMaker.spageNo, pageMaker.epageNo)}">
+                <div th:if="${i==pageMaker.cri.currPage}" th:text="${i}" class="cri_div_font"></div>
+                <a th:unless="${i==pageMaker.cri.currPage}"
+                   th:href="@{/search/searchlist(currPage=${i}, rowsPerPage=8, keyword=${pageMaker.cri.keyword})}"
+                   th:text="${i}">
+                </a>
+            </div>
+
+            <!-- 3) Next, LastPage -->
+            <th:block th:if="${pageMaker.next && pageMaker.epageNo > 0}">
+                <a th:href="@{/search/searchlist(currPage=${pageMaker.epageNo+1}, rowsPerPage=8, keyword=${pageMaker.cri.keyword})}"> ></a>&nbsp;&nbsp;
+                <a th:href="@{/search/searchlist(currPage=${pageMaker.lastPageNo}, rowsPerPage=8, keyword=${pageMaker.cri.keyword})}">>></a>
+            </th:block>
+<!--            <th:block th:unless="${pageMaker.next && pageMaker.epageNo > 0}">-->
+<!--                <span> >&nbsp;&nbsp;>></span>-->
+<!--            </th:block>-->
+        </div>
+    </div>
+</main>
+<div class="mainModal hidden">
+    <div class="bg"></div>
+    <div class="modalBox">
+        <p></p>
+        <div class="closeBtn_div">
+            <button class="closeBtn">확인</button>
+        </div>
+    </div>
+</div>
+<!-- footer : 법적 필수 항목 -->
+<footer th:replace="fragments/footer :: footerFragment"></footer>
+</body>
+
+</html>

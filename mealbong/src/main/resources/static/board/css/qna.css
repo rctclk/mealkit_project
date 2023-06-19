@@ -1,0 +1,400 @@
+main {
+    width: 1200px;
+    margin: auto;
+    margin-top: 50px;
+}
+
+.mypage {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.name {
+    line-height: 80px;
+    text-align: center;
+}
+
+.aside {
+    width: 180px;
+}
+
+.aside ul {
+    list-style: none;
+    border-bottom: 0;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.aside ul li {
+    line-height: 14px;
+    box-sizing: border-box;
+    border-top: 1px solid gainsboro;
+    border-right: 1px solid gainsboro;
+    border-left: 1px solid gainsboro;
+    font-weight: bold;
+}
+
+.aside ul li:last-child {
+    border-bottom: 1px solid gainsboro;
+}
+
+.aside ul a {
+    text-decoration: none;
+    box-sizing: border-box;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.aside a {
+    color: black;
+}
+
+.aside a span::after {
+    content: "▷";
+}
+
+.aside a:hover {
+    background-color: lightsalmon;
+    transition-duration: 0.5s;
+}
+
+.aside a[href="#"] {
+    background-color: lightsalmon;
+}
+
+.content {
+    width: 950px;
+    box-sizing: border-box;
+}
+
+.content_1 {
+    height: 80px;
+    border-bottom: 1px solid;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+}
+
+.content_1 div h2 {
+    display: inline-block;
+}
+
+.content_1 div span {
+    padding: 10px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* 고객센터 - 1:1 문의 */
+
+.inquiry_box {
+    display: flex;
+    flex-direction: column;
+}
+
+.content_inquiry {
+    width: 100%;
+    /*padding: 20px 0;*/
+    border-bottom: 2px solid;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+.content_inquiry div,
+.inquiry_list div,
+.inquiry_list_content div:first-child {
+    display: flex;
+    align-items: flex-start;
+}
+
+
+.inquiry_list_Box {
+    cursor: pointer;
+}
+
+.inquiry_list {
+    display: flex;
+    padding: 10px 0;
+    border-bottom: 1px solid gainsboro;
+    box-sizing: border-box;
+}
+
+.inquiry_list_content {
+    display: flex;
+    border-bottom: 1px solid gainsboro;
+    box-sizing: border-box;
+}
+
+.inquiry_list_content div:nth-child(1) {
+    flex: 1;
+
+}
+
+.inquiry_list_content div:nth-child(2) {
+    flex: 9;
+    padding: 20px;
+}
+
+.content_inquiry div:nth-child(1),
+.inquiry_list div:nth-child(1) {
+    flex: 1;
+}
+
+.content_inquiry div:nth-child(2),
+.inquiry_list div:nth-child(2) {
+    /*flex: 5;*/
+}
+
+.content_inquiry div:nth-child(3),
+.inquiry_list div:nth-child(3) {
+    flex: 2;
+}
+
+.content_inquiry div:nth-child(4),
+.inquiry_list div:nth-child(4) {
+    flex: 2;
+}
+
+.inquiry_list_btn {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.inquiry_list_btn button {
+    width: 30px;
+    line-height: 30px;
+    background-color: gainsboro;
+    opacity: 0.5;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    border: none;
+    cursor: pointer;
+}
+
+.inquiry_list_btn button:first-child {
+    opacity: 1;
+}
+
+.content_inquiry_list_2 {
+    display: flex;
+    justify-content: flex-end;
+
+}
+
+.inquiry_form_button {
+    width: 130px;
+    height: 40px;
+    /*margin-top: 20px;*/
+    box-sizing: border-box;
+    background-color: lightsalmon;
+    border: none;
+    border-radius: 5px;
+    position: absolute;
+    right: 12px;
+    color: white;
+}
+
+.inquiry_form_button a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: white;
+    text-decoration: none;
+}
+
+.content_inquiry_form>form>div {
+    display: flex;
+    padding: 12px;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+.content_inquiry_form input:nth-child(2) {
+    width: calc(100% - 140px);
+    height: 40px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.content_inquiry_form_1,
+.content_inquiry_form_2,
+.content_inquiry_form_3 {
+    width: 140px;
+}
+
+.content_inquiry_form span::before {
+    content: "*";
+    color: red;
+}
+
+.content_inquiry_form .type {
+    height: 40px;
+    width: calc(100% - 140px);
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.content_inquiry_form_3 {
+    align-self: flex-start;
+}
+
+.content_inquiry_form_textarea {
+    width: calc(100% - 140px);
+    height: 500px;
+    padding: 30px;
+    box-sizing: border-box;
+    resize: none;
+}
+
+.content_inquiry_form_textarea::placeholder {
+    text-align: center;
+    margin-top: 20px;
+
+}
+
+.content_inquiry_form_6 {
+    display: flex;
+    justify-content: center;
+    margin-left: 140px;
+}
+
+.inquiry_list_button {
+    width: 130px;
+    height: 40px;
+    box-sizing: border-box;
+    background-color: lightsalmon;
+    border: solid 1px lightsalmon;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+/*================================================*/
+
+.inquiry {
+    background-color: lightsalmon;
+    color : white;
+}
+
+.content_inquiry li ul li,
+.inq_div li {
+    width: 15%;
+    line-height: 40px;
+}
+.content_inquiry li ul li:first-child,
+.inq_div li:first-child {
+    width: 70%;
+    line-height: 40px;
+}
+
+/*.content_inquiry > li:nth-child(2) ul li:last-child {*/
+/*    width: 100%;*/
+/*}*/
+
+.content_inquiry ul {
+    display: flex;
+    text-align: center;
+    flex-wrap: wrap;
+}
+
+.content_inquiry {
+    display: flex;
+    flex-direction: column;
+}
+
+.ans {
+    background-color: #F6F6F6;
+    padding: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.content_inquiry>li>ul {
+    border-top : 1px solid silver;
+
+}
+
+.ans_div {
+    display: flex;
+}
+
+.ans_div span:first-child {
+    background-color: lightsalmon;
+    border-radius: 50%;
+    color : white;
+    width: 30px;
+    line-height: 30px;
+    margin: 5px;
+}
+
+.ans_div span:last-child {
+    width: 95%;
+    padding: 5px 10px;
+}
+
+.updelete {
+    display: flex;
+    justify-content: flex-end;
+    gap: 7px;
+}
+
+.updelete a{
+    color: #AEAEAE;
+    font-size: 0.8em;
+    text-decoration: none;
+}
+
+.ans_btn {
+    width: 100%;
+    position: relative;
+    height: 40px;
+}
+
+.ans_btn button {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.inq_div {
+    cursor: pointer;
+}
+
+.form_btn {
+    position: relative;
+    height: 60px;
+}
+
+.form_btn button,
+.submit_div input {
+    position: absolute;
+    right: 0;
+    background-color: lightsalmon;
+    border: none;
+    border-radius: 5px;
+    height: 40px;
+    width: 120px;
+    color: white;
+    margin: 10px;
+    cursor: pointer;
+}
+
+/* updateform */
+
+.up_btn,
+.submit_div {
+    position: relative;
+}
+
+#qna_form,
+.content_inquiry_form {
+    margin-bottom: 10px;
+}
